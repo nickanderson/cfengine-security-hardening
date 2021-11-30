@@ -1,0 +1,17 @@
+# Python:
+__pycache__/
+
+# Node / npm:
+node_modules/
+
+# macOS:
+.DS_Store
+
+# VS Code:
+.vscode/
+
+# Build outputs:
+build/
+dist/
+out/
+.cache

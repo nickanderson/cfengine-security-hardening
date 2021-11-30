@@ -1,0 +1,11 @@
+bundle agent hello_inventory
+{
+  meta:
+    "tags" slist => { "autorun" };
+  vars:
+    "hello"
+      string => "Hello from CFEngine Build",
+      meta => { "inventory", "attribute_name=Hello"};
+  reports:
+    "Hello from CFEngine Build";
+}
