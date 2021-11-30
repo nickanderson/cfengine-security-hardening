@@ -1,0 +1,7 @@
+{
+    "vars": {
+        "control_common_bundlesequence_end": ["default_encrypt_method_sha512"]
+    },
+    "inputs": ["services/security-hardening/default-encrypt-method-sha512/default-encrypt-method-sha512.cf"]
+}
+

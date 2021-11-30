@@ -1,0 +1,14 @@
+#+title: default-encrypt-method-sha512
+
+This module makes sure the default password hashing algorithm is =SHA512=. Yes, it's a bit of a mis-nomer, but that stems from the historical details, namely the key =ENCRYPT_METHOD= in =/etc/login.defs=.
+
+- Ensure Password Hashing Algorithm in =/etc/libuser.conf= (SHA512)
+  - =crypt_style = sha512=
+- Ensure Password Hashing Algorithm in =/etc/login.defs= (SHA512)
+  - =ENCRYPT_METHOD SHA512=
+
+Note: This policy only ensures the default algorithm is set, it does nothing with respect to users who have passwords hashed using a different algorithm.
+
+Related modules:
+- [[https://build.cfengine.com/modules/inventory-etc-login-defs/][inventory-etc-login-defs]]
+- [[https://build.cfengine.com/modules/library-parsed-local-users/][library-parse-local-users]]
