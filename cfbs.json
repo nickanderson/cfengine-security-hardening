@@ -14,6 +14,18 @@
         "copy ./policy/default-encrypt-method-sha512.cf services/security-hardening/default-encrypt-method-sha512/default-encrypt-method-sha512.cf",
         "json cfbs/def.json def.json"
       ]
+    },
+    "sshd-PermitRootLogin-no": {
+      "description": "This module ensures that PermitRootLogin is set to no.",
+      "tags": ["security"],
+      "subdirectory": "./sshd-PermitRootLogin-no/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./sshd-PermitRootLogin-no.cf services/security-hardening/sshd-PermitRootLogin-no/",
+        "json cfbs/def.json def.json"
+      ]
     }
   }
 }
