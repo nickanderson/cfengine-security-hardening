@@ -28,6 +28,19 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "sshd-PermitEmptyPasswords-no": {
+      "description": "This module ensures that PermitEmptyPasswords is set to no.",
+      "tags": ["security"],
+      "subdirectory": "./sshd-PermitEmptyPasswords-no/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependancies": "lib-sshd-config",
+      "steps": [
+        "copy ./sshd-PermitEmptyPasswords-no.cf services/security-hardening/sshd-PermitEmptyPasswords-no/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "sshd-Protocol-2": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],

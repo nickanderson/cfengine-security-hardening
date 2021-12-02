@@ -1,0 +1,6 @@
+{
+  "vars": { "control_common_bundlesequence_end": ["sshd_PermitEmptyPasswords_no"] },
+  "inputs": [
+    "services/security-hardening/sshd-PermitEmptyPasswords-no/sshd-PermitEmptyPasswords-no.cf"
+  ]
+}
