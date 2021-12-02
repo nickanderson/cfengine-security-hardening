@@ -22,7 +22,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependancies": "lib-sshd-config",
+      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-PermitRootLogin-no.cf services/security-hardening/sshd-PermitRootLogin-no/",
         "json cfbs/def.json def.json"
@@ -31,11 +31,11 @@
     "sshd-PermitEmptyPasswords-no": {
       "description": "This module ensures that PermitEmptyPasswords is set to no.",
       "tags": ["security"],
+      "dependencies": ["lib-sshd-config"],
       "subdirectory": "./sshd-PermitEmptyPasswords-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependancies": "lib-sshd-config",
       "steps": [
         "copy ./sshd-PermitEmptyPasswords-no.cf services/security-hardening/sshd-PermitEmptyPasswords-no/",
         "json cfbs/def.json def.json"
@@ -48,7 +48,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependancies": "lib-sshd-config",
+      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-Ciphers-strong.cf services/security-hardening/sshd-Ciphers-strong/",
         "json cfbs/def.json def.json"
@@ -61,7 +61,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependancies": "lib-sshd-config",
+      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-Protocol-2.cf services/security-hardening/sshd-Protocol-2/",
         "json cfbs/def.json def.json"
