@@ -24,7 +24,18 @@ $ cat /etc/login.defs | grep '^ENCRYPT_METHOD'
 ENCRYPT_METHOD SHA512
 #+end_example
 
-(Adding it to the policy set you use on your policy server means it will be enforced across all machines in your infrastructure).
+If you run =cf-agent -KI= again, the file will already be correct, no changes will be made and there will be no log messages.
+Of course, you don't have to run the policy manually from the command line.
+As long as the module is included in your policy set and deployed to your policy server, it will be automatically enforced in all your infrastructure.
+
+This module does not provide an inventory attribute for =ENCRYPT_METHOD=, but you can get that in the [[https://build.cfengine.com/modules/inventory-etc-login-defs/][inventory-etc-login-defs]] module.
+Even so, CFEngine Enterprise reports the outcomes of everything it does, so you can always verify that the correct value is set.
+You can navigate to the policy file and line number in Policy Analyzer within Mission Portal, the CFEngine Enterprise UI:
+
+[[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/default-encrypt-method/policy-analyzer.png]]
+
+Above we see that the promise to edit =/etc/login.defs= was =KEPT=.
+This means that the file was already correct, the hashing algorithm was set as =ENCRYPT_METHOD SHA512=, and no edit was necessary.
 
 * How it works
 
