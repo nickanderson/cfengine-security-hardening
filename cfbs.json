@@ -74,7 +74,6 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-MaxAuthTries.cf services/security-hardening/sshd-MaxAuthTries/",
         "json cfbs/def.json def.json"
