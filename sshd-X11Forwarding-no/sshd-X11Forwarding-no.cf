@@ -1,0 +1,10 @@
+bundle agent sshd_X11Forwarding_no
+{
+
+  vars:
+      "sshd_config[X11Forwarding]" string => "no";
+
+  methods:
+      "SSHD Config"
+        usebundle => lib_sshd_config:global_key_values( "$(this.namespace):$(this.bundle).sshd_config" );
+}
