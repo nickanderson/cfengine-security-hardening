@@ -1,13 +1,43 @@
-#+title: default-encrypt-method-sha512
+MD5, DES, and other older hashing algorithms are no longer secure, and shouldn't be used for any cryptographic purposes.
+A good first step towards enforcing stronger cryptography is to set the default password hashing algorithm to SHA-512.
 
-This module makes sure the default password hashing algorithm is =SHA512=. Yes, it's a bit of a mis-nomer, but that stems from the historical details, namely the key =ENCRYPT_METHOD= in =/etc/login.defs=.
+This module makes sure the default password hashing algorithm is =SHA512=.
+Yes, it's a bit of a mis-nomer, but that stems from the historical details, namely the key =ENCRYPT_METHOD= in =/etc/login.defs=.
 
-- Ensure Password Hashing Algorithm in =/etc/libuser.conf= (SHA512)
+*Recommendation:* Don't use MD5 or other insecure hashing algorithms.
+Use this module to enforce a strong default across your systems.
+Look into what other places you might be relying on outdated cryptographic algorithms and how you can eliminate them.
+(See for example [[https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-federal_standards_and_regulations][FIPS mode]]).
+
+* Examples
+
+Running CFEngine with this module in your policy set on a system which uses MD5 looks like this:
+
+#+begin_example
+$ cat /etc/login.defs | grep '^ENCRYPT_METHOD'
+ENCRYPT_METHOD MD5
+$ cf-agent -KI
+    info: Replaced pattern '^\s*(ENCRYPT_METHOD\s+(?!SHA512$).*|ENCRYPT_METHOD)$' in '/etc/login.defs'
+    info: replace_patterns promise '^\s*(ENCRYPT_METHOD\s+(?!SHA512$).*|ENCRYPT_METHOD)$' repaired
+    info: Edited file '/etc/login.defs'
+$ cat /etc/login.defs | grep '^ENCRYPT_METHOD'
+ENCRYPT_METHOD SHA512
+#+end_example
+
+(Adding it to the policy set you use on your policy server means it will be enforced across all machines in your infrastructure).
+
+* How it works
+
+Specifically, this module does 2 things:
+
+- Enforce Password Hashing Algorithm in =/etc/libuser.conf= (SHA512)
   - =crypt_style = sha512=
-- Ensure Password Hashing Algorithm in =/etc/login.defs= (SHA512)
+- Enforce Password Hashing Algorithm in =/etc/login.defs= (SHA512)
   - =ENCRYPT_METHOD SHA512=
 
-Note: This policy only ensures the default algorithm is set, it does nothing with respect to users who have passwords hashed using a different algorithm.
+* Note
+
+This policy only ensures the default algorithm is set, it does nothing with respect to users who have passwords hashed using a different algorithm.
 
 Related modules:
 - [[https://build.cfengine.com/modules/inventory-etc-login-defs/][inventory-etc-login-defs]]
