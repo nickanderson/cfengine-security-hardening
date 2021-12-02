@@ -41,6 +41,19 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "sshd-Ciphers-strong": {
+      "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
+      "tags": ["security"],
+      "subdirectory": "./sshd-Ciphers-strong/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependancies": "lib-sshd-config",
+      "steps": [
+        "copy ./sshd-Ciphers-strong.cf services/security-hardening/sshd-Ciphers-strong/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "sshd-Protocol-2": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
