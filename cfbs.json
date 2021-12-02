@@ -68,7 +68,7 @@
       ]
     },
     "sshd-MaxAuthTries-4": {
-      "description": "This module ensures that PermitRootLogin is set to no.",
+      "description": "This module ensures that MaxAuthTries is set to 4.",
       "tags": ["security"],
       "subdirectory": "./sshd-MaxAuthTries-4/",
       "version": "0.0.1",
