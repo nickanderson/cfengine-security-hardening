@@ -1,6 +1,0 @@
-{
-  "vars": { "control_common_bundlesequence_end": ["sshd_MaxAuthTries_4"] },
-  "inputs": [
-    "services/security-hardening/sshd-MaxAuthTries-4/sshd-MaxAuthTries-4.cf"
-  ]
-}
