@@ -1,0 +1,10 @@
+bundle agent sshd_MaxAuthTries_4
+{
+
+  vars:
+      "sshd_config[MaxAuthTries]" string => "4";
+
+  methods:
+      "SSHD Config"
+        usebundle => lib_sshd_config:global_key_values( "$(this.namespace):$(this.bundle).sshd_config" );
+}

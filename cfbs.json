@@ -67,6 +67,19 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "sshd-MaxAuthTries-4": {
+      "description": "This module ensures that PermitRootLogin is set to no.",
+      "tags": ["security"],
+      "subdirectory": "./sshd-MaxAuthTries-4/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["lib-sshd-config"],
+      "steps": [
+        "copy ./sshd-MaxAuthTries-4.cf services/security-hardening/sshd-MaxAuthTries-4/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "sshd-Protocol-2": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
