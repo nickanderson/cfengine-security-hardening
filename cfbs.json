@@ -22,6 +22,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-permit-root-login-no.cf services/security-hardening/ssh-permit-root-login-no/",
         "json cfbs/def.json def.json"
@@ -34,6 +35,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-permit-empty-passwords-no.cf services/security-hardening/ssh-permit-empty-passwords-no/",
         "json cfbs/def.json def.json"
@@ -46,6 +48,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
         "json cfbs/def.json def.json"
@@ -58,6 +61,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-x11-forwarding-no.cf services/security-hardening/ssh-x11-forwarding-no/",
         "json cfbs/def.json def.json"
@@ -70,6 +74,7 @@
       "version": "0.0.2",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-max-auth-tries.cf services/security-hardening/ssh-max-auth-tries/",
         "json cfbs/def.json def.json"
@@ -82,7 +87,7 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["lib-sshd-config"],
+      "dependencies": ["library-sshd-config"],
       "steps": [
         "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
         "json cfbs/def.json def.json"

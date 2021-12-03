@@ -1,6 +1,7 @@
-#+title: ssh-ciphers-strong
+This module ensures that =Ciphers= is set to =chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the  [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]] module.
 
-This module ensures that =Ciphers= is set to =chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
-
-Related modules:
-- [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
+* Related modules
+- [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]]
+- [[https://build.cfengine.com/modules/ssh-permit-root-login-no/][ssh-permit-root-login-no]]
+- [[https://build.cfengine.com/modules/inventory-ssh-host-key-fingerprints/][inventory-ssh-host-key-fingerprints]]
+- [[https://build.cfengine.com/modules/ssh-max-auth-tries/][ssh-max-auth-tries]]
