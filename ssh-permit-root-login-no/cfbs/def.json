@@ -1,6 +1,6 @@
 {
   "vars": { "control_common_bundlesequence_end": ["sshd_PermitRootLogin_no"] },
   "inputs": [
-    "services/security-hardening/sshd-PermitRootLogin-no/sshd-PermitRootLogin-no.cf"
+    "services/security-hardening/ssh-permit-root-login-no/ssh-permit-root-login-no.cf"
   ]
 }

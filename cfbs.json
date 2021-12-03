@@ -15,15 +15,15 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-PermitRootLogin-no": {
+    "ssh-permit-root-login-no": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-PermitRootLogin-no/",
+      "subdirectory": "./ssh-permit-root-login-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-PermitRootLogin-no.cf services/security-hardening/sshd-PermitRootLogin-no/",
+        "copy ./ssh-permit-root-login-no.cf services/security-hardening/ssh-permit-root-login-no/",
         "json cfbs/def.json def.json"
       ]
     },
