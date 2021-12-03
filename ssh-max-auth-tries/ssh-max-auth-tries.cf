@@ -1,5 +1,5 @@
-bundle agent sshd_MaxAuthTries
-#@ var default:sshd_MaxAuthTries.sshd_config[MaxAuthTries] The maximum number of authentication tries desired (default 4)
+bundle agent ssh_max_auth_tries
+#@ var default:ssh_max_auth_tries.sshd_config[MaxAuthTries] The maximum number of authentication tries desired (default 4)
 {
 
   vars:
