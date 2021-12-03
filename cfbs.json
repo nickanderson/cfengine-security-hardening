@@ -45,7 +45,7 @@
       "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
       "tags": ["security"],
       "subdirectory": "./ssh-ciphers-strong/",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "dependencies": ["library-sshd-config"],
