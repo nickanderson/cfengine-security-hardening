@@ -75,16 +75,16 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-Protocol-2": {
+    "ssh-protocol-2": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-Protocol-2/",
+      "subdirectory": "./ssh-protocol-2/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "dependencies": ["lib-sshd-config"],
       "steps": [
-        "copy ./sshd-Protocol-2.cf services/security-hardening/sshd-Protocol-2/",
+        "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
         "json cfbs/def.json def.json"
       ]
     }

@@ -1,6 +1,6 @@
 {
   "vars": { "control_common_bundlesequence_end": ["sshd_Protocol_2"] },
   "inputs": [
-    "services/security-hardening/sshd-Protocol-2/sshd-Protocol-2.cf"
+    "services/security-hardening/ssh-protocol-2/ssh-protocol-2.cf"
   ]
 }
