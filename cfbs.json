@@ -27,15 +27,15 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-PermitEmptyPasswords-no": {
+    "ssh-permit-empty-passwords-no": {
       "description": "This module ensures that PermitEmptyPasswords is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-PermitEmptyPasswords-no/",
+      "subdirectory": "./ssh-permit-empty-passwords-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-PermitEmptyPasswords-no.cf services/security-hardening/sshd-PermitEmptyPasswords-no/",
+        "copy ./ssh-permit-empty-passwords-no.cf services/security-hardening/ssh-permit-empty-passwords-no/",
         "json cfbs/def.json def.json"
       ]
     },
