@@ -64,10 +64,10 @@
       ]
     },
     "ssh-max-auth-tries": {
-      "description": "This module ensures that MaxAuthTries is set, defaulting to 4.",
+      "description": "This module ensures that MaxAuthTries is set, defaulting to 3.",
       "tags": ["security"],
       "subdirectory": "./ssh-max-auth-tries/",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [

@@ -1,10 +1,12 @@
-SSH allows several different ways to authenticate: passwords, keys are two of them. The number of attempts can be reduced to prevent brute force attacks where different passwords are guessed and tried.
-By default 6 attempts are allowed per session. Reducing this to 4 is recommended and an excellent idea in environments where the value may have been configured higher.
-When half of the attempts are used up failures will be logged on the server making it more likely that an administrator will notice brute force login attempts.
+SSH is one of the most widely used services allowing administrators to connect and manage the system as well as being used for data transfers like backups and port forwarding.
+
+By default 6 attempts are allowed per session. The number of attempts can be reduced to prevent brute force attacks where different passwords are guessed and tried. When half of the attempts are used up failures will be logged on the server making it more likely that an administrator will notice brute force login attempts.
+
+Reducing this to =3= is recommended and an excellent idea in environments where the value may have been configured higher.
 
 * How it works
 
-This module ensures that =MaxAuthTries= is set to =4= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
+This module ensures that =MaxAuthTries= is set to =3= unless =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= is defined via Aguments in which case the value defined via augments is used for the setting in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
 * Variables
 
@@ -12,7 +14,10 @@ The following variables are available for customization. If they are not defined
 
 *Note:* In order to target these variables from Augments CFEngine 3.18.0 or higher where [[https://docs.cfengine.com/docs/3.18/reference-language-concepts-augments.html#variables][the =variables= key]] is available is needed.
 
-- =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= :: Specifies the maximum number of authentication attempts permitted per connection. (default 4)
+- =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= :: Specifies the maximum number of authentication attempts permitted per connection. (default =3=)
 
 * Related modules
-- [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
+- [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]]
+- [[https://build.cfengine.com/modules/ssh-permit-root-login-no/][ssh-permit-root-login-no]]
+- [[https://build.cfengine.com/modules/inventory-ssh-host-key-fingerprints/][inventory-ssh-host-key-fingerprints]]
+- [[https://build.cfengine.com/modules/ssh-permit-empty-passwords-no/][ssh-permit-empty-passwords-no]]

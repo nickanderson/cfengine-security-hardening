@@ -1,11 +1,11 @@
 bundle agent ssh_max_auth_tries
-#@ var default:ssh_max_auth_tries.sshd_config[MaxAuthTries] The maximum number of authentication tries desired (default 2)
+#@ var default:ssh_max_auth_tries.sshd_config[MaxAuthTries] The maximum number of authentication tries desired (default 3)
 {
 
   vars:
-      # If this is not set via Augments ahead of time we set it to 2
+      # If this is not set via Augments ahead of time we set it to 3
       "sshd_config[MaxAuthTries]"
-        string => "2",
+        string => "3",
         unless => or( strcmp( "cmdb", getvariablemetatags( "$(this.promiser)", "source" ) ),
                       strcmp( "augments_file", getvariablemetatags( "$(this.promiser)", "source" )));
 
