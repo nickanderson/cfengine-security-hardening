@@ -1,4 +1,4 @@
-bundle agent sshd_X11Forwarding_no
+bundle agent ssh_x11_forwarding_no
 {
 
   vars:
