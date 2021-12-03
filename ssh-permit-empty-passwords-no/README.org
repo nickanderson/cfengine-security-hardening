@@ -1,4 +1,4 @@
-User accounts should have passwords. Without passwords users can't be held accountable for their actions.
+Disallowing remote shell access to accounts that have an empty password reduces the probability of unauthorized access to the system.
 
 If possible it is recommended to inhibit the use of passwords at all and instead realy on keys with
 
