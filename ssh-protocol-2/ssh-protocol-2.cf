@@ -1,4 +1,4 @@
-bundle agent sshd_Protocol_2
+bundle agent ssh_protocol_2
 {
 
   vars:
