@@ -47,5 +47,8 @@ If you run =cf-agent -KI= again, there will be no output, no changes will be mad
 
 This module ensures that =PermitEmptyPasswords= is set to =no= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
-Related modules:
-- [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
+* Related modules
+- [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]]
+- [[https://build.cfengine.com/modules/ssh-permit-root-login-no/][ssh-permit-root-login-no]]
+- [[https://build.cfengine.com/modules/inventory-ssh-host-key-fingerprints/][inventory-ssh-host-key-fingerprints]]
+- [[https://build.cfengine.com/modules/ssh-max-auth-tries/][ssh-max-auth-tries]]
