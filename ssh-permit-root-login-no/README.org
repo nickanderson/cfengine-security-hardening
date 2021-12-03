@@ -1,6 +1,58 @@
-#+title: ssh-permit-root-login-no
+SSH allows you to securely log into a remote machine and run commands there (in a shell).
+This module ensures that the SSH daemon (sshd) does not permit logging in with the =root= user account.
+There are several reasons why allowing this could be problematic, from a security perspective:
+
+- It is a good target for attackers, to try logging in as =root=:
+  - The =root= user exists on almost all UNIX-like system.
+  - The =root= user normally has a lot of privileges (access), to read data or change the system.
+  - Sometimes the =root= user has a default / insecure password.
+- The =root= user is not personal.
+  - When people log in with root you cannot know who did what, or effectively restrict access based on person / role.
+
+*Recommendation:* Ensure logging in with SSH as =root= is not possible.
+This can be achieved by adding this module to your policy set and deploying it to all your infrastructure (via the policy server).
+Due to the reasons above, this is beneficial, even if you allow users to /become/ root after they log in.
+
+* Examples
+
+Running on a system where =root= login is permitted looks like this:
+
+#+begin_example
+$ cat /etc/ssh/sshd_config | grep ^Permit
+PermitRootLogin yes
+$ cf-agent -KI
+    info: Copied file '/etc/ssh/sshd_config' to '/etc/ssh/sshd_config.staged.cfnew' (mode '600')
+    info: Removed old backup '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config.staged' as '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.staged.cfnew' to '/etc/ssh/sshd_config.staged'
+    info: Updated '/etc/ssh/sshd_config.staged' from source '/etc/ssh/sshd_config' on 'localhost'
+    info: Replaced pattern '^\s*(PermitRootLogin\s+(?!no$).*|PermitRootLogin)$' in '/etc/ssh/sshd_config.staged'
+    info: replace_patterns promise '^\s*(PermitRootLogin\s+(?!no$).*|PermitRootLogin)$' repaired
+    info: Edited file '/etc/ssh/sshd_config.staged'
+    info: Copied file '/etc/ssh/sshd_config.staged' to '/etc/ssh/sshd_config.cfnew' (mode '640')
+    info: Removed old backup '/etc/ssh/sshd_config.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config' as '/etc/ssh/sshd_config.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.cfnew' to '/etc/ssh/sshd_config'
+    info: Updated '/etc/ssh/sshd_config' from source '/etc/ssh/sshd_config.staged' on 'localhost'
+    info: Executing 'no timeout' ... '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+    info: Completed execution of '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+$ cat /etc/ssh/sshd_config | grep ^Permit
+PermitRootLogin no
+#+end_example
+
+The reason that there is quite a bit of output is because it's a multi-step process:
+
+- Backup the config
+- Edit the config
+- Replace old config with new config
+- Restart SSH daemon
+
+If you run =cf-agent -KI= again, there will be no output, no changes will be made, since the configuration is already correct.
+
+* How it works
 
 This module ensures that =PermitRootLogin= is set to =no= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
+If necessary, the module will restart sshd (after making a change to it's configuration).
 
 Related modules:
 - [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
