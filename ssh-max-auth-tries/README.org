@@ -13,8 +13,8 @@ $ grep Tries /etc/ssh/sshd_config
 MaxAuthTries 36
 $ sudo cf-agent -KIb ssh_max_auth_tries
     info: Using command line specified bundlesequence
-    info: Replaced pattern '^\s*(MaxAuthTries\s+(?!4$).*|MaxAuthTries)$' in '/etc/ssh/sshd_config.staged'
-    info: replace_patterns promise '^\s*(MaxAuthTries\s+(?!4$).*|MaxAuthTries)$' repaired
+    info: Replaced pattern '^\s*(MaxAuthTries\s+(?!3$).*|MaxAuthTries)$' in '/etc/ssh/sshd_config.staged'
+    info: replace_patterns promise '^\s*(MaxAuthTries\s+(?!3$).*|MaxAuthTries)$' repaired
     info: Edited file '/etc/ssh/sshd_config.staged'
     info: Copied file '/etc/ssh/sshd_config.staged' to '/etc/ssh/sshd_config.cfnew' (mode '640')
     info: Removed old backup '/etc/ssh/sshd_config.cfsaved'
@@ -23,6 +23,8 @@ $ sudo cf-agent -KIb ssh_max_auth_tries
     info: Updated '/etc/ssh/sshd_config' from source '/etc/ssh/sshd_config.staged' on 'localhost'
     info: Executing 'no timeout' ... '/bin/systemctl --no-ask-password --global --system -q restart sshd'
     info: Completed execution of '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+$ grep Tries /etc/ssh/sshd_config
+MaxAuthTries 3
 #+end_example
 
 The reason that there is quite a bit of output is because it's a multi-step process:
