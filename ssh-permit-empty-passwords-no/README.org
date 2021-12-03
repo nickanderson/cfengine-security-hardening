@@ -1,4 +1,14 @@
-#+title: ssh-permit-empty-passwords-no
+User accounts should have passwords. Without passwords users can't be held accountable for their actions.
+
+If possible it is recommended to inhibit the use of passwords at all and instead realy on keys with
+
+```
+PasswordAuthentication no  
+```
+
+but inhibiting login with empty passwords is an excellent fallback and good to have present in case a situation prevents the use of keys.
+
+* How it works
 
 This module ensures that =PermitEmptyPasswords= is set to =no= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
