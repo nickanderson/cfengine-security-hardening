@@ -1,4 +1,4 @@
-User accounts should have passwords. Without passwords users can't be held accountable for their actions.
+User accounts should have passwords. Without passwords accounts are not secure.
 
 If possible it is recommended to inhibit the use of passwords at all and instead realy on keys with
 
