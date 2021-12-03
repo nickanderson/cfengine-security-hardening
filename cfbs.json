@@ -63,15 +63,15 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-MaxAuthTries": {
+    "ssh-max-auth-tries": {
       "description": "This module ensures that MaxAuthTries is set, defaulting to 4.",
       "tags": ["security"],
-      "subdirectory": "./sshd-MaxAuthTries/",
+      "subdirectory": "./ssh-max-auth-tries/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-MaxAuthTries.cf services/security-hardening/sshd-MaxAuthTries/",
+        "copy ./ssh-max-auth-tries.cf services/security-hardening/ssh-max-auth-tries/",
         "json cfbs/def.json def.json"
       ]
     },
