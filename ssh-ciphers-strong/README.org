@@ -1,4 +1,48 @@
+Using the proper Ciphers in SSH is important to ensure the highest quality of security.
+
+The default Ciphers used in =sshd= should be enforced and no others allowed.
+
+* Examples
+
+Ensure =/etc/ssh/sshd_config= has a line =Ciphers aes128-cbc=, a non-default cipher.
+
+#+begin_example
+$ grep Ciphers /etc/ssh/sshd_config
+Ciphers aes128-cbc
+$ sudo cf-agent -KIb ssh_ciphers_strong
+    info: Using command line specified bundlesequence
+    info: Copied file '/etc/ssh/sshd_config' to '/etc/ssh/sshd_config.staged.cfnew' (mode '600')
+    info: Removed old backup '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config.staged' as '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.staged.cfnew' to '/etc/ssh/sshd_config.staged'
+    info: Updated '/etc/ssh/sshd_config.staged' from source '/etc/ssh/sshd_config' on 'localhost'
+    info: Replaced pattern '^\s*(Ciphers\s+(?!chacha20\-poly1305\@openssh\.com\,aes256\-gcm\@openssh\.com\,aes128\-gcm\@openssh\.com\,aes256\-ctr\,aes192\-ctr\,aes128\-ctr$).*|Ciphers)$' in '/etc/ssh/sshd_config.staged'
+    info: replace_patterns promise '^\s*(Ciphers\s+(?!chacha20\-poly1305\@openssh\.com\,aes256\-gcm\@openssh\.com\,aes128\-gcm\@openssh\.com\,aes256\-ctr\,aes192\-ctr\,aes128\-ctr$).*|Ciphers)$' repaired
+    info: Edited file '/etc/ssh/sshd_config.staged'
+    info: Copied file '/etc/ssh/sshd_config.staged' to '/etc/ssh/sshd_config.cfnew' (mode '640')
+    info: Removed old backup '/etc/ssh/sshd_config.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config' as '/etc/ssh/sshd_config.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.cfnew' to '/etc/ssh/sshd_config'
+    info: Updated '/etc/ssh/sshd_config' from source '/etc/ssh/sshd_config.staged' on 'localhost'
+    info: Executing 'no timeout' ... '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+    info: Completed execution of '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+$ grep Ciphers /etc/ssh/sshd_config
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+#+end_example
+
+The reason that there is quite a bit of output is because it’s a multi-step process:
+
+- Backup the config
+- Edit the config
+- Replace old config with new config
+- Restart SSH daemon
+
+If you run cf-agent -KI again, there will be no output, no changes will be made, since the configuration is already correct.
+
+* How it works
+
 This module ensures that =Ciphers= is set to =chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the  [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]] module.
+
 
 * Related modules
 - [[https://build.cfengine.com/modules/library-sshd-config/][library-sshd-config]]
