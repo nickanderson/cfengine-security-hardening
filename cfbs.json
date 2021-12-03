@@ -15,76 +15,76 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-PermitRootLogin-no": {
+    "ssh-permit-root-login-no": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-PermitRootLogin-no/",
+      "subdirectory": "./ssh-permit-root-login-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-PermitRootLogin-no.cf services/security-hardening/sshd-PermitRootLogin-no/",
+        "copy ./ssh-permit-root-login-no.cf services/security-hardening/ssh-permit-root-login-no/",
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-PermitEmptyPasswords-no": {
+    "ssh-permit-empty-passwords-no": {
       "description": "This module ensures that PermitEmptyPasswords is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-PermitEmptyPasswords-no/",
+      "subdirectory": "./ssh-permit-empty-passwords-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-PermitEmptyPasswords-no.cf services/security-hardening/sshd-PermitEmptyPasswords-no/",
+        "copy ./ssh-permit-empty-passwords-no.cf services/security-hardening/ssh-permit-empty-passwords-no/",
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-Ciphers-strong": {
+    "ssh-ciphers-strong": {
       "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
       "tags": ["security"],
-      "subdirectory": "./sshd-Ciphers-strong/",
+      "subdirectory": "./ssh-ciphers-strong/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-Ciphers-strong.cf services/security-hardening/sshd-Ciphers-strong/",
+        "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-X11Forwarding-no": {
+    "ssh-x11-forwarding-no": {
       "description": "This module ensures that X11Forwarding is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-X11Forwarding-no/",
+      "subdirectory": "./ssh-x11-forwarding-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-X11Forwarding-no.cf services/security-hardening/sshd-X11Forwarding-no/",
+        "copy ./ssh-x11-forwarding-no.cf services/security-hardening/ssh-x11-forwarding-no/",
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-MaxAuthTries": {
+    "ssh-max-auth-tries": {
       "description": "This module ensures that MaxAuthTries is set, defaulting to 4.",
       "tags": ["security"],
-      "subdirectory": "./sshd-MaxAuthTries/",
+      "subdirectory": "./ssh-max-auth-tries/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-MaxAuthTries.cf services/security-hardening/sshd-MaxAuthTries/",
+        "copy ./ssh-max-auth-tries.cf services/security-hardening/ssh-max-auth-tries/",
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-Protocol-2": {
+    "ssh-protocol-2": {
       "description": "This module ensures that PermitRootLogin is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-Protocol-2/",
+      "subdirectory": "./ssh-protocol-2/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "dependencies": ["lib-sshd-config"],
       "steps": [
-        "copy ./sshd-Protocol-2.cf services/security-hardening/sshd-Protocol-2/",
+        "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
         "json cfbs/def.json def.json"
       ]
     }

@@ -1,4 +1,4 @@
-#+title: sshd-Ciphers-strong
+#+title: ssh-ciphers-strong
 
 This module ensures that =Ciphers= is set to =chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 

@@ -1,0 +1,6 @@
+{
+  "vars": { "control_common_bundlesequence_end": ["ssh_max_auth_tries"] },
+  "inputs": [
+    "services/security-hardening/ssh-max-auth-tries/ssh-max-auth-tries.cf"
+  ]
+}

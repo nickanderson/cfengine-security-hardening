@@ -1,4 +1,4 @@
-#+title: sshd-Protocol-2
+#+title: ssh-protocol-2
 
 This module ensures that =Protocol= is set to =2= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 

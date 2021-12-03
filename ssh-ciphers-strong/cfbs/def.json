@@ -1,0 +1,6 @@
+{
+  "vars": { "control_common_bundlesequence_end": ["ssh_ciphers_strong"] },
+  "inputs": [
+    "services/security-hardening/ssh-ciphers-strong/ssh-ciphers-strong.cf"
+  ]
+}

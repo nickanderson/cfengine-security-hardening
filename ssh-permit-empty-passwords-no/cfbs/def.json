@@ -1,0 +1,6 @@
+{
+  "vars": { "control_common_bundlesequence_end": ["ssh_permit_empty_passwords_no"] },
+  "inputs": [
+    "services/security-hardening/ssh-permit-empty-passwords-no/ssh-permit-empty-passwords-no.cf"
+  ]
+}

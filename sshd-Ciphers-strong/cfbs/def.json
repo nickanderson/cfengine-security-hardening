@@ -1,6 +1,0 @@
-{
-  "vars": { "control_common_bundlesequence_end": ["sshd_Ciphers_strong"] },
-  "inputs": [
-    "services/security-hardening/sshd-Ciphers-strong/sshd-Ciphers-strong.cf"
-  ]
-}
