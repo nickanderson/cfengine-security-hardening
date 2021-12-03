@@ -2,11 +2,48 @@ User accounts should have passwords. Without passwords users can't be held accou
 
 If possible it is recommended to inhibit the use of passwords at all and instead realy on keys with
 
-```
+#+begin_example
 PasswordAuthentication no  
-```
+#+end_example
 
 but inhibiting login with empty passwords is an excellent fallback and good to have present in case a situation prevents the use of keys.
+
+* Examples
+
+Add =PermitEmptyPasswords yes= to =/etc/ssh/sshd_config=.
+
+#+begin_example
+$ grep ^PermitEmpty /etc/ssh/sshd_config
+PermitEmptyPasswords yes
+$ sudo cf-agent -KIb ssh_permit_empty_passwords_no
+    info: Using command line specified bundlesequence
+    info: Copied file '/etc/ssh/sshd_config' to '/etc/ssh/sshd_config.staged.cfnew' (mode '600')
+    info: Removed old backup '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config.staged' as '/etc/ssh/sshd_config.staged.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.staged.cfnew' to '/etc/ssh/sshd_config.staged'
+    info: Updated '/etc/ssh/sshd_config.staged' from source '/etc/ssh/sshd_config' on 'localhost'
+    info: Replaced pattern '^\s*(PermitEmptyPasswords\s+(?!no$).*|PermitEmptyPasswords)$' in '/etc/ssh/sshd_config.staged'
+    info: replace_patterns promise '^\s*(PermitEmptyPasswords\s+(?!no$).*|PermitEmptyPasswords)$' repaired
+    info: Edited file '/etc/ssh/sshd_config.staged'
+    info: Copied file '/etc/ssh/sshd_config.staged' to '/etc/ssh/sshd_config.cfnew' (mode '640')
+    info: Removed old backup '/etc/ssh/sshd_config.cfsaved'
+    info: Backed up '/etc/ssh/sshd_config' as '/etc/ssh/sshd_config.cfsaved'
+    info: Moved '/etc/ssh/sshd_config.cfnew' to '/etc/ssh/sshd_config'
+    info: Updated '/etc/ssh/sshd_config' from source '/etc/ssh/sshd_config.staged' on 'localhost'
+    info: Executing 'no timeout' ... '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+    info: Completed execution of '/bin/systemctl --no-ask-password --global --system -q restart sshd'
+$ grep ^PermitEmpty /etc/ssh/sshd_config
+PermitEmptyPasswords no
+#+end_example
+
+The reason that there is quite a bit of output is because it's a multi-step process:
+
+- Backup the config
+- Edit the config
+- Replace old config with new config
+- Restart SSH daemon
+
+If you run =cf-agent -KI= again, there will be no output, no changes will be made, since the configuration is already correct.
 
 * How it works
 
