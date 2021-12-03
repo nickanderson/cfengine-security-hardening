@@ -1,4 +1,4 @@
-bundle agent sshd_Ciphers_strong
+bundle agent ssh_ciphers_strong
 {
 
   vars:
