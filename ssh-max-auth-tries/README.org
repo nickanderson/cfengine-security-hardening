@@ -6,7 +6,7 @@ Reducing this to =3= is recommended and an excellent idea in environments where 
 
 * How it works
 
-This module ensures that =MaxAuthTries= is set to =3= unless =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= is defined via Aguments in which case the value defined via augments is used for the setting in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
+This module ensures that =MaxAuthTries= is set to =3= unless =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= is defined via Augments in which case the value defined via augments is used for the setting in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
 * Variables
 
