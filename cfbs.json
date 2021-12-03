@@ -51,15 +51,15 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-X11Forwarding-no": {
+    "ssh-x11-forwarding-no": {
       "description": "This module ensures that X11Forwarding is set to no.",
       "tags": ["security"],
-      "subdirectory": "./sshd-X11Forwarding-no/",
+      "subdirectory": "./ssh-x11-forwarding-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-X11Forwarding-no.cf services/security-hardening/sshd-X11Forwarding-no/",
+        "copy ./ssh-x11-forwarding-no.cf services/security-hardening/ssh-x11-forwarding-no/",
         "json cfbs/def.json def.json"
       ]
     },

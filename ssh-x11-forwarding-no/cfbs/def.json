@@ -1,6 +1,6 @@
 {
   "vars": { "control_common_bundlesequence_end": ["sshd_X11Forwarding_no"] },
   "inputs": [
-    "services/security-hardening/sshd-X11Forwarding-no/sshd-X11Forwarding-no.cf"
+    "services/security-hardening/ssh-x11-forwarding-no/ssh-x11-forwarding-no.cf"
   ]
 }

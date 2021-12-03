@@ -1,4 +1,4 @@
-#+title: sshd-X11Forwarding-no
+#+title: ssh-x11-forwarding-no
 
 This module ensures that =X11Forwarding= is set to =no= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
