@@ -39,15 +39,15 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "sshd-Ciphers-strong": {
+    "ssh-ciphers-strong": {
       "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
       "tags": ["security"],
-      "subdirectory": "./sshd-Ciphers-strong/",
+      "subdirectory": "./ssh-ciphers-strong/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./sshd-Ciphers-strong.cf services/security-hardening/sshd-Ciphers-strong/",
+        "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
         "json cfbs/def.json def.json"
       ]
     },
