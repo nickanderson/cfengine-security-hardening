@@ -6,5 +6,13 @@ When half of the attempts are used up failures will be logged on the server maki
 
 This module ensures that =MaxAuthTries= is set to =4= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
-Related modules:
+* Variables
+
+The following variables are available for customization. If they are not defined via [[https://docs.cfengine.com/docs/3.18/reference-language-concepts-augments.html][Augments]], they will select default values.
+
+*Note:* In order to target these variables from Augments CFEngine 3.18.0 or higher where [[https://docs.cfengine.com/docs/3.18/reference-language-concepts-augments.html#variables][the =variables= key]] is available is needed.
+
+- =default:ssh_max_auth_tries.sshd_config[MaxAuthTries]= :: Specifies the maximum number of authentication attempts permitted per connection. (default 4)
+
+* Related modules
 - [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
