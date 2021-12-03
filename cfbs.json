@@ -22,7 +22,6 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-PermitRootLogin-no.cf services/security-hardening/sshd-PermitRootLogin-no/",
         "json cfbs/def.json def.json"
@@ -31,7 +30,6 @@
     "sshd-PermitEmptyPasswords-no": {
       "description": "This module ensures that PermitEmptyPasswords is set to no.",
       "tags": ["security"],
-      "dependencies": ["lib-sshd-config"],
       "subdirectory": "./sshd-PermitEmptyPasswords-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
@@ -48,7 +46,6 @@
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["lib-sshd-config"],
       "steps": [
         "copy ./sshd-Ciphers-strong.cf services/security-hardening/sshd-Ciphers-strong/",
         "json cfbs/def.json def.json"
@@ -57,7 +54,6 @@
     "sshd-X11Forwarding-no": {
       "description": "This module ensures that X11Forwarding is set to no.",
       "tags": ["security"],
-      "dependencies": ["lib-sshd-config"],
       "subdirectory": "./sshd-X11Forwarding-no/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
