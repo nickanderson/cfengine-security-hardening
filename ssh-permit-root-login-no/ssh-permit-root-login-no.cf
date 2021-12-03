@@ -1,4 +1,4 @@
-bundle agent sshd_PermitRootLogin_no
+bundle agent ssh_permit_root_login
 {
 
   vars:
