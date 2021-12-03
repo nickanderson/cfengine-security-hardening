@@ -2,9 +2,7 @@ User accounts should have passwords. Without passwords users can't be held accou
 
 If possible it is recommended to inhibit the use of passwords at all and instead realy on keys with
 
-#+begin_example
-PasswordAuthentication no  
-#+end_example
+=PasswordAuthentication no=
 
 but inhibiting login with empty passwords is an excellent fallback and good to have present in case a situation prevents the use of keys.
 
