@@ -1,6 +1,6 @@
 #+title: ssh-max-auth-tries
 
-This module ensures that =MaxAuthTries= is set to =2= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
+This module ensures that =MaxAuthTries= is set to =4= in =/etc/ssh/sshd_config= leveraging =lib_sshd_config:global_key_values= from the [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]] module.
 
 Related modules:
 - [[https://build.cfengine.com/modules/inventory-local-users][lib-sshd-config]]
