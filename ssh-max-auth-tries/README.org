@@ -6,7 +6,7 @@ Reducing this to =3= is recommended and an excellent idea in environments where 
 
 * Examples
 
-Add `MaxAuthTries 42` to `/etc/ssh/sshd_config and run the policy:
+Add =MaxAuthTries 36= to =/etc/ssh/sshd_config= and run the policy:
 
 #+begin_example
 $ grep Tries /etc/ssh/sshd_config
