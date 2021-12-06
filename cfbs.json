@@ -54,6 +54,18 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "ntp-maxpoll": {
+      "description": "This module ensures that maxpoll is configured to 10 unless default:ntp_maxpoll._config[maxpoll] is defined in which case that value will be used.",
+      "tags": ["security"],
+      "subdirectory": "./ntp-maxpoll/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./ntp-maxpoll.cf services/security-hardening/ntp-maxpoll/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "ssh-x11-forwarding-no": {
       "description": "This module ensures that X11Forwarding is set to no.",
       "tags": ["security"],

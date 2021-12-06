@@ -1,0 +1,4 @@
+{
+  "vars": { "control_common_bundlesequence_end": ["ntp_maxpoll"] },
+  "inputs": ["services/security-hardening/ntp-maxpoll/ntp-maxpoll.cf"]
+}

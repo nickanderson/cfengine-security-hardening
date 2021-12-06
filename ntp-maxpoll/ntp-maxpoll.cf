@@ -1,0 +1,40 @@
+bundle agent ntp_maxpoll
+#@ var default:ntp_maxpoll._config[maxpoll] - Maximum interval between requests sent to the server as a power of 2 in seconds. (default 10)
+{
+  vars:
+
+      "_config[maxpoll]" -> { "CCE-84295-5" }
+        string => "10",
+        if => not( isvariable( "$(this.namespace):$(this.bundle).$(this.promiser)" ) );
+
+  files:
+      # Neither ntpd nor chronyd provide functionality for checking
+      # configuration syntax
+
+      "/etc/ntp.conf"
+        if => fileexists( "/etc/ntp.conf" ),
+        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle)._config",
+                                             " ",
+                                             "\s+",
+                                             ".*",
+                                             "\s*#\s*"),
+        classes => default:results( "bundle", "_etc_ntp_config" );
+
+      "/etc/chrony.conf"
+        if => fileexists( "/etc/chrony.conf" ),
+        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle)._config",
+                                             " ",
+                                             "\s+",
+                                             ".*",
+                                             "\s*#\s*"),
+        classes => default:results( "bundle", "_etc_chrony_config" );
+
+  services:
+    _etc_chrony_config_repaired::
+      "chronyd"
+        service_policy => "restart";
+
+    _etc_ntp_config_repaired::
+      "ntpd"
+        service_policy => "restart";
+}
