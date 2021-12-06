@@ -1,6 +1,6 @@
 Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
 
-This module ensures that =maxpoll= is configured to =10= unless == is defined in which case that value will be used.
+This module ensures that =maxpoll= is configured to =10= unless =default:ntp_maxpoll._config[maxpoll]= is defined in which case that value will be used.
 
 * Configuration
 
