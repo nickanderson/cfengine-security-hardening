@@ -5,4 +5,5 @@ This module ensures that =maxpoll= is configured to =10= unless == is defined in
 * Configuration
 
 - =default:ntp_maxpoll._config[maxpoll]= :: Maximum interval between requests sent to the server as a power of 2 in seconds. (default =10=)
-   [[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/ntp-maxpoll/host-info-host-specific-data-set-ntp-config-maxpoll.png]]
+
+     [[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/ntp-maxpoll/host-info-host-specific-data-set-ntp-config-maxpoll.png]]
