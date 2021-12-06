@@ -1,0 +1,16 @@
+If the "sudoers" file is not configured correctly, any user defined on the system can initiate privileged actions on the target system.
+
+This module ensures the following lines are not present in =/etc/sudoers.conf=.
+
+- =ALL ALL=(ALL) ALL=
+- =ALL ALL=(ALL:ALL) ALL=
+
+*Warning:* As the exact requirement allows exceptions, and removing lines from the sudoers file can make the system non-administrable. If you wish to run this policy in warn instead of fix mode, ensure the class =default:sudo_enforce_allowed_users_warn= is defined.
+
+*Note:* This module does not currently attempt to manage configuration from included files, e.g. (=/etc/sudoers.d/=).
+
+* Configuration
+
+- =default:sudo_enforce_allowed_users_warn= :: When defined the policy will only warn about lines that would be deleted instead of actually deleting them. (not defined by default)
+     [[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/sudo-enforce-allowed-users/changes-sudoers-repaired.png]]
+

@@ -54,6 +54,18 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "sudo-enforce-allowed-users": {
+      "description": "This module ensures the following lines 'ALL ALL=(ALL) ALL' and 'ALL ALL=(ALL:ALL) ALL' are not present in /etc/sudoers.conf",
+      "tags": ["security", "management"],
+      "subdirectory": "./sudo-enforce-allowed-users/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./sudo-enforce-allowed-users.cf services/security-hardening/sudo-enforce-allowed-users/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "ntp-maxpoll": {
       "description": "This module ensures that maxpoll is configured to 10 unless default:ntp_maxpoll._config[maxpoll] is defined in which case that value will be used.",
       "tags": ["security"],

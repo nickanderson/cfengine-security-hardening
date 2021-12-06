@@ -1,0 +1,4 @@
+{
+    "vars": { "control_common_bundlesequence_end": ["default:sudo_enforce_allowed_users"] },
+    "inputs": ["services/security-hardening/sudo-enforce-allowed-users/sudo-enforce-allowed-users.cf"]
+}

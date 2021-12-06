@@ -1,0 +1,30 @@
+bundle agent sudo_enforce_allowed_users
+{
+  vars:
+      "_disallowed_lines" -> { "CCE-83423-4" }
+        slist => { "ALL ALL=(ALL) ALL",
+                   "ALL ALL=(ALL:ALL) ALL" };
+
+      "_check_command" string => "visudo --quiet --check --strict --file /etc/sudoers";
+
+  files:
+    default:sudo_enforce_allowed_users_warn::
+      "/etc/sudoers"
+        edit_line => default:warn_lines_matching( @(_disallowed_lines) );
+
+    !default:sudo_enforce_allowed_users_warn::
+      "/etc/sudoers.staged"
+        copy_from => default:local_dcp( "/etc/sudoers" ),
+        classes => default:results( "bundle", "_init_sudoers_staged" );
+
+      "/etc/sudoers.staged"
+        edit_line => default:delete_lines_matching( @(_disallowed_lines) ),
+        classes => default:results( "bundle", "_sudoers_staged" );
+
+      "/etc/sudoers"
+        copy_from => default:local_dcp( "/etc/sudoers.staged" ),
+        perms => default:m( "0440" ),
+        if => and( returnszero( "$(_check_command)", "useshell" ),
+                   "_sudoers_staged_repaired" );
+
+}
