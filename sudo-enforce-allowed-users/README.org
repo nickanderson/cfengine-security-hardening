@@ -10,6 +10,6 @@ This module ensures the following lines are not present in =/etc/sudoers.conf=. 
 
 * Configuration
 
-- =default:sudo_enforce_allowed_users.action_policy= :: When defined the policy will only warn about lines that would be deleted instead of actually deleting them. Valid range (=warn=|=fix=|=nop=), default =warn=.
+- =default:sudo_enforce_allowed_users.action_policy= :: When defined the policy will only warn about lines that would be deleted instead of actually deleting them. Valid range ( =warn= | =fix= | =nop= ), default =warn=.
 
   [[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/sudo-enforce-allowed-users/host-info-set-action-policy.png]]
