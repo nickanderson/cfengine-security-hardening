@@ -1,6 +1,24 @@
 bundle agent sudo_enforce_allowed_users
 {
   vars:
+      # Default the action policy if it's not already set
+      "action_policy"
+        string => "warn",
+        meta => { "noreport" },
+        unless => isvariable( "$(this.promiser)" );
+
+      # Check to see if the action policy is valid or not
+      "_invalid_action"
+        string => ifelse( regcmp( "(warn|fix|nop)", "$(action_policy)" ), "false",
+                          "true"),
+        unless => isvariable( "$(this.promiser)" );
+
+      # Default the action policy if it's invalid
+      "action_policy"
+        string => "warn",
+        meta => { "noreport" },
+        if => strcmp( "$(_invalid_action)", "true");
+
       "_disallowed_lines" -> { "CCE-83423-4" }
         slist => { "ALL ALL=(ALL) ALL",
                    "ALL ALL=(ALL:ALL) ALL" };
@@ -8,11 +26,6 @@ bundle agent sudo_enforce_allowed_users
       "_check_command" string => "visudo --quiet --check --strict --file /etc/sudoers";
 
   files:
-    default:sudo_enforce_allowed_users_warn::
-      "/etc/sudoers"
-        edit_line => default:warn_lines_matching( @(_disallowed_lines) );
-
-    !default:sudo_enforce_allowed_users_warn::
       "/etc/sudoers.staged"
         copy_from => default:local_dcp( "/etc/sudoers" ),
         classes => default:results( "bundle", "_init_sudoers_staged" );
@@ -25,6 +38,13 @@ bundle agent sudo_enforce_allowed_users
         copy_from => default:local_dcp( "/etc/sudoers.staged" ),
         perms => default:m( "0440" ),
         if => and( returnszero( "$(_check_command)", "useshell" ),
-                   "_sudoers_staged_repaired" );
+                   "_sudoers_staged_repaired" ),
+        action => default:policy( "$(action_policy)" );
 
+  reports:
+      "$(with)"
+        with => concat( "warning: Invalid action policy requested in ",
+                        "'$(this.namespace):$(this.bundle)' switched to default 'warn'. ",
+                        "Review setting for '$(this.namespace):$(this.bundle).action_policy'"),
+        if => strcmp( "$(_invalid_action)", "true" );
 }
