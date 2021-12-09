@@ -35,7 +35,9 @@ bundle agent compliance_report_imports
         perms => mog( "700", "root", "root" ),
         edit_template_string => `#!/bin/bash
 {{#vars.$(this.bundle)._all_import_files}}
-  $(sys.bindir)/psql -d cfmp -c "UPDATE dashboard_rules SET export_id=LOWER(REPLACE(name, ' ', '-')) WHERE export_id IS null;"
+   $(sys.bindir)/psql -d cfmp -c "UPDATE dashboard_rules
+SET export_id=LOWER(REPLACE(name, ' ', '-'))
+WHERE export_id IS null AND name IN ('OS is supported', 'Supported CentOS', 'Supported Debian', 'Supported RHEL', 'Supported Ubuntu');"
   echo curl -k https://127.0.0.1/advancedreports/complianceReport/import \
    --user CFE_ROBOT:$(_stuff[cf_robot_password]) \
   -X POST \
