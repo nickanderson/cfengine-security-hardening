@@ -56,7 +56,7 @@
     },
     "compliance-report-imports": {
       "name": "compliance-report-imports",
-      "verson": "0.0.2",
+      "version": "0.0.2",
       "tags": ["experimental", "cfengine-enterprise"],
       "dependencies": ["autorun"],
       "subdirectory": "./compliance-report-imports",
@@ -65,7 +65,7 @@
     },
     "compliance-report-os-is-vendor-supported": {
       "name": "compliance-report-os-is-vendor-supported",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "tags": ["experimental", "compliance-report", "cfengine-enterprise"],
       "dependencies": ["compliance-report-imports"],
       "subdirectory": "./compliance-report-os-is-vendor-supported",
