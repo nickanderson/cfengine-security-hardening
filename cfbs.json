@@ -68,7 +68,7 @@
       "version": "0.0.1",
       "tags": ["experimental", "compliance-report", "cfengine-enterprise"],
       "dependencies": ["compliance-report-imports"],
-      "subdirectory": "./compliance-report-imports",
+      "subdirectory": "./compliance-report-os-is-vendor-supported",
       "description": "Compliance report definition for checking if the current OS version is supported by the vendor",
       "steps": [
         "copy ./os-is-vendor-supported.json .no-distrib/compliance-report-definitions/os-is-vendor-supported.json"
