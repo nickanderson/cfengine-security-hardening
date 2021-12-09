@@ -1,0 +1,56 @@
+bundle agent compliance_report_imports
+{
+  meta:
+    am_policy_hub.enterprise_edition::
+      "tags" slist => { "autorun" };
+
+  vars:
+
+    am_policy_hub.enterprise_edition::
+
+      # Define default directories from which we should import compliance reports if not defined
+      # https://tracker.mender.io/browse/ENT-8079?focusedCommentId=120476&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-120476
+
+      "_import_dirs"
+        slist => { "$(sys.workdir)/imports/compliance-reports" }, # Better var?
+        if => not( isvariable( "$(this.promiser)" ) );
+
+      "_import_files[$(_import_dirs)]"
+        slist => lsdir( "$(_import_dirs)", "^(?!(\.$|\.\.$)).*", true ),
+        if => isdir( $(_import_dirs) );
+
+      "_all_import_files" slist => getvalues( _import_files );
+
+      "_stuff" data => readenvfile( "/var/cfengine/httpd/secrets.ini");
+
+
+  files:
+      "$(sys.workdir)/imports/compliance-reports/."
+        create => "true",
+        copy_from => local_dcp( "$(sys.policy_entry_dirname)/.no-distrib/compliance-report-definitions/"),
+        depth_search => recurse( "inf" );
+
+      "$(sys.bindir)/compliance-report-definition-importer.sh"
+        create => "true",
+        perms => mog( "700", "root", "root" ),
+        edit_template_string => `#!/bin/bash
+{{#vars.$(this.bundle)._all_import_files}}
+  psql -d cfmp -c "UPDATE dashboard_rules SET export_id=LOWER(REPLACE(name, ' ', '-')) WHERE export_id IS null;"
+  echo curl -k https://127.0.0.1/advancedreports/complianceReport/import \
+   --user CFE_ROBOT:$(_stuff[cf_robot_password]) \
+  -X POST \
+  --form \\'data=$(const.dollar)(cat {{{.}}} )\\' \
+  --form \\'public=true\\' \
+  --form \\'overwrite=true\\' > /$(sys.bindir)/.compliance_importer && bash /$(sys.bindir)/.compliance_importer && rm -f /$(sys.bindir)/.compliance_importer
+{{/vars.$(this.bundle)._all_import_files}}`,
+        template_method => "inline_mustache";
+
+  commands:
+   "$(sys.bindir)/compliance-report-definition-importer.sh";
+
+}
+bundle agent __main__
+{
+  methods:
+      "compliance_report_imports";
+}

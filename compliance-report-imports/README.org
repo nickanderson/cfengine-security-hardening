@@ -1,0 +1,5 @@
+This module facilitates distribution of compliance reports via cfbs. Please note, it's *experimental*.
+
+It copies files from =.no-distrib/compliance-report-definitions= in the policy to =/var/cfengine/imports/compliance-reports= and imports all files in =/var/cfengine/imports/compliance-reports=.
+
+
