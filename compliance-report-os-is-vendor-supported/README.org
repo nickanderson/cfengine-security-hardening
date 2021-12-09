@@ -1,3 +1,5 @@
 Running outdated and vulnerable operating systems can be a big risk. When an operating system vendor stops supporting a version of their OS, it no longer receives bugfixes or security patches.
 
 *Recommendation:* Do not use unsupported operating systems. Use this module to get a complete overview of all operating system versions in your infrastructure. Look at the hosts that are failing in the report, and get them upgraded.
+
+[[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/compliance-report-os-is-vendor-supported/compliance-report.png]]
