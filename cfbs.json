@@ -56,7 +56,7 @@
     },
     "compliance-report-imports": {
       "name": "compliance-report-imports",
-      "verson": "0.0.1",
+      "verson": "0.0.2",
       "tags": ["experimental", "cfengine-enterprise"],
       "dependencies": ["autorun"],
       "subdirectory": "./compliance-report-imports",
