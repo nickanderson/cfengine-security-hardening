@@ -1,3 +1,36 @@
+body file control
+{
+      namespace => "ntp_config";
+}
+bundle edit_line server_option( suboption, value)
+#@ brief Manage a single option for all servers in ntp.conf or chronyd.conf
+#@
+#@ *Example:*
+#@ ```
+#@  files:
+#@    "/etc/ntp.conf"
+#@      if => fileexists( "/etc/ntp.conf" ),
+#@      edit_line => ntp_config:server_option( "maxpoll", "10" ),
+#@      classes => default:results( "bundle", "_etc_ntp_config" );
+#@ ```
+
+{
+  replace_patterns:
+
+      # Handle cases where the option is present with the wrong value
+      "(^server\s+\S+)\s+(.*)\Q$(suboption)\E\s+(?!$(value))(\d+)\s?(.*)"
+        replace_with => value( "$(match.1) $(suboption) $(value) $(match.2)$(match.4)");
+
+      # Handle cases where the option is not present
+      "(^server\s+\S+)\s+(?!\Q$(suboption)\E\s.*)(.*)"
+        replace_with => value( "$(match.1) $(suboption) $(value) $(match.2)");
+}
+
+body file control
+{
+      namespace => "default";
+}
+
 bundle agent ntp_maxpoll
 #@ var default:ntp_maxpoll._config[maxpoll] - Maximum interval between requests sent to the server as a power of 2 in seconds. (default 10)
 {
@@ -13,20 +46,12 @@ bundle agent ntp_maxpoll
 
       "/etc/ntp.conf"
         if => fileexists( "/etc/ntp.conf" ),
-        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle)._config",
-                                             " ",
-                                             "\s+",
-                                             ".*",
-                                             "\s*#\s*"),
+        edit_line => ntp_config:server_option( "maxpoll", "$(_config[maxpoll])" ),
         classes => default:results( "bundle", "_etc_ntp_config" );
 
       "/etc/chrony.conf"
         if => fileexists( "/etc/chrony.conf" ),
-        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle)._config",
-                                             " ",
-                                             "\s+",
-                                             ".*",
-                                             "\s*#\s*"),
+        edit_line => ntp_config:server_option( "maxpoll", "$(_config[maxpoll])" ),
         classes => default:results( "bundle", "_etc_chrony_config" );
 
   services:

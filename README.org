@@ -3,13 +3,14 @@
 This repository hosts various security hardening policies.
 
 * Modules Provided
+- [[./compliance-report-imports][compliance-report-imports]] (*experimental*)
+- [[./compliance-report-os-is-vendor-supported][compliance-report-os-is-vendor-supported]] (*experimental*)
 - [[./default-encrypt-method-sha512][default-encrypt-method-sha512]]
-- [[./ssh-permit-root-login-no/ssh-permit-root-login-no.cf][ssh-permit-root-login-no]]
+- [[./ntp-maxpoll][ntp-maxpoll]]
 - [[./ssh-ciphers-strong/][ssh-ciphers-strong]]
 - [[./ssh-max-auth-tries/][ssh-max-auth-tries]]
 - [[./ssh-permit-empty-passwords-no][ssh-permit-empty-passwords-no]]
 - [[./ssh-permit-root-login-no/][ssh-permit-root-login-no]]
+- [[./ssh-permit-root-login-no/ssh-permit-root-login-no.cf][ssh-permit-root-login-no]]
 - [[./ssh-protocol-2/][ssh-protocol-2]]
 - [[./ssh-x11-forwarding-no/][ssh-x11-forwarding-no]]
-- [[./compliance-report-imports][compliance-report-imports]] (*experimental*)
-- [[./compliance-report-os-is-vendor-supported][compliance-report-os-is-vendor-supported]] (*experimental*)
