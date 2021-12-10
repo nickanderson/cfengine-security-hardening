@@ -19,11 +19,11 @@ bundle edit_line server_option( suboption, value)
 
       # Handle cases where the option is present with the wrong value
       "(^server\s+\S+)\s+(.*)\Q$(suboption)\E\s+(?!$(value))(\d+)\s?(.*)"
-        replace_with => value( "$(match.1) $(suboption) $(value) $(match.2)$(match.4)");
+        replace_with => default:value( "$(match.1) $(suboption) $(value) $(match.2)$(match.4)");
 
       # Handle cases where the option is not present
       "(^server\s+\S+)\s+(?!\Q$(suboption)\E\s.*)(.*)"
-        replace_with => value( "$(match.1) $(suboption) $(value) $(match.2)");
+        replace_with => default:value( "$(match.1) $(suboption) $(value) $(match.2)");
 }
 
 body file control
