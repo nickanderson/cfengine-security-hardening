@@ -64,6 +64,5 @@ bundle agent tmp_file_age
 
     northerntech_security_hardening:enforce_tmp_file_age::
       "$(old_files)"
-        delete => default:tidy,
-        action => default:policy( "fix" );
+        delete => default:tidy;
 }
