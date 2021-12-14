@@ -35,7 +35,7 @@ bundle agent tmp_file_age
 
       # Find all the files in /tmp (up to 101 levels deep)
       "_files_in_tmp"
-        slist => findfiles( "/tmp/****************************************/*" );
+        slist => findfiles( "/tmp/*", "/tmp/****************************************/*" );
 
       # Find the mtime of all the files in /tmp
       "_map_tmp_file_mtime[$(_files_in_tmp)]"
