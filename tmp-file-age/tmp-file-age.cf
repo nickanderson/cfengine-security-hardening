@@ -37,7 +37,8 @@ bundle agent tmp_file_age
 
       "_old[$(_files_in_tmp)]"
         string => "$(_tmp[$(_files_in_tmp)])",
-        if => isgreaterthan( "$(_tmp[$(_files_in_tmp)])", $(_maximum_age_seconds) );
+        if => or( isgreaterthan( "$(_tmp[$(_files_in_tmp)])", $(_maximum_age_seconds) ),
+                  islessthan( "$(_tmp[$(_files_in_tmp)])", 0 ) );
 
       "old_files"
         slist => getindices( _old ),
