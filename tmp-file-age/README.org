@@ -7,6 +7,8 @@ Recommendation: Use this module to keep track of the oldest files in =/tmp= and 
 - Oldest file in /tmp :: The oldest file in =/tmp=. Note, this is only reported if the file is older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours=.
 - Oldest timestamp in /tmp :: The timestamp of the oldest file in =/tmp= formatted with =northerntech_security_hardening:tmp_file_age.time_format=. Note, this is only reported if the timestamp is older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours=.
 
+[[https://raw.githubusercontent.com/nickanderson/cfengine-security-hardening/master/tmp-file-age/host-info-inventory.png]]
+
 * Configuration
 
 ** Variables
