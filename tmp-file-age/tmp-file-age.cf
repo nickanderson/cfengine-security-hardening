@@ -30,7 +30,7 @@ bundle agent tmp_file_age
 
       # Calculate the epoch time for the threshold of what is considered an old file
       "_old_file_mtime_threshold"
-        string => format( "%d", eval( "$(with)-($(maximum_age_hours)*60)", math, infix)),
+        string => format( "%d", eval( "$(with)-($(maximum_age_hours)*60*60)", math, infix)),
         with => concat( now() );
 
       # Find all the files in /tmp (up to 101 levels deep)
