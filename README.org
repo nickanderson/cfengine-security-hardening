@@ -14,3 +14,4 @@ This repository hosts various security hardening policies.
 - [[./ssh-permit-root-login-no/ssh-permit-root-login-no.cf][ssh-permit-root-login-no]]
 - [[./ssh-protocol-2/][ssh-protocol-2]]
 - [[./ssh-x11-forwarding-no/][ssh-x11-forwarding-no]]
+- [[./tmp-file-age/][tmp-file-age]]

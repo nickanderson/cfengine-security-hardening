@@ -1,0 +1,8 @@
+{
+  "vars": {
+    "control_common_bundlesequence_end": [
+      "northerntech_security_hardening:tmp_file_age"
+    ]
+  },
+  "inputs": ["services/security-hardening/tmp-file-age/tmp-file-age.cf"]
+}

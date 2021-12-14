@@ -1,0 +1,70 @@
+bundle agent __main__
+{
+  methods:
+      "northerntech_security_hardening:tmp_file_age";
+}
+body file control
+{
+        namespace => "northerntech_security_hardening";
+        inputs => { "/home/nickanderson/.cfagent/inputs/lib/stdlib.cf" };
+}
+bundle agent tmp_file_age
+{
+  vars:
+      "time_format"
+        string => "%c",
+        meta => { "noreport" },
+        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+
+      "gmt_or_local"
+        string => "localtime",
+        meta => { "noreport" },
+        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+
+      "maximum_age_hours"
+        meta => { "noreport" },
+        string => "168",
+        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+
+      "_maximum_age_seconds"
+        string => eval( "$(maximum_age_hours)*60", math, infix);
+
+      "_files_in_tmp"
+        slist => findfiles( "/tmp/*********");
+
+      "_tmp[$(_files_in_tmp)]"
+        string => "$(with)",
+        with => filestat( "$(_files_in_tmp)", mtime );
+
+      "_old[$(_files_in_tmp)]"
+        string => "$(_tmp[$(_files_in_tmp)])",
+        if => isgreaterthan( "$(_tmp[$(_files_in_tmp)])", $(_maximum_age_seconds) );
+
+      "old_files"
+        slist => getindices( _old ),
+        meta => { "inventory", "attribute_name=Old files in /tmp"};
+
+      "_oldest_timestamp"
+        string => min( getvalues( _tmp ), int );
+
+      "oldest_timestamp"
+        string => strftime( $(gmt_or_local), $(time_format),
+                            $(_oldest_timestamp) ),
+        meta => { "inventory", "attribute_name=Oldest timestamp in /tmp"};
+
+      "oldest_file"
+        string => "$(_files_in_tmp)",
+        if => strcmp( $(_oldest_timestamp), "$(_tmp[$(_files_in_tmp)])" ),
+        meta => { "inventory", "attribute_name=Oldest file in /tmp"};
+
+  files:
+    northerntech_security_hardening:warn_tmp_file_age::
+      "$(old_files)"
+        delete => default:tidy,
+        action => default:policy( "warn" );
+
+    northerntech_security_hardening:enforce_tmp_file_age::
+      "$(old_files)"
+        delete => default:tidy,
+        action => default:policy( "warn" );
+}

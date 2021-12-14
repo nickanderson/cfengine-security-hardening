@@ -1,0 +1,22 @@
+Old files in =/tmp= may be consuming storage unnecessarily and malware may lurk.
+
+Recommendation: Use this module to keep track of the oldest files in =/tmp= and control their lifespan.
+
+* Inventory
+- Old files in /tmp :: Files in =/tmp= that are older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours=.
+- Oldest file in /tmp :: The oldest file in =/tmp=. Note, this is only reported if the file is older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours=.
+- Oldest timestamp in /tmp :: The timestamp of the oldest file in =/tmp= formatted with =northerntech_security_hardening:tmp_file_age.time_format=. Note, this is only reported if the timestamp is older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours=.
+
+* Configuration
+
+** Variables
+- =northerntech_security_hardening:tmp_file_age.maximum_age_hours= :: Time in hours after which a file is considered old. Defaults to =168= (1 week).
+- =northerntech_security_hardening:tmp_file_age.time_format= :: Format to use when showing timestamps (e.g. for =Oldest file in /tmp=, default =%c= ).
+- =northerntech_security_hardening:tmp_file_age.gmt_or_local= :: Use GMT or local server time. ( =gmtime= =localtime=, default =localtime=).
+- =northerntech_security_hardening:tmp_file_age.gmt_or_local= :: Use GMT or local server time. ( =gmtime= =localtime=, default =localtime=).
+
+** Classes
+
+- =northerntech_security_hardening:warn_tmp_file_age= :: When defined, files older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours= will warn if they should be deleted.
+- =northerntech_security_hardening:enforce_tmp_file_age= :: When defined, files older than =northerntech_security_hardening:tmp_file_age.maximum_age_hours= will be deleted. Note, if this class is defined the files will be deleted even if =northerntech_security_hardening:warn_tmp_file_age= is defined.
+
