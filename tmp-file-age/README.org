@@ -15,7 +15,6 @@ Recommendation: Use this module to keep track of the oldest files in =/tmp= and 
 - =northerntech_security_hardening:tmp_file_age.maximum_age_hours= :: Time in hours after which a file is considered old. Defaults to =168= (1 week).
 - =northerntech_security_hardening:tmp_file_age.time_format= :: Format to use when showing timestamps (e.g. for =Oldest file in /tmp=, default =%c= ).
 - =northerntech_security_hardening:tmp_file_age.gmt_or_local= :: Use GMT or local server time. ( =gmtime= =localtime=, default =localtime=).
-- =northerntech_security_hardening:tmp_file_age.gmt_or_local= :: Use GMT or local server time. ( =gmtime= =localtime=, default =localtime=).
 
 ** Classes
 
