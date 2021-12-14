@@ -10,51 +10,62 @@ body file control
 bundle agent tmp_file_age
 {
   vars:
+      # The format we should use for reporting file age
       "time_format"
         string => "%c",
         meta => { "noreport" },
         unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
 
+      # Use localtime or gmtime
       "gmt_or_local"
         string => "localtime",
         meta => { "noreport" },
         unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
 
+      # Maximum age in hours files are allowed to be
       "maximum_age_hours"
         meta => { "noreport" },
         string => "168",
         unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
 
-      "_maximum_age_seconds"
-        string => eval( "$(maximum_age_hours)*60", math, infix);
+      # Calculate the epoch time for the threshold of what is considered an old file
+      "_old_file_mtime_threshold"
+        string => format( "%d", eval( "$(with)-($(maximum_age_hours)*60)", math, infix)),
+        with => concat( now() );
 
+      # Find all the files in /tmp
       "_files_in_tmp"
         slist => findfiles( "/tmp/**/*" );
 
-      "_tmp[$(_files_in_tmp)]"
+      # Find the mtime of all the files in /tmp
+      "_map_tmp_file_mtime[$(_files_in_tmp)]"
         string => "$(with)",
         with => filestat( "$(_files_in_tmp)", mtime );
 
-      "_old[$(_files_in_tmp)]"
-        string => "$(_tmp[$(_files_in_tmp)])",
-        if => or( isgreaterthan( "$(_tmp[$(_files_in_tmp)])", $(_maximum_age_seconds) ),
-                  islessthan( "$(_tmp[$(_files_in_tmp)])", 0 ) );
+      # Map of old files to their mtime
+      "_map_old_file_mtime[$(_files_in_tmp)]"
+        string => "$(_map_tmp_file_mtime[$(_files_in_tmp)])",
+        if => islessthan( "$(_map_tmp_file_mtime[$(_files_in_tmp)])", $(_old_file_mtime_threshold) );
 
+      # Get a consolidated list of old files
       "old_files"
-        slist => getindices( _old ),
+        slist => getindices( _map_old_file_mtime ),
         meta => { "inventory", "attribute_name=Old files in /tmp"};
 
+      # Find the oldest file timestamp
       "_oldest_timestamp"
         string => min( getvalues( _tmp ), int );
 
+      # Format the oldest timestamp for inventorying the age of the oldest file
       "oldest_timestamp"
         string => strftime( $(gmt_or_local), $(time_format),
                             $(_oldest_timestamp) ),
         meta => { "inventory", "attribute_name=Oldest timestamp in /tmp"};
 
+      # Inventory the oldest file
       "oldest_file"
         string => "$(_files_in_tmp)",
-        if => strcmp( $(_oldest_timestamp), "$(_tmp[$(_files_in_tmp)])" ),
+        if => strcmp( $(_oldest_timestamp), "$(_map_tmp_file_mtime[$(_files_in_tmp)])" ),
         meta => { "inventory", "attribute_name=Oldest file in /tmp"};
 
   files:
@@ -66,4 +77,5 @@ bundle agent tmp_file_age
     northerntech_security_hardening:enforce_tmp_file_age::
       "$(old_files)"
         delete => default:tidy;
+
 }
