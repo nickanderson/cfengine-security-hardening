@@ -6,7 +6,6 @@ bundle agent __main__
 body file control
 {
         namespace => "northerntech_security_hardening";
-        inputs => { "/home/nickanderson/.cfagent/inputs/lib/stdlib.cf" };
 }
 bundle agent tmp_file_age
 {
@@ -66,5 +65,5 @@ bundle agent tmp_file_age
     northerntech_security_hardening:enforce_tmp_file_age::
       "$(old_files)"
         delete => default:tidy,
-        action => default:policy( "warn" );
+        action => default:policy( "fix" );
 }
