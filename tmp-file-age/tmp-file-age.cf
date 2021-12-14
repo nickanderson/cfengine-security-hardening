@@ -33,9 +33,9 @@ bundle agent tmp_file_age
         string => format( "%d", eval( "$(with)-($(maximum_age_hours)*60)", math, infix)),
         with => concat( now() );
 
-      # Find all the files in /tmp
+      # Find all the files in /tmp (up to 101 levels deep)
       "_files_in_tmp"
-        slist => findfiles( "/tmp/**/*" );
+        slist => findfiles( "/tmp/****************************************/*" );
 
       # Find the mtime of all the files in /tmp
       "_map_tmp_file_mtime[$(_files_in_tmp)]"
