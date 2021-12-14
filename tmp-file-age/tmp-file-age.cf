@@ -29,7 +29,7 @@ bundle agent tmp_file_age
         string => eval( "$(maximum_age_hours)*60", math, infix);
 
       "_files_in_tmp"
-        slist => findfiles( "/tmp/*", "/tmp/*********/*");
+        slist => findfiles( "/tmp/**/*" );
 
       "_tmp[$(_files_in_tmp)]"
         string => "$(with)",
