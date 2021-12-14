@@ -54,7 +54,7 @@ bundle agent tmp_file_age
 
       # Find the oldest file timestamp
       "_oldest_timestamp"
-        string => min( getvalues( _tmp ), int );
+        string => min( getvalues( _map_tmp_file_mtime ), int );
 
       # Format the oldest timestamp for inventorying the age of the oldest file
       "oldest_timestamp"
