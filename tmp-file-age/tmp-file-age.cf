@@ -14,19 +14,19 @@ bundle agent tmp_file_age
       "time_format"
         string => "%c",
         meta => { "noreport" },
-        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+        unless => isvariable( "$(this.namespace):$(this.bundle).$(this.promiser)");
 
       # Use localtime or gmtime
       "gmt_or_local"
         string => "localtime",
         meta => { "noreport" },
-        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+        unless => isvariable( "$(this.namespace):$(this.bundle).$(this.promiser)");
 
       # Maximum age in hours files are allowed to be
       "maximum_age_hours"
         meta => { "noreport" },
         string => "168",
-        unless => isvariable( "$(this.namespace):$(this.bundle):$(this.promiser)");
+        unless => isvariable( "$(this.namespace):$(this.bundle).$(this.promiser)");
 
       # Calculate the epoch time for the threshold of what is considered an old file
       "_old_file_mtime_threshold"
