@@ -101,12 +101,12 @@
     "cve-2021-3156-sudo": {
       "description": "This module inventories and remediates CVE-2021-3156, a heap overflow in sudo that allows privilege escalation.",
       "tags": ["security"],
-      "subdirectory": "./cve-2021-3156-sudo/",
+      "subdirectory": "./cves/cve-2021-3156-sudo/",
       "version": "0.0.1",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./cve-2021-3156-sudo.cf services/security-hardening/cve-2021-3156-sudo/",
+        "copy ./cve-2021-3156-sudo.cf services/security-hardening/cves/cve-2021-3156-sudo/",
         "json cfbs/def.json def.json"
       ]
     },
