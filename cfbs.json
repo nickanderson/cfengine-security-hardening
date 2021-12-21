@@ -99,7 +99,7 @@
       ]
     },
     "cve-2021-44228-log4j": {
-      "description": "This module inventories and remediates CVE-2021-44228, a heap overflow in log4j that allows privilege escalation.",
+      "description": "This module leverages yahoo/check-log4j to scan for files potentially vulnerable to CVE-2021-44228, which allows arbitrary code execution.",
       "tags": ["security"],
       "subdirectory": "./cves/cve-2021-44228-log4j/",
       "version": "0.0.1",
