@@ -98,6 +98,18 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "cve-2021-44228-log4j": {
+      "description": "This module inventories and remediates CVE-2021-44228, a heap overflow in log4j that allows privilege escalation.",
+      "tags": ["security"],
+      "subdirectory": "./cves/cve-2021-44228-log4j/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./cve-2021-44228-log4j-inventory-log4shell.cf services/security-hardening/cves/cve-2021-44228-log4j/",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "cve-2021-3156-sudo": {
       "description": "This module inventories and remediates CVE-2021-3156, a heap overflow in sudo that allows privilege escalation.",
       "tags": ["security"],
