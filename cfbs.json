@@ -78,7 +78,7 @@
       "description": "This module ensures the following lines 'ALL ALL=(ALL) ALL' and 'ALL ALL=(ALL:ALL) ALL' are not present in /etc/sudoers.conf",
       "tags": ["security", "management"],
       "subdirectory": "./sudo-enforce-allowed-users/",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
