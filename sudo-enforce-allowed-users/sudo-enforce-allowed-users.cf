@@ -23,7 +23,7 @@ bundle agent sudo_enforce_allowed_users
         slist => { "ALL ALL=(ALL) ALL",
                    "ALL ALL=(ALL:ALL) ALL" };
 
-      "_check_command" string => "visudo --quiet --check --strict --file /etc/sudoers";
+      "_check_command" string => "/usr/sbin/visudo --quiet --check --strict --file /etc/sudoers";
 
   files:
       "/etc/sudoers.staged"
@@ -37,7 +37,7 @@ bundle agent sudo_enforce_allowed_users
       "/etc/sudoers"
         copy_from => default:local_dcp( "/etc/sudoers.staged" ),
         perms => default:m( "0440" ),
-        if => and( returnszero( "$(_check_command)", "useshell" ),
+        if => and( returnszero( "$(_check_command)", "noshell" ),
                    "_sudoers_staged_repaired" ),
         action => default:policy( "$(action_policy)" );
 
