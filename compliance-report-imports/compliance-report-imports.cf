@@ -27,7 +27,7 @@ bundle agent compliance_report_imports
   files:
       "$(sys.workdir)/imports/compliance-reports/."
         create => "true",
-        copy_from => local_dcp( "$(sys.policy_entry_dirname)/.no-distrib/compliance-report-definitions/"),
+        copy_from => local_dcp( "$(sys.masterdir)/.no-distrib/compliance-report-definitions/"),
         depth_search => recurse( "inf" );
 
       "$(sys.bindir)/compliance-report-definition-importer.sh"
