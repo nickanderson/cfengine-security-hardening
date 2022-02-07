@@ -126,7 +126,7 @@
       "description": "This module ensures that maxpoll is configured to 10 unless default:ntp_maxpoll._config[maxpoll] is defined in which case that value will be used.",
       "tags": ["security"],
       "subdirectory": "./ntp-maxpoll/",
-      "version": "0.0.2",
+      "version": "0.0.3",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
