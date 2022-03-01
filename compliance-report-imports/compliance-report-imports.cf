@@ -48,8 +48,14 @@ WHERE export_id IS null AND name IN ('OS is reported', 'Supported CentOS', 'Supp
         template_method => "inline_mustache";
 
   commands:
-   "$(sys.bindir)/compliance-report-definition-importer.sh";
+   "$(sys.bindir)/compliance-report-definition-importer.sh"
+     contain => silent,
+     inform => "false",
+     classes => default:results( "bundle", "compliance_reports_import" );
 
+  reports:
+   compliance_reports_import_repaired.(inform_mode|verbose_mode|debug_mode)::
+     "Compliance reports imported successfully";
 }
 bundle agent __main__
 {
