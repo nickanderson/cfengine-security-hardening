@@ -27,12 +27,12 @@ bundle agent compliance_report_imports
   files:
       "$(sys.workdir)/imports/compliance-reports/."
         create => "true",
-        copy_from => local_dcp( "$(sys.masterdir)/.no-distrib/compliance-report-definitions/"),
-        depth_search => recurse( "inf" );
+        copy_from => default:local_dcp( "$(sys.policy_entry_dirname)/.no-distrib/compliance-report-definitions/"),
+        depth_search => default:recurse( "inf" );
 
       "$(sys.bindir)/compliance-report-definition-importer.sh"
         create => "true",
-        perms => mog( "700", "root", "root" ),
+        perms => default:mog( "700", "root", "root" ),
         edit_template_string => `#!/bin/bash
 {{#vars.$(this.bundle)._all_import_files}}
    $(sys.bindir)/psql -d cfmp -c "UPDATE dashboard_rules
@@ -48,8 +48,14 @@ WHERE export_id IS null AND name IN ('OS is reported', 'Supported CentOS', 'Supp
         template_method => "inline_mustache";
 
   commands:
-   "$(sys.bindir)/compliance-report-definition-importer.sh";
+   "$(sys.bindir)/compliance-report-definition-importer.sh"
+     contain => default:silent,
+     inform => "false",
+     classes => default:results( "bundle", "compliance_reports_import" );
 
+  reports:
+   compliance_reports_import_repaired.(inform_mode|verbose_mode|debug_mode)::
+     "Compliance reports imported successfully";
 }
 bundle agent __main__
 {
