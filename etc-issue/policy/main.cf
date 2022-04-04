@@ -36,6 +36,6 @@ may be monitored if unauthorized usage is suspected.";
   files:
     northerntech_security_hardening:enable_management_etc_issue::
       "$(_etc_issue_filename)" -> { "SecScan:centos7.1.7.1.5", "Lynis:7126" }
-        content => "$(header)$(body)$(footer)",
+        content => "$(header)$(const.n)$(const.n)$(body)$(const.n)$(const.n)$(footer)$(const.n)",
         perms => default:mog( "0644", "root", "root" );
 }
