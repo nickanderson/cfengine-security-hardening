@@ -1,0 +1,41 @@
+body file control
+{
+  namespace => "northerntech_security_hardening";
+}
+bundle agent etc_issue
+# @brief Inventory and Manage the content of /etc/issue
+{
+  vars:
+      "_etc_issue_filename" string => "/etc/issue";
+      "_default_header_content" string => "";
+      "_default_body_content"
+        string => "WARNING : Unauthorized access to this system is forbidden and will be
+prosecuted by law. By accessing this system, you agree that your actions
+may be monitored if unauthorized usage is suspected.";
+      "_default_footer_content" string => "";
+
+      "header"
+        string => ifelse( isvariable( "$(this.promiser)" ), $(header),
+                          $(_default_header_content) ),
+        meta => { "noreport" };
+
+      "body"
+        string => ifelse( isvariable( "$(this.promiser)" ), $(body),
+                          $(_default_body_content) ),
+        meta => { "noreport" };
+
+      "footer"
+        string => ifelse( isvariable( "$(this.promiser)" ), $(footer),
+                          $(_default_footer_content) ),
+        meta => { "noreport" };
+
+      "_etc_issue_content"
+        string => readfile( $(_etc_issue_filename) ),
+        meta => { "inventory", "attribute_name=/etc/issue" };
+
+  files:
+    northerntech_security_hardening:enable_management_etc_issue::
+      "$(_etc_issue_filename)" -> { "SecScan:centos7.1.7.1.5", "Lynis:7126" }
+        content => "$(header)$(body)$(footer)",
+        perms => default:mog( "0644", "root", "root" );
+}
