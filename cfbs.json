@@ -11,7 +11,7 @@
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
-        "copy ./policy/etc-issue.cf services/security-hardening/etc-issue/etc-issue.cf",
+        "copy ./policy/main.cf services/security-hardening/etc-issue/etc-issue.cf",
         "json cfbs/def.json def.json"
       ]
     },
