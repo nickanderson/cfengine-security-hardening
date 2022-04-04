@@ -1,0 +1,27 @@
+=/etc/issue= is a text file which contains a message or system identification to be printed before the login prompt.
+
+*Recommendation:* Use this module to inventory and manage this files content.
+
+* Inventory
+
+- =/etc/issue= :: The full content of =/etc/issue=.
+
+* Configuration
+
+When =northerntech_security_hardening:enable_management_etc_issue= is defined the content of =/etc/issue= will be managed.
+
+** Variables
+
+- =northerntech_security_hardening:etc-issue.header= :: Test before the main body. *Default:* (empty)
+- =northerntech_security_hardening:etc-issue.body= :: The main body of the file.
+  *Default:*
+    #+begin_example
+WARNING : Unauthorized access to this system is forbidden and will be
+prosecuted by law. By accessing this system, you agree that your actions
+may be monitored if unauthorized usage is suspected.
+#+end_example
+- =northerntech_security_hardening:etc-issue.footer= ::  Text after the main body. *Default:* (empty)
+
+** Classes
+
+- =northerntech_security_hardening:enable_management_etc_issue= :: Enable active management of the content in =/etc/issue=. Note: This class is /not/ defined by default.

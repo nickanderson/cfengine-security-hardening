@@ -1,0 +1,8 @@
+{
+    "vars": {
+        "control_common_bundlesequence_end": [
+            "northerntech_security_hardening:etc_issue"
+        ]
+    },
+    "inputs": ["services/security-hardening/etc-issue/etc-issue.cf"]
+}

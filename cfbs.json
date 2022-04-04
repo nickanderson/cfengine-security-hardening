@@ -3,6 +3,18 @@
   "description": "This repo provides modules implementing various security hardening measures.",
   "type": "module-repo",
   "provides": {
+    "etc-issue": {
+      "description": "This module inventories and optionally manages the content of /etc/issue.",
+      "tags": ["security", "management"],
+      "subdirectory": "./etc-issue/",
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./policy/etc-issue.cf services/security-hardening/etc-issue/etc-issue.cf",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "default-encrypt-method-sha512": {
       "description": "This module makes sure the default password hashing algorithm is SHA512.",
       "tags": ["security"],
