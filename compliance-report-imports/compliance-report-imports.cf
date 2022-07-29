@@ -35,18 +35,18 @@ bundle agent compliance_report_imports
         create => "true",
         perms => default:mog( "700", "root", "root" ),
         edit_template_string => `#!/bin/bash
-{{#vars.$(this.bundle)._all_import_files}}
-   $(sys.bindir)/psql -d cfmp -c "UPDATE dashboard_rules
+      {{#vars.$(this.bundle)._all_import_files}}
+         $(sys.bindir)/psql -d cfmp -c "UPDATE dashboard_rules
 SET export_id=LOWER(REPLACE(name, ' ', '-'))
 WHERE export_id IS null AND name IN ('OS is reported', 'Supported CentOS', 'Supported Debian', 'Supported RHEL', 'Supported Ubuntu');"
-  echo curl -k https://127.0.0.1/advancedreports/complianceReport/import \
-   --user CFE_ROBOT:$(_stuff[cf_robot_password]) \
-  -X POST \
-  --form \\'data=$(const.dollar)(cat {{{.}}} )\\' \
-  --form \\'public=true\\' \
-  --form \\'overwrite=true\\' > /$(sys.bindir)/.compliance_importer && bash /$(sys.bindir)/.compliance_importer && rm -f /$(sys.bindir)/.compliance_importer
-{{/vars.$(this.bundle)._all_import_files}}`,
-        template_method => "inline_mustache";
+         curl -k https://127.0.0.1/advancedreports/complianceReport/import \
+         --user CFE_ROBOT:$(_stuff[cf_robot_password]) \
+         -X POST \
+         --form 'data=<{{{.}}}' \
+         --form 'public=true' \
+         --form 'overwrite=true'
+         {{/vars.$(this.bundle)._all_import_files}}`,
+         template_method => "inline_mustache";
 
   commands:
    "$(sys.bindir)/compliance-report-definition-importer.sh"
