@@ -22,7 +22,7 @@ bundle agent run
         slist => bundlesmatching( "$(this.namespace).*", "inventory_$(this.namespace)_.*" );
 
       "canonified_excluded_finding_ids"
-        slist => maplist( canonify("$(this)", "@($(this.namespace):config.excluded_finding_ids)" ));
+        slist => maplist( canonify("$(this)"), "@($(this.namespace):config.excluded_finding_ids)");
 
 
       "reg_excluded_inventory_bundles"
