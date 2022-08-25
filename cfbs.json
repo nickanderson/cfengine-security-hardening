@@ -24,7 +24,7 @@
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
         "copy ./config.cf services/security-hardening/stig/ubuntu-20/config.cf",
-        "copy ./V-238206/V-238206.cf security-hardening/stig/ubuntu-20/V-238206.cf",
+        "copy ./V-238206/V-238206.cf services/security-hardening/stig/ubuntu-20/V-238206.cf",
         "json cfbs/def.json def.json"
       ]
     },
