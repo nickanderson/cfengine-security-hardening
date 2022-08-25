@@ -10,7 +10,8 @@ bundle agent config
         unless => isvariable( "$(this.promiser)");
 
       "excluded_finding_ids"
-        slist => {}; # e.g. V-238206
+        slist => {}, # e.g. V-238206
+        unless => isvariable( "$(this.promiser)");
 
 }
 bundle agent run
