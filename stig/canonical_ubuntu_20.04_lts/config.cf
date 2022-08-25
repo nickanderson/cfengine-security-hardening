@@ -1,0 +1,39 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent config
+{
+  vars:
+      "sudo_access_required"
+        slist => {},
+        unless => isvariable( "$(this.promiser)");
+
+      "excluded_finding_ids"
+        slist => { }; # e.g. V-238206
+
+}
+bundle agent run
+{
+  vars:
+    ubuntu::
+      "inventory_bundles"
+        slist => bundlesmatching( "inventory_$(this.namespace)_.*" );
+
+      "canonified_excluded_finding_ids"
+        slist => maplist( canonify("$(this)", "@($(this.namespace):config.excluded_finding_ids)" ));
+
+
+      "reg_excluded_inventory_bundles"
+        string => join( "|", canonified_excluded_finding_ids );
+
+      "filtered_inventory_bundles"
+        slist => filter( "$(reg_excluded_inventory_bundles)",
+                         "inventory_bundles",
+                         "true",
+                         "true",
+                         inf);
+
+  methods:
+      "$(filtered_inventory_bundles)";
+}

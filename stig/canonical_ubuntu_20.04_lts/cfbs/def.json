@@ -1,0 +1,12 @@
+{
+  "vars": {
+    "control_common_bundlesequence_end": [
+      "Canonical_Ubuntu_20_04_LTS_STIG:config",
+      "Canonical_Ubuntu_20_04_LTS_STIG:run"
+    ]
+  },
+  "inputs": [
+    "services/security-hardening/stig/ubuntu-20/config.cf",
+    "services/security-hardening/stig/ubuntu-20/V-238206.cf"
+  ]
+}

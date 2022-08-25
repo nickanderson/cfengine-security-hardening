@@ -1,0 +1,22 @@
+#+title: The Ubuntu operating system must ensure only users who need access to security functions are part of sudo group.
+
+https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238206
+
+* Overview
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-238206   | UBTU-20-010012 | SV-238206r653793_rule |             | High     |
+
+** Description
+
+An isolation boundary provides access control and protects the integrity of the hardware, software, and firmware that perform security functions. Security functions are the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Operating systems implement code separation (i.e., separation of security functions from nonsecurity functions) in a number of ways, including through the provision of security kernels via processor rings or processor modes. For non-kernel code, security function isolation is often achieved through file system protections that serve to protect the code on disk and address space protections that protect executing code. Developers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. Implementation may include isolation of memory space and libraries. The Ubuntu operating system restricts access to security functions through the use of access control mechanisms and by implementing least privilege capabilities.
+
+** Details
+
+If there are any users in the =sudo= group who are not documented as requiring access to ~sudo~ it's a finding.
+
+* Configuration
+
+- =Canonical_Ubuntu_20_04_LTS_STIG:config.sudo_access_required= :: List of users who require access to ~sudo~.
+
