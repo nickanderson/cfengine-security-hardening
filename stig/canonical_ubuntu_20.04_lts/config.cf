@@ -17,6 +17,7 @@ bundle agent run
 {
   vars:
     ubuntu::
+
       "inventory_bundles"
         slist => bundlesmatching( "$(this.namespace).*", "inventory_$(this.namespace)_.*" );
 
@@ -35,5 +36,6 @@ bundle agent run
                          inf);
 
   methods:
+    ubuntu::
       "$(inventory_bundles)";
 }
