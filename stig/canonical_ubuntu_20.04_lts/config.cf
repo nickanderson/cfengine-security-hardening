@@ -10,7 +10,7 @@ bundle agent config
         unless => isvariable( "$(this.promiser)");
 
       "excluded_finding_ids"
-        slist => { }; # e.g. V-238206
+        slist => {}; # e.g. V-238206
 
 }
 bundle agent run
@@ -35,5 +35,5 @@ bundle agent run
                          inf);
 
   methods:
-      "$(filtered_inventory_bundles)";
+      "$(inventory_bundles)";
 }
