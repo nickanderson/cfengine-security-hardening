@@ -1,0 +1,45 @@
+* [[https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238201][The Ubuntu operating system must map the authenticated identity to the user or group account for PKI-based authentication.]] :website:
+
+[2022-08-26 Fri 00:33]
+
+** Article
+
+*** The Ubuntu operating system must map the authenticated identity to the user or group account for PKI-based authentication.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-238201   | UBTU-20-010006 | SV-238201r832933_rule |             | High     |
+
+| Description                                                                                                                                                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Without mapping the certificate used to authenticate to the user account, the ability to determine the identity of the individual user or group will not be available for forensic analysis. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/canonical_ubuntu_20.04_lts/2022-06-06/%20][Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-41411r832932_chk )                                                        |
+|------------------------------------------------------------------------------------------|
+| Verify that "use_mappers" is set to "pwent" in "/etc/pam_pkcs11/pam_pkcs11.conf" file:\\ |
+| \\                                                                                       |
+| $ grep use_mappers /etc/pam_pkcs11/pam_pkcs11.conf\\                                     |
+| use_mappers = pwent\\                                                                    |
+| \\                                                                                       |
+| If "use_mappers" is not found or the list does not contain "pwent" this is a finding.    |
+
+| Fix Text (F-41370r653777_fix)                                                                                                                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Set "use_mappers=pwent" in "/etc/pam_pkcs11/pam_pkcs11.conf" or, if there is already a comma-separated list of mappers, add it to the list, separated by comma, and before the null mapper.\\                                       |
+| \\                                                                                                                                                                                                                                  |
+| If the system is missing an "/etc/pam_pkcs11/" directory and an "/etc/pam_pkcs11/pam_pkcs11.conf", find an example to copy into place and modify accordingly at "/usr/share/doc/libpam-pkcs11/examples/pam_pkcs11.conf.example.gz". |

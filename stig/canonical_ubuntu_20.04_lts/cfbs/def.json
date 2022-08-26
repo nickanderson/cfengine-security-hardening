@@ -8,6 +8,7 @@
   "inputs": [
     "services/security-hardening/stig/ubuntu-20/config.cf",
     "services/security-hardening/stig/ubuntu-20/V-238204.cf",
-    "services/security-hardening/stig/ubuntu-20/V-238206.cf"
+    "services/security-hardening/stig/ubuntu-20/V-238206.cf",
+    "services/security-hardening/stig/ubuntu-20/V-238201.cf"
   ]
 }
