@@ -25,6 +25,16 @@
       "steps": [
         "copy ./config.cf services/security-hardening/stig/ubuntu-20/config.cf",
         "copy ./V-238206/V-238206.cf services/security-hardening/stig/ubuntu-20/V-238206.cf",
+        "copy ./V-238204/V-238204.cf services/security-hardening/stig/ubuntu-20/V-238204.cf",
+        "copy ./V-238206/V-238206.cf services/security-hardening/stig/ubuntu-20/V-238206.cf",
+        "copy ./V-238201/V-238201.cf services/security-hardening/stig/ubuntu-20/V-238201.cf",
+        "copy ./V-238363/V-238363.cf services/security-hardening/stig/ubuntu-20/V-238363.cf",
+        "copy ./V-238219/V-238219.cf services/security-hardening/stig/ubuntu-20/V-238219.cf",
+        "copy ./V-238218/V-238218.cf services/security-hardening/stig/ubuntu-20/V-238218.cf",
+        "copy ./V-238215/V-238215.cf services/security-hardening/stig/ubuntu-20/V-238215.cf",
+        "copy ./V-251503/V-251503.cf services/security-hardening/stig/ubuntu-20/V-251503.cf",
+        "copy ./V-251504/V-251504.cf services/security-hardening/stig/ubuntu-20/V-251504.cf",
+        "copy ./V-238327/V-238327.cf services/security-hardening/stig/ubuntu-20/V-238327.cf",
         "json cfbs/def.json def.json"
       ]
     },
