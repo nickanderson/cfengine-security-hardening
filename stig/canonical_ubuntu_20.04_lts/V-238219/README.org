@@ -1,0 +1,50 @@
+* [[https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238219][The Ubuntu operating system must be configured so that remote X connections are disabled, unless to fulfill documented and validated mission requirements.]] :website:
+
+[2022-08-26 Fri 00:44]
+
+** Article
+
+*** The Ubuntu operating system must be configured so that remote X connections are disabled, unless to fulfill documented and validated mission requirements.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-238219   | UBTU-20-010048 | SV-238219r653832_rule |             | High     |
+
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A System Administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a ''no'' setting. X11 forwarding should be enabled with caution. Users with the ability to bypass file permissions on the remote host (for the user's X11 authorization database) can access the local X11 display through the forwarded connection. An attacker may then be able to perform activities such as keystroke monitoring if the ForwardX11Trusted option is also enabled. If X11 services are not required for the system's intended function, they should be disabled or restricted as appropriate to the system's needs. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/canonical_ubuntu_20.04_lts/2022-06-06/%20][Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-41429r653830_chk )                                                                                                                                                        |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Verify that X11Forwarding is disabled with the following command:\\                                                                                                                      |
+| \\                                                                                                                                                                                       |
+| $ grep -i x11forwarding /etc/ssh/sshd_config | grep -v "^#"\\                                                                                                                            |
+| \\                                                                                                                                                                                       |
+| X11Forwarding no\\                                                                                                                                                                       |
+| \\                                                                                                                                                                                       |
+| If the "X11Forwarding" keyword is set to "yes" and is not documented with the Information System Security Officer (ISSO) as an operational requirement or is missing, this is a finding. |
+
+| Fix Text (F-41388r653831_fix)                                                                                                                                                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Edit the "/etc/ssh/sshd_config" file to uncomment or add the line for the "X11Forwarding" keyword and set its value to "no" (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor):\\ |
+| \\                                                                                                                                                                                                                                                                   |
+| X11Forwarding no\\                                                                                                                                                                                                                                                   |
+| \\                                                                                                                                                                                                                                                                   |
+| Restart the SSH daemon for the changes to take effect:\\                                                                                                                                                                                                             |
+| \\                                                                                                                                                                                                                                                                   |
+| $ sudo systemctl restart sshd.service                                                                                                                                                                                                                                |

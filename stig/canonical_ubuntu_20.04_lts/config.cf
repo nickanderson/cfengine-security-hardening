@@ -9,6 +9,10 @@ bundle agent config
         slist => {},
         unless => isvariable( "$(this.promiser)");
 
+      "x11forwarding_required" -> { "V-238219", "Information Security Officer (ISSO)" }
+        string => "",
+        unless => isvariable( "$(this.promiser)");
+
       "excluded_finding_ids"
         slist => {}, # e.g. V-238206
         unless => isvariable( "$(this.promiser)");

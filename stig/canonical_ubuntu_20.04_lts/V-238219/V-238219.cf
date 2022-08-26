@@ -1,0 +1,26 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent V_238219
+# https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238219
+{
+  meta:
+    ubuntu::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+  vars:
+
+      # If the "X11Forwarding" keyword is set to "yes" and is not documented with the Information System Security Officer (ISSO) as an operational requirement or is missing, this is a finding.
+
+      "finding"
+        string => "V-238219",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        unless => and( regline( "^\s*(?i:x11forwarding\W)\s*(?i:yes\W).*",
+                           "/etc/ssh/sshd_config"),
+
+                       regcmp( "$(Canonical_Ubuntu_20_04_LTS_STIG:config.x11forwarding_required)",
+                               ".+"));
+
+}
