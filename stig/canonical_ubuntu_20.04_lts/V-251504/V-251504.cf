@@ -1,0 +1,24 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent V_251504
+# https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-251504
+{
+  meta:
+    ubuntu::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+  vars:
+
+      # If this produces any output, it may be possible to log on with accounts with empty passwords.
+      # If null passwords can be used, this is a finding.
+
+      "finding"
+        string => "V-251504",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        unless => regline( "nullok", # TODO Tighten up this regex to ignore commented lines
+                           "/etc/pam.d/common-password");
+
+}

@@ -13,6 +13,7 @@
     "services/security-hardening/stig/ubuntu-20/V-238363.cf",
     "services/security-hardening/stig/ubuntu-20/V-238219.cf",
     "services/security-hardening/stig/ubuntu-20/V-238218.cf",
-    "services/security-hardening/stig/ubuntu-20/V-238215.cf"
+    "services/security-hardening/stig/ubuntu-20/V-238215.cf",
+    "services/security-hardening/stig/ubuntu-20/def.json"
   ]
 }

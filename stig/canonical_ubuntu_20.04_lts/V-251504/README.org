@@ -1,0 +1,46 @@
+* [[https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-251504][The Ubuntu operating system must not allow accounts configured with blank or null passwords.]] :website:
+
+[2022-08-26 Fri 15:14]
+
+** Article
+
+*** The Ubuntu operating system must not allow accounts configured with blank or null passwords.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-251504   | UBTU-20-010463 | SV-251504r832977_rule |             | High     |
+
+| Description                                                                                                                                                                                    |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/canonical_ubuntu_20.04_lts/2022-06-06/%20][Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-54939r832975_chk )                                                               |
+|-------------------------------------------------------------------------------------------------|
+| To verify that null passwords cannot be used, run the following command:\\                      |
+| \\                                                                                              |
+| $ grep nullok /etc/pam.d/common-password\\                                                      |
+| \\                                                                                              |
+| If this produces any output, it may be possible to log on with accounts with empty passwords.\\ |
+| \\                                                                                              |
+| If null passwords can be used, this is a finding.                                               |
+
+| Fix Text (F-54893r832976_fix)                                                                                                                                         |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| If an account is configured for password authentication but does not have an assigned password, it may be possible to log on to the account without authenticating.\\ |
+| \\                                                                                                                                                                    |
+| Remove any instances of the "nullok" option in "/etc/pam.d/common-password" to prevent logons with empty passwords.                                                   |
