@@ -1,0 +1,33 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent V_238218
+# https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238218
+{
+  meta:
+    ubuntu::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+  vars:
+
+      # If "PermitEmptyPasswords" or "PermitUserEnvironment" keywords are not
+      # set to "no", are missing completely, or are commented out, this is a
+      # finding.
+
+      "finding"
+        string => "V-238218",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        unless => regline( "^\s*(?i:PermitEmptyPasswords)\s+no\s*",
+                           "/etc/ssh/sshd_config");
+
+      "finding"
+        string => "V-238218",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        unless => regline( "^\s*(?i:PermitUserEnvironment)\s+no\s*",
+                           "/etc/ssh/sshd_config");
+
+
+}
