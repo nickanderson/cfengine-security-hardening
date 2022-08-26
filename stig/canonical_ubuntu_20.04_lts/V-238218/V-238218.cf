@@ -6,10 +6,12 @@ bundle agent V_238218
 # https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238218
 {
   meta:
-    ubuntu::
+    ubuntu_20::
+
       "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
 
   vars:
+    ubuntu_20::
 
       # If "PermitEmptyPasswords" or "PermitUserEnvironment" keywords are not
       # set to "no", are missing completely, or are commented out, this is a
@@ -28,6 +30,4 @@ bundle agent V_238218
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
         unless => regline( "^\s*(?i:PermitUserEnvironment)\s+no\s*",
                            "/etc/ssh/sshd_config");
-
-
 }

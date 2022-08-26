@@ -6,11 +6,11 @@ bundle agent V_238206
 # https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238206
 {
   meta:
-    ubuntu::
+    ubuntu_20::
       "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
 
   vars:
-
+    ubuntu_20::
       # It's a finding if there are any users that have sudo access who do not require it.
 
       "finding"
