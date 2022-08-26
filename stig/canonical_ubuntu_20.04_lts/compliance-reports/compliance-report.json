@@ -1,0 +1,31 @@
+{
+    "reports": {
+        "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)": {
+            "id": "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)",
+            "type": "compliance",
+            "title": "Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide (STIG)",
+            "conditions": [
+                "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password"
+            ]
+        }
+    },
+    "conditions": {
+        "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password": {
+            "id": "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password",
+            "name": "V-251504 - Do not allow accounts configured with blank or null password",
+            "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
+            "type": "inventory",
+            "condition_for": "passing",
+            "rules": [
+                {
+                    "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+                    "operator": "not_match",
+                    "value": "V-251504"
+                }
+            ],
+            "category": "Security",
+            "severity": "high",
+            "host_filter": "ubuntu_20"
+        }
+    }
+}
