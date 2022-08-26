@@ -5,13 +5,13 @@
             "type": "compliance",
             "title": "Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide (STIG)",
             "conditions": [
-                "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password"
+                "v-251504"
             ]
         }
     },
     "conditions": {
-        "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password": {
-            "id": "v-251504---do-not-allow-accounts-configured-with-blank-or-null-password",
+        "v-251504": {
+            "id": "v-251504",
             "name": "V-251504 - Do not allow accounts configured with blank or null password",
             "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
             "type": "inventory",
@@ -26,6 +26,24 @@
             "category": "Security",
             "severity": "high",
             "host_filter": "ubuntu_20"
+        },
+        "v-238204": {
+            "id": "v-238204",
+            "name": "V-238204 - Booting into single and maintenance modes requires authentication",
+            "description": "To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system.",
+            "type": "inventory",
+            "condition_for": "passing",
+            "rules": [
+                {
+                "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+                "operator": "not_match",
+                "value": "V-238204"
+            }
+            ],
+            "category": "Security",
+            "severity": "high",
+            "host_filter": "ubuntu_20"
         }
+
     }
 }
