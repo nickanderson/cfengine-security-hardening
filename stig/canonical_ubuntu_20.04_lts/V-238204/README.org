@@ -1,0 +1,61 @@
+* [[https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238204][Ubuntu operating systems when booted must require authentication upon booting into single-user and maintenance modes.]] :website:
+
+[2022-08-26 Fri 00:22]
+
+** Article
+
+*** Ubuntu operating systems when booted must require authentication upon booting into single-user and maintenance modes.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-238204   | UBTU-20-010009 | SV-238204r832936_rule |             | High     |
+
+| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/canonical_ubuntu_20.04_lts/2022-06-06/%20][Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-41414r832934_chk )                                                    |
+|--------------------------------------------------------------------------------------|
+| Run the following command to verify the encrypted password is set:\\                 |
+| \\                                                                                   |
+| $ sudo grep -i password /boot/grub/grub.cfg\\                                        |
+| \\                                                                                   |
+| password_pbkdf2 root grub.pbkdf2.sha512.10000.MFU48934NJA87HF8NSD34493GDHF84NG\\     |
+| \\                                                                                   |
+| If the root password entry does not begin with "password_pbkdf2", this is a finding. |
+
+| Fix Text (F-41373r832935_fix)                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------|
+| Configure the system to require a password for authentication upon booting into single-user and maintenance modes.\\         |
+| \\                                                                                                                           |
+| Generate an encrypted (grub) password for root with the following command:\\                                                 |
+| \\                                                                                                                           |
+| $ grub-mkpasswd-pbkdf2\\                                                                                                     |
+| Enter Password:\\                                                                                                            |
+| Reenter Password:\\                                                                                                          |
+| PBKDF2 hash of your password is grub.pbkdf2.sha512.10000.MFU48934NJD84NF8NSD39993JDHF84NG\\                                  |
+| \\                                                                                                                           |
+| Using the hash from the output, modify the "/etc/grub.d/40_custom" file with the following command to add a boot password:\\ |
+| \\                                                                                                                           |
+| $ sudo sed -i '$i set superusers=\"root\"\npassword_pbkdf2 root ' /etc/grub.d/40_custom\\                                    |
+| \\                                                                                                                           |
+| where is the hash generated by grub-mkpasswd-pbkdf2 command.\\                                                               |
+| \\                                                                                                                           |
+| Generate an updated "grub.conf" file with the new password by using the following command:\\                                 |
+| \\                                                                                                                           |
+| $ sudo update-grub                                                                                                           |
