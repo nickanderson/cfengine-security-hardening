@@ -1,0 +1,38 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent V_238215
+# https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238215
+{
+  meta:
+    ubuntu::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+  classes:
+
+      "sshd_service_not_active"
+        expression => not( returnszero( "$(paths.systemctl) --quiet is-active sshd.service", noshell) );
+
+      "sshd_service_not_loaded"
+        expression => not( strcmp( execresult( "$(paths.systemctl) -pLoadState sshd.service", noshell),
+                                   "LoadState=loaded"));
+
+  vars:
+
+      # If the "openssh" server package is not installed, this is a finding.
+
+      "finding "
+        string => "V-238215",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        unless => strcmp( length( packagesmatching( "openssh-server", ".*", ".*", ".*" ) ), 1);
+
+      # If "sshd.service" is not active or loaded, this is a finding.
+
+      "finding"
+        string => "V-238215",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        if => or( "sshd_service_not_active", "sshd_service_not_loaded" );
+}
