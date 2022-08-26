@@ -1,0 +1,47 @@
+* [[https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-251503][The Ubuntu operating system must not have accounts configured with blank or null passwords.]] :website:
+
+[2022-08-26 Fri 15:39]
+
+** Article
+
+*** The Ubuntu operating system must not have accounts configured with blank or null passwords.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-251503   | UBTU-20-010462 | SV-251503r808506_rule |             | High     |
+
+| Description                                                                                                                                                                                    |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/canonical_ubuntu_20.04_lts/2022-06-06/%20][Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-54938r808504_chk )                                              |
+|--------------------------------------------------------------------------------|
+| Check the "/etc/shadow" file for blank passwords with the following command:\\ |
+| \\                                                                             |
+| $ sudo awk -F: '!$2 {print $1}' /etc/shadow\\                                  |
+| \\                                                                             |
+| If the command returns any results, this is a finding.                         |
+
+| Fix Text (F-54892r808505_fix)                                                                              |
+|------------------------------------------------------------------------------------------------------------|
+| Configure all accounts on the system to have a password or lock the account with the following commands:\\ |
+| \\                                                                                                         |
+| Perform a password reset:\\                                                                                |
+| $ sudo passwd [username]\\                                                                                 |
+| Lock an account:\\                                                                                         |
+| $ sudo passwd -l [username]                                                                                |
