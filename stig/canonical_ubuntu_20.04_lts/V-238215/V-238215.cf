@@ -22,7 +22,7 @@ bundle agent V_238215
 
       # If the "openssh" server package is not installed, this is a finding.
 
-      "finding "
+      "finding"
         string => "V-238215",
         meta => { "inventory",
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
