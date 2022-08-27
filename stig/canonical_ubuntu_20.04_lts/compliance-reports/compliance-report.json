@@ -1,49 +1,193 @@
 {
-    "reports": {
-        "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)": {
-            "id": "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)",
-            "type": "compliance",
-            "title": "Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide (STIG)",
-            "conditions": [
-                "v-251504"
-            ]
-        }
-    },
-    "conditions": {
-        "v-251504": {
-            "id": "v-251504",
-            "name": "V-251504 - Do not allow accounts configured with blank or null password",
-            "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
-                    "operator": "not_match",
-                    "value": "V-251504"
-                }
-            ],
-            "category": "Security",
-            "severity": "high",
-            "host_filter": "ubuntu_20"
-        },
-        "v-238204": {
-            "id": "v-238204",
-            "name": "V-238204 - Booting into single and maintenance modes requires authentication",
-            "description": "To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system.",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
-                "operator": "not_match",
-                "value": "V-238204"
-            }
-            ],
-            "category": "Security",
-            "severity": "high",
-            "host_filter": "ubuntu_20"
-        }
-
+  "reports": {
+    "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)": {
+      "id": "canonical-ubuntu-20.04-lts-security-technical-implementation-guide-(stig)",
+      "type": "compliance",
+      "title": "Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide (STIG)",
+      "conditions": [
+        "v-238204",
+        "v-238206",
+        "v-238201",
+        "v-238363",
+        "v-238219",
+        "v-238218",
+        "v-238215",
+        "v-251504",
+        "v-251503",
+        "v-238327"
+      ]
     }
+  },
+  "conditions": {
+    "v-238204": {
+      "id": "v-238204",
+      "name": "V-238204 - Booting into single and maintenance modes requires authentication",
+      "description": "To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238204"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238206": {
+      "id": "v-238206",
+      "name": "V-238206 - Only users who need access to security functions are part of sudo group.",
+      "description": "An isolation boundary provides access control and protects the integrity of the hardware, software, and firmware that perform security functions. Security functions are the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Operating systems implement code separation (i.e., separation of security functions from nonsecurity functions) in a number of ways, including through the provision of security kernels via processor rings or processor modes. For non-kernel code, security function isolation is often achieved through file system protections that serve to protect the code on disk and address space protections that protect executing code. Developers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. Implementation may include isolation of memory space and libraries. The Ubuntu operating system restricts access to security functions through the use of access control mechanisms and by implementing least privilege capabilities. Canonical_Ubuntu_20_04_LTS_STIG:config.sudo_access_required should be used to document the list of users who require access to sudo.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238206"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238201": {
+      "id": "v-238201",
+      "name": "V-238201 - The authenticated identity to the user or group account must be mapped for PKI-based authentication.",
+      "description": "Without mapping the certificate used to authenticate to the user account, the ability to determine the identity of the individual user or group will not be available for forensic analysis.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238201"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238363": {
+      "id": "v-238363",
+      "name": "V-238363 - NIST FIPS-validated cryptography must be used",
+      "description": "Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. Satisfies: SRG-OS-000396-GPOS-00176, SRG-OS-000478-GPOS-00223",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238363"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238219": {
+      "id": "v-238219",
+      "name": "V-238219 - Remote X connections are disabled",
+      "description": "The security risk of using X11 forwarding is that the client's X11 display server may be exposed to attack when the SSH client requests forwarding. A System Administrator may have a stance in which they want to protect clients that may expose themselves to attack by unwittingly requesting X11 forwarding, which can warrant a ''no'' setting. X11 forwarding should be enabled with caution. Users with the ability to bypass file permissions on the remote host (for the user's X11 authorization database) can access the local X11 display through the forwarded connection. An attacker may then be able to perform activities such as keystroke monitoring if the ForwardX11Trusted option is also enabled. If X11 services are not required for the system's intended function, they should be disabled or restricted as appropriate to the system's needs.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238219"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238218": {
+      "id": "v-238218",
+      "name": "V-238218 - Do not allow unattended or automatic login via SSH",
+      "description": "Failure to restrict system access to authenticated users negatively impacts Ubuntu operating system security.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238218"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238215": {
+      "id": "v-238215",
+      "name": "V-238215 - Use SSH",
+      "description": "Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa. Satisfies: SRG-OS-000423-GPOS-00187, SRG-OS-000425-GPOS-00189, SRG-OS-000426-GPOS-00190.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238215"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-251504": {
+      "id": "v-251504",
+      "name": "V-251504 - Do not allow accounts configured with blank or null password",
+      "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-251504"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-251503": {
+      "id": "v-251503",
+      "name": "V-251503 - No accounts configured with blank or null passwords",
+      "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-251503"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    },
+    "v-238327": {
+      "id": "v-238327",
+      "name": "V-238327 - rsh-server must not be installed",
+      "description": "It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors. Operating systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). Examples of non-essential capabilities include, but are not limited to, games, software packages, tools, and demonstration software, not related to requirements or providing a wide array of functionality not required for every mission, but which cannot be disabled.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Canonical Ubuntu 20.04 LTS STIG V1 findings",
+          "operator": "not_match",
+          "value": "V-238327"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "ubuntu_20"
+    }
+  }
 }
