@@ -39,7 +39,7 @@
         "copy ./V-251503/V-251503.cf services/security-hardening/stig/ubuntu-20/V-251503.cf",
         "copy ./V-251504/V-251504.cf services/security-hardening/stig/ubuntu-20/V-251504.cf",
         "copy ./V-238327/V-238327.cf services/security-hardening/stig/ubuntu-20/V-238327.cf",
-        "copy ./compliance-reports/compliance-report.json ./.no-distrib/canonical-ubuntu-20.04-lts-security-technical-implementation-guide.json",
+        "copy ./compliance-reports/compliance-report.json ./.no-distrib/compliance-report-definitions/canonical-ubuntu-20.04-lts-security-technical-implementation-guide.json",
         "json cfbs/def.json def.json"
       ]
     },
