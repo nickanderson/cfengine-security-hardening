@@ -1,0 +1,13 @@
+{
+    "vars": {
+        "control_common_bundlesequence_end": [
+            "Red_Hat_Enterprise_Linux_8_STIG:config",
+            "Red_Hat_Enterprise_Linux_8_STIG:run"
+        ]
+    },
+    "inputs": [
+        "services/security-hardening/stig/rhel-8/config.cf",
+        "services/security-hardening/stig/rhel-8/V-230234.cf",
+        "services/security-hardening/stig/rhel-8/V-230235.cf"
+    ]
+}

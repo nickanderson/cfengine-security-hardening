@@ -43,6 +43,21 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "stig-red-hat-enterprise-linux-8": {
+      "description": "Red Hat Enterprise Linux 8 Security Technical Implementation Guide",
+      "tags": ["security"],
+      "subdirectory": "./stig/red_hat_enterprise_linux_8/",
+      "dependencies": ["compliance-report-imports"],
+      "version": "0.0.1",
+      "by": "https://github.com/nickanderson",
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "steps": [
+        "copy ./config.cf services/security-hardening/stig/rhel-8/config.cf",
+        "copy ./V-230234/V-230234.cf services/security-hardening/stig/rhel-8/V-230234.cf",
+        "copy ./V-230235/V-230235.cf services/security-hardening/stig/rhel-8/V-230235.cf",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "default-encrypt-method-sha512": {
       "description": "This module makes sure the default password hashing algorithm is SHA512.",
       "tags": ["security"],

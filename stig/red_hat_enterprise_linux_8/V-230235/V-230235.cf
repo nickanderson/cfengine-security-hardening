@@ -1,0 +1,27 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_8_STIG";
+}
+bundle agent V_230235
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_8/2022-06-15/finding/V-230235
+{
+  meta:
+    redhat_8::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+  classes:
+    redhat_8::
+      "not_system_uses_uefi" expression => not( isdir( "/sys/firmware/efi" ) );
+
+  vars:
+
+    redhat_8.not_system_uses_uefi::
+
+      "finding"
+        string => "V-230235",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 8 STIG V1 findings" },
+        unless => regline( "^\s*(?i:GRUB2_PASSWORD=)grub.pbkdf2.sha512.*",
+                           "/boot/grub2/user.cfg");
+
+}

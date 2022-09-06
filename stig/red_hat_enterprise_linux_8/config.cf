@@ -1,0 +1,24 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_8_STIG";
+}
+bundle agent config
+{
+  vars:
+      "excluded_finding_ids"
+        slist => {}, # e.g. V-238206
+        unless => isvariable( "$(this.promiser)");
+
+}
+bundle agent run
+{
+  vars:
+    redhat_8::
+
+      "inventory_bundles"
+        slist => bundlesmatching( "$(this.namespace).*", "inventory_$(this.namespace)_.*" );
+
+  methods:
+    redhat_8::
+      "$(inventory_bundles)";
+}
