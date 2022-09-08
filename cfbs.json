@@ -55,6 +55,7 @@
         "copy ./config.cf services/security-hardening/stig/rhel-8/config.cf",
         "copy ./V-230234/V-230234.cf services/security-hardening/stig/rhel-8/V-230234.cf",
         "copy ./V-230235/V-230235.cf services/security-hardening/stig/rhel-8/V-230235.cf",
+        "copy ./compliance-reports/compliance-report.json ./.no-distrib/compliance-report-definitions/red-hat-enterprise-linux-8-security-technical-implementation-guide.json",
         "json cfbs/def.json def.json"
       ]
     },
