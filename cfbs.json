@@ -158,7 +158,7 @@
       "description": "This module leverages yahoo/check-log4j to scan for files potentially vulnerable to CVE-2021-44228, which allows arbitrary code execution.",
       "tags": ["security"],
       "subdirectory": "./cves/cve-2021-44228-log4j/",
-      "version": "0.0.1",
+      "version": "0.2.0",
       "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
