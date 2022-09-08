@@ -28,7 +28,7 @@
       "severity": "high",
       "host_filter": "redhat_8"
     },
-      "v-238204": {
+      "v-230235": {
           "id": "v-230235",
           "name": "V-230235 - RHEL 8 operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes.",
           "description": "If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 8 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.",
