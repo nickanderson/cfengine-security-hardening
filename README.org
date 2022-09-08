@@ -5,7 +5,10 @@ This repository hosts various security hardening policies.
 * Modules Provided
 - [[./compliance-report-imports][compliance-report-imports]] (*experimental*)
 - [[./compliance-report-os-is-vendor-supported][compliance-report-os-is-vendor-supported]] (*experimental*)
+- [[./cves/cve-2021-3156-sudo][cve-2021-3156-sudo]]
+- [[./cves/cve-2021-44228-log4j][cve-2021-44228-log4j]]
 - [[./default-encrypt-method-sha512][default-encrypt-method-sha512]]
+- [[./etc-issue][etc-issue]]
 - [[./ntp-maxpoll][ntp-maxpoll]]
 - [[./ssh-ciphers-strong/][ssh-ciphers-strong]]
 - [[./ssh-max-auth-tries/][ssh-max-auth-tries]]
@@ -13,10 +16,7 @@ This repository hosts various security hardening policies.
 - [[./ssh-permit-root-login-no/][ssh-permit-root-login-no]]
 - [[./ssh-protocol-2/][ssh-protocol-2]]
 - [[./ssh-x11-forwarding-no/][ssh-x11-forwarding-no]]
-- [[./tmp-file-age/][tmp-file-age]]
-- [[./etc-issue][etc-issue]]
 - [[./stig/canonical_ubuntu_20.04_lts][stig-canonical-ubuntu-20-lts]]
 - [[./stig/red_hat_enterprise_linux_8][stig-red-hat-enterprise-linux-8]]
 - [[./sudo-enforce-allowed-users][sudo-enforce-allowed-users]]
-- [[./cves/cve-2021-44228-log4j][cve-2021-44228-log4j]]
-- [[./cves/cve-2021-3156-sudo][cve-2021-3156-sudo]]
+- [[./tmp-file-age/][tmp-file-age]]
