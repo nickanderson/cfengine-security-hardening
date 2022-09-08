@@ -19,7 +19,7 @@ bundle agent V_251504
         string => "V-251504",
         meta => { "inventory",
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
-        unless => regline( "nullok", # TODO Tighten up this regex to ignore commented lines
+        if => regline( "nullok", # TODO Tighten up this regex to ignore commented lines
                            "/etc/pam.d/common-password");
 
 }
