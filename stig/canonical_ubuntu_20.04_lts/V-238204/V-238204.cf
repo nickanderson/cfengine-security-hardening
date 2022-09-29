@@ -17,7 +17,7 @@ bundle agent V_238204
         string => "V-238204",
         meta => { "inventory",
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
-        unless => regline( "^\s*password_pbkdf2\s+ root\s+.*",
+        unless => regline( "^\s*password_pbkdf2\s+root\s+.*",
                            "/boot/grub/grub.cfg");
 
 }
