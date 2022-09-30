@@ -13,11 +13,32 @@ bundle agent V_238204
     ubuntu_20::
       # If the root password entry does not begin with "password_pbkdf2", this is a finding.
 
+      "check_file" string => "/boot/grub/grub.cfg";
+
+      # Consider all the lines with case insensitive 'password'
+      "lines_with_password"
+        slist => grep( "(?i).*password.*", readstringlist( $(check_file), "", "\n", inf, inf ) ),
+        if => fileexists( $(check_file) );
+
+      # Lines starting with 'password' (leading space is ok) where the second space separated fild is 'root' are root password entries
+      "root_password_entries"
+        slist => grep( "^\s*password\w*\s+root\s+.*", readstringlist( $(check_file), "", "\n", inf, inf ) ),
+        if => fileexists( $(check_file) );
+
+      # If there are no lines with password, it's a finding.
       "finding"
         string => "V-238204",
         meta => { "inventory",
-                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
-        unless => regline( "^\s*password_pbkdf2\s+root\s+.*",
-                           "/boot/grub/grub.cfg");
+                  "attribute_name=Canonical Ubuntu 20.04 LTSTIG V1 findings" },
+        if => or( not( isvariable( "lines_with_password" ) ),
+                  not( isgreaterthan( length( "lines_with_password" ), 0 )));
+
+      # If any of the root password entries do not start with password_pbkdf2, it's a finding
+      "finding"
+        string => "V-238204",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTSTIG V1 findings" },
+        if => not( every( "^\s*password_pbkdf2\s*.*", root_password_entries ) );
+
 
 }
