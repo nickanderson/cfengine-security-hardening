@@ -19,6 +19,9 @@ bundle agent V_238215
         expression => not( strcmp( execresult( "$(paths.systemctl) show -pLoadState sshd.service", noshell),
                                    "LoadState=loaded"));
 
+      "not_one_sshd_server_package_installed"
+        not => strcmp( length( packagesmatching( "openssh-server", ".*", ".*", ".*" ) ), 1);
+
   vars:
     ubuntu_20::
 
@@ -28,7 +31,7 @@ bundle agent V_238215
         string => "V-238215",
         meta => { "inventory",
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
-        unless => strcmp( length( packagesmatching( "openssh-server", ".*", ".*", ".*" ) ), 1);
+        if => "not_one_sshd_server_package_installed";
 
       # If "sshd.service" is not active or loaded, this is a finding.
 
