@@ -29,7 +29,7 @@ bundle agent V_238201
         if => or( not( isvariable( "lines_with_use_mappers" ) ),
                   not( isgreaterthan( length( "lines_with_use_mappers" ), 0 )));
 
-      # It's a finding if pwent is not found in teh list of mappers to use
+      # It's a finding if pwent is not found in the list of mappers to use
       "finding"
         string => "V-238201",
         meta => { "inventory",
