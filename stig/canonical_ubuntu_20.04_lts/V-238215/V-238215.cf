@@ -16,7 +16,7 @@ bundle agent V_238215
         expression => not( returnszero( "$(paths.systemctl) --quiet is-active sshd.service", noshell) );
 
       "sshd_service_not_loaded"
-        expression => not( strcmp( execresult( "$(paths.systemctl) -pLoadState sshd.service", noshell),
+        expression => not( strcmp( execresult( "$(paths.systemctl) show -pLoadState sshd.service", noshell),
                                    "LoadState=loaded"));
 
   vars:
