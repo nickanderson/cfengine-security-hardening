@@ -12,13 +12,28 @@ bundle agent V_238201
   vars:
 
     ubuntu_20::
+
       # If "use_mappers" is not found or the list does not contain "pwent" this is a finding.
 
+      "check_file" string => "/etc/pam_pkcs11/pam_pkcs11.conf";
+
+      "lines_with_use_mappers"
+        slist => grep( ".*use_mappers.*", readstringlist( $(check_file), "", "\n", inf, inf ) ),
+        if => fileexists( $(check_file) );
+
+      # It's a finding if there are no lines with use_mapper
       "finding"
         string => "V-238201",
         meta => { "inventory",
                   "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
-        unless => regline( "^\s*use_mappers\s*=\s*.*\W*pwent\W",
-                           "/etc/pam_pkcs11/pam_pkcs11.conf");
+        if => or( not( isvariable( "lines_with_use_mappers" ) ),
+                  not( isgreaterthan( length( "lines_with_use_mappers" ), 0 )));
 
+      # It's a finding if pwent is not found in teh list of mappers to use
+      "finding"
+        string => "V-238201",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        if => not( reglist( lines_with_use_mappers,
+                            "^\s*use_mappers\s*=.*[,\s]pwent[\W].*"));
 }
