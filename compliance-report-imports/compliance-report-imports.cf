@@ -44,7 +44,8 @@ WHERE export_id IS null AND name IN ('OS is reported', 'Supported CentOS', 'Supp
          -X POST \
          --form 'data=<{{{.}}}' \
          --form 'public=true' \
-         --form 'overwrite=true'
+         --form 'overwrite=true' \
+         --form 'source=build module'
          {{/vars.$(this.bundle)._all_import_files}}`,
          template_method => "inline_mustache";
 
