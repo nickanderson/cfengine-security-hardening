@@ -1,139 +1,133 @@
 {
-    "reports": {
-        "os-is-vendor-supported": {
-            "id": "os-is-vendor-supported",
-            "type": "compliance",
-            "title": "OS is vendor supported",
-            "conditions": [
-                "os-is-reported",
-                "supported-centos",
-                "supported-debian",
-                "supported-rhel",
-                "supported-suse",
-                "supported-ubuntu",
-                "supported-windows"
-            ]
-        }
-    },
-    "conditions": {
-        "os-is-reported": {
-            "id": "os-is-reported",
-            "name": "OS is reported",
-            "description": "All hosts must report their own OS",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "is_reported",
-                    "value": ""
-                }
-            ],
-            "category": "Operating System",
-            "severity": "high",
-            "host_filter": null
-        },
-        "supported-debian": {
-            "id": "supported-debian",
-            "name": "Supported Debian",
-            "description": "Debian hosts are running Debian 9, 10, or 11",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "Debian (9|10|11)"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "debian_pure"
-        },
-        "supported-rhel": {
-            "id": "supported-rhel",
-            "name": "Supported RHEL",
-            "description": "Red Hat hosts are running RHEL 7 or 8",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "RHEL (7|8)"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "redhat_pure"
-        },
-        "supported-ubuntu": {
-            "id": "supported-ubuntu",
-            "name": "Supported Ubuntu",
-            "description": "Ubuntu hosts are running Ubuntu 18 or 20",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "Ubuntu (18|20)"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "ubuntu"
-        },
-        "supported-suse": {
-            "id": "supported-suse",
-            "name": "Supported SUSE",
-            "description": "SUSE hosts are running version 15.",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "SUSE 15"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "SUSE|SuSE"
-        },
-        "supported-centos": {
-            "id": "supported-centos",
-            "name": "Supported CentOS",
-            "description": "CentOS hosts are running version 7 or 8",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "CentOS (7|8)"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "centos"
-        },
-        "supported-windows": {
-            "id": "supported-windows",
-            "name": "Supported Windows",
-            "description": "Windows hosts are running Windows 10, Server 2016, or Server 2019",
-            "type": "inventory",
-            "condition_for": "passing",
-            "rules": [
-                {
-                    "attribute": "OS",
-                    "operator": "regex_matches",
-                    "value": "Windows (10|2016|2019)"
-                }
-            ],
-            "category": "Operating System",
-            "severity": "low",
-            "host_filter": "windows"
-        }
+  "reports": {
+    "os-is-vendor-supported": {
+      "id": "os-is-vendor-supported",
+      "type": "compliance",
+      "title": "OS is vendor supported",
+      "conditions": [
+        "os-is-reported",
+        "supported-centos",
+        "supported-debian",
+        "supported-rhel",
+        "supported-suse",
+        "supported-ubuntu",
+        "supported-windows"
+      ]
     }
+  },
+  "conditions": {
+    "os-is-reported": {
+      "id": "os-is-reported",
+      "name": "OS is reported",
+      "description": "All hosts must report their own OS",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [{"attribute": "OS", "operator": "is_reported", "value": ""}],
+      "category": "Operating System",
+      "severity": "high",
+      "host_filter": null
+    },
+    "supported-debian": {
+      "id": "supported-debian",
+      "name": "Supported Debian",
+      "description": "Debian hosts are running Debian 9, 10, or 11",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "Debian (10|11)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "debian_pure"
+    },
+    "supported-rhel": {
+      "id": "supported-rhel",
+      "name": "Supported RHEL",
+      "description": "Red Hat hosts are running RHEL 7 or 8",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "RHEL (7|8)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "redhat_pure"
+    },
+    "supported-ubuntu": {
+      "id": "supported-ubuntu",
+      "name": "Supported Ubuntu",
+      "description": "Ubuntu hosts are running Ubuntu 18 or 20",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "Ubuntu (18|20|22)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "ubuntu"
+    },
+    "supported-suse": {
+      "id": "supported-suse",
+      "name": "Supported SUSE",
+      "description": "SUSE hosts are running version 15.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "SUSE 1(2|5)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "SUSE|SuSE"
+    },
+    "supported-centos": {
+      "id": "supported-centos",
+      "name": "Supported CentOS",
+      "description": "CentOS hosts are running version 7 or 8",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "CentOS (7|8)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "centos"
+    },
+    "supported-windows": {
+      "id": "supported-windows",
+      "name": "Supported Windows",
+      "description": "Windows hosts are running Windows 10, Server 2016, or Server 2019",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "OS",
+          "operator": "regex_matches",
+          "value": "Windows (10|2016|2019)"
+        }
+      ],
+      "category": "Operating System",
+      "severity": "low",
+      "host_filter": "windows"
+    }
+  }
 }
