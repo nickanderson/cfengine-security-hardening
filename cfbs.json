@@ -121,7 +121,7 @@
     },
     "compliance-report-os-is-vendor-supported": {
       "name": "compliance-report-os-is-vendor-supported",
-      "version": "0.0.3",
+      "version": "0.0.4",
       "tags": ["experimental", "compliance-report", "cfengine-enterprise"],
       "dependencies": ["compliance-report-imports"],
       "subdirectory": "./compliance-report-os-is-vendor-supported",

@@ -19,10 +19,17 @@
     "os-is-reported": {
       "id": "os-is-reported",
       "name": "OS is reported",
-      "description": "All hosts must report their own OS",
+      "description": "All hosts must report their own OS and not be unknown",
       "type": "inventory",
       "condition_for": "passing",
-      "rules": [{"attribute": "OS", "operator": "is_reported", "value": ""}],
+      "rules": [
+        { "attribute": "OS", "operator": "is_reported", "value": "" },
+        {
+          "attribute": "OS",
+          "operator": "regex_not_match",
+          "value": ".*(?i)unknown.*"
+        }
+      ],
       "category": "Operating System",
       "severity": "high",
       "host_filter": null
