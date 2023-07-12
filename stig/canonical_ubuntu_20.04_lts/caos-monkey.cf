@@ -1,0 +1,24 @@
+body file control
+{
+        namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
+}
+bundle agent chaos_monkey
+{
+  packages:
+
+    (Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu.Canonical_Ubuntu_20_04_LTS_STIG:chaos_monkey_enabled)::
+
+      "rsh-server" -> { "V-238327" }
+        policy => "present";
+
+
+  files:
+    (Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu.Canonical_Ubuntu_20_04_LTS_STIG:chaos_monkey_enabled)::
+
+      "/etc/pam_pkcs11/pam_pkcs11.conf" -> { "V-238201" }
+        delete => default:tidy;
+        # alternatives: file present without use_mappers, use_mappers present without pwent
+
+
+
+}
