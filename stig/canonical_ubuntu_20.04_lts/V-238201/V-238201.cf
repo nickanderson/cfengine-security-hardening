@@ -6,12 +6,12 @@ bundle agent V_238201
 # https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-238201
 {
   meta:
-    ubuntu_20::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
       "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
 
   vars:
 
-    ubuntu_20::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
 
       # If "use_mappers" is not found or the list does not contain "pwent" this is a finding.
 

@@ -4,7 +4,17 @@ body file control
 }
 bundle agent config
 {
+  classes:
+      "supported_ubuntu"
+        expression => "ubuntu_20",
+        scope => "namespace",
+        comment => concat( "If the class Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu is ",
+                           "defined, then we will consider the STIG guidelines for the host. ",
+                           "This is useful for example if you want to apply the most recent ",
+                           "Canonical STIGS against a more recent version of the platform." );
+
   vars:
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
       "sudo_access_required"
         slist => {},
         unless => isvariable( "$(this.promiser)");
@@ -21,7 +31,7 @@ bundle agent config
 bundle agent run
 {
   vars:
-    ubuntu::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
 
       "inventory_bundles"
         slist => bundlesmatching( "$(this.namespace).*", "inventory_$(this.namespace)_.*" );
@@ -41,6 +51,6 @@ bundle agent run
                          inf);
 
   methods:
-    ubuntu::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
       "$(inventory_bundles)";
 }

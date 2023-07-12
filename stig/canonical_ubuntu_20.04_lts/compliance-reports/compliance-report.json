@@ -34,7 +34,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+        "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238206": {
       "id": "v-238206",
@@ -51,7 +51,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238201": {
       "id": "v-238201",
@@ -68,7 +68,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238363": {
       "id": "v-238363",
@@ -85,7 +85,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238219": {
       "id": "v-238219",
@@ -102,7 +102,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238218": {
       "id": "v-238218",
@@ -119,7 +119,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238215": {
       "id": "v-238215",
@@ -136,7 +136,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-251504": {
       "id": "v-251504",
@@ -153,7 +153,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-251503": {
       "id": "v-251503",
@@ -170,7 +170,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     },
     "v-238327": {
       "id": "v-238327",
@@ -187,7 +187,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "ubuntu_20"
+      "host_filter": "Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu"
     }
   }
 }

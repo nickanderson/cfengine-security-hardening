@@ -6,11 +6,11 @@ bundle agent V_251504
 # https://www.stigviewer.com/stig/canonical_ubuntu_20.04_lts/2022-06-06/finding/V-251504
 {
   meta:
-    ubuntu_20::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
       "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
 
   vars:
-    ubuntu_20::
+    Canonical_Ubuntu_20_04_LTS_STIG:supported_ubuntu::
 
       # If this produces any output, it may be possible to log on with accounts with empty passwords.
       # If null passwords can be used, this is a finding.
