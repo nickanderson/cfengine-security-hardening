@@ -2,7 +2,7 @@ body file control
 {
         namespace => "Canonical_Ubuntu_20_04_LTS_STIG";
 }
-bundle agent config
+bundle common config
 {
   classes:
       "supported_ubuntu"
