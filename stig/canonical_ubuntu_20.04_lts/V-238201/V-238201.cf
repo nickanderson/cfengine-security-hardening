@@ -21,6 +21,13 @@ bundle agent V_238201
         slist => grep( ".*use_mappers.*", readstringlist( $(check_file), "", "\n", inf, inf ) ),
         if => fileexists( $(check_file) );
 
+      # It's a finding if the configuration file doesn't exist
+      "finding"
+        string => "V-238201",
+        meta => { "inventory",
+                  "attribute_name=Canonical Ubuntu 20.04 LTS STIG V1 findings" },
+        if => not( fileexists( $(check_file) ));
+
       # It's a finding if there are no lines with use_mapper
       "finding"
         string => "V-238201",
