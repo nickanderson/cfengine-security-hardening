@@ -14,11 +14,14 @@ bundle agent V_204424
         slist => { "/etc/pam.d/system-auth",
                    "/etc/pam.d/password-auth" };
 
+      # We consider it a finding if any non-comment line contains nullok
+      # preceded by a space, there may or may not be a space after it.
+
       "finding"
         string => "V-204424",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        if => regline( "nullok",
+        if => regline( "^(?!#).* nullok ?.*",
                        $(files));
 
   reports:
