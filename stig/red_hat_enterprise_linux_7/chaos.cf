@@ -10,14 +10,14 @@ bundle agent chaos
 
   packages:
 
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_monkey_enabled)::
+    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
 
       "rsh-server" -> { "V-238327" }
         policy => "present";
 
   files:
 
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_monkey_enabled)::
+    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
 
       "/etc/pam.d/system-auth" -> { " V-204424" }
         content => "#%PAM-1.0
