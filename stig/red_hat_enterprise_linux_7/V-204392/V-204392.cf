@@ -25,6 +25,10 @@ bundle agent V_204392
 #
 # If the file is not a member of the default group and is not documented with the Information System Security Officer (ISSO), this is a finding.
 {
+  meta:
+    Red_Hat_Enterprise_Linux_7_STIG:supported_OS::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
   classes:
       "_cache_needs_refreshed"
         or => {
