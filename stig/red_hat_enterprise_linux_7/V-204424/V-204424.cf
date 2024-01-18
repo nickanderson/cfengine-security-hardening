@@ -22,7 +22,7 @@ bundle agent V_204424
                        $(files));
 
   reports:
-
+   "DEBUG in $(this.namespace):$(this.bundle)";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "Found $(finding)" if => isvariable( finding );
 
