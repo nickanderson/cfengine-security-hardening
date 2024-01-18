@@ -21,4 +21,9 @@ bundle agent V_204424
         if => regline( "nullok",
                        $(files));
 
+  reports:
+
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "Found $(finding)" if => isvariable( finding );
+
 }
