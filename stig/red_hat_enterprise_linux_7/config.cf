@@ -20,7 +20,7 @@ bundle agent run
     supported_os::
       # Find the inventory bundles
       "bundles"
-        slist => bundlesmatching( "$(this.namespace):V_*" );
+        slist => bundlesmatching( "$(this.namespace):V_.*" );
 
   methods:
     supported_os::
