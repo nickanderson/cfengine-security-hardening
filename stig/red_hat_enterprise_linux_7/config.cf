@@ -30,6 +30,6 @@ bundle agent run
         inherit => "true";
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os.DEBUG::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os.DEBUG_Red_Hat_Enterprise_Linux_7_STIG::
       "Found bundle: $(bundles)";
 }
