@@ -1,0 +1,26 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent config
+{
+  vars:
+      "excluded_ids"
+        slist => {}, # e.g. V-238206
+        unless => isvariable( "$(this.promiser)");
+
+}
+bundle agent run
+{
+  vars:
+    redhat_7|centos_7::
+
+      # Find the inventory bundles
+      "inventory_bundles"
+        slist => bundlesmatching( "$(this.namespace).*",
+                                  "inventory_$(this.namespace)_.*" );
+
+  methods:
+    redhat_7|centos_7::
+      "$(inventory_bundles)";
+}

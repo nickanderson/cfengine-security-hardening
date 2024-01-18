@@ -1,0 +1,52 @@
+* [[https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425][The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon does not allow authentication using an empty password.]] :website:
+
+[2022-09-02 Fri 12:40]
+
+** Article
+
+*** The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon does not allow authentication using an empty password.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-204425   | RHEL-07-010300 | SV-204425r603261_rule |             | High     |
+
+| Description                                                                                                                                                                   |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere. |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/red_hat_enterprise_linux_7/2022-06-06/%20][Red Hat Enterprise Linux 7 Security Technical Implementation Guide]] | 2022-06-06 |
+
+\\
+
+**** Details
+:PROPERTIES:
+:ID:       16accf67-c2e9-42f0-a6df-e5b3d6193605
+:END:
+
+
+| Check Text ( C-4549r88467_chk )                                                                             |
+|-------------------------------------------------------------------------------------------------------------|
+| To determine how the SSH daemon's "PermitEmptyPasswords" option is set, run the following command:\\        |
+| \\                                                                                                          |
+| # grep -i PermitEmptyPasswords /etc/ssh/sshd_config\\                                                       |
+| PermitEmptyPasswords no\\                                                                                   |
+| \\                                                                                                          |
+| If no line, a commented line, or a line indicating the value "no" is returned, the required value is set.\\ |
+| \\                                                                                                          |
+| If the required value is not set, this is a finding.                                                        |
+
+| Fix Text (F-4549r88468_fix)                                                                                                                                                                                                      |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| To explicitly disallow remote logon from accounts with empty passwords, add or correct the following line in "/etc/ssh/sshd_config":\\                                                                                           |
+| \\                                                                                                                                                                                                                               |
+| PermitEmptyPasswords no\\                                                                                                                                                                                                        |
+| \\                                                                                                                                                                                                                               |
+| The SSH service must be restarted for changes to take effect. Any accounts with empty passwords should be disabled immediately, and PAM configuration should prevent users from being able to assign themselves empty passwords. |

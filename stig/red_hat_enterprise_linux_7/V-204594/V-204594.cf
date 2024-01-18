@@ -1,0 +1,42 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_204594
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204594
+{
+      # Check the version of the operating system with the following command:
+      #
+      # # cat /etc/redhat-release
+      #
+      # If the release is 7.4 or newer this requirement is Not Applicable.
+      #
+      # Verify the SSH daemon is configured to only use the SSHv2 protocol.
+      #
+      # Check that the SSH daemon is configured to only use the SSHv2 protocol with the following command:
+      #
+      # # grep -i protocol /etc/ssh/sshd_config
+      #
+      # If any protocol line other than "Protocol 2" is uncommented, this is a finding.
+
+
+  classes:
+    redhat_7::
+      "_not_applicable"
+        expression => regline( '.*\s7\.[4-9].*', "/etc/redhat-release" );
+
+  vars:
+
+    redhat_7.!_not_applicable::
+
+      "raw_findings"
+        slist => grep("(?i).*protocol.*",
+                      readstringlist( "/etc/ssh/sshd_config", "", "\n", inf, inf) );
+
+      "finding"
+        string => "V-204594",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        if => isgreaterthan( length( raw_findings ), 0 );
+
+}

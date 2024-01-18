@@ -1,0 +1,56 @@
+* [[https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2021-03-01/finding/V-204594][The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon is configured to only use the SSHv2 protocol.]] :website:
+
+[2022-09-19 Mon 13:40]
+
+** Article
+
+*** The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon is configured to only use the SSHv2 protocol.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-204594   | RHEL-07-040390 | SV-204594r603261_rule |             | High     |
+
+| Description                                                                                                                                                                                                                                         |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SSHv1 is an insecure implementation of the SSH protocol and has many well-known vulnerability exploits. Exploits of the SSH daemon could provide immediate root access to the system. Satisfies: SRG-OS-000074-GPOS-00042, SRG-OS-000480-GPOS-00227 |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/red_hat_enterprise_linux_7/2021-03-01/%20][Red Hat Enterprise Linux 7 Security Technical Implementation Guide]] | 2021-03-01 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-4718r88974_chk )                                                                      |
+|------------------------------------------------------------------------------------------------------|
+| Check the version of the operating system with the following command:\\                              |
+| \\                                                                                                   |
+| # cat /etc/redhat-release\\                                                                          |
+| \\                                                                                                   |
+| If the release is 7.4 or newer this requirement is Not Applicable.\\                                 |
+| \\                                                                                                   |
+| Verify the SSH daemon is configured to only use the SSHv2 protocol.\\                                |
+| \\                                                                                                   |
+| Check that the SSH daemon is configured to only use the SSHv2 protocol with the following command:\\ |
+| \\                                                                                                   |
+| # grep -i protocol /etc/ssh/sshd_config\\                                                            |
+| Protocol 2\\                                                                                         |
+| #Protocol 1,2\\                                                                                      |
+| \\                                                                                                   |
+| If any protocol line other than "Protocol 2" is uncommented, this is a finding.                      |
+
+| Fix Text (F-4718r88975_fix)                                                                                                                                                                                                                                     |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Remove all Protocol lines that reference version "1" in "/etc/ssh/sshd_config" (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor). The "Protocol" line must be as follows:\\ |
+| \\                                                                                                                                                                                                                                                              |
+| Protocol 2\\                                                                                                                                                                                                                                                    |
+| \\                                                                                                                                                                                                                                                              |
+| The SSH service must be restarted for changes to take effect.                                                                                                                                                                                                   |

@@ -3,29 +3,174 @@
   "description": "This repo provides modules implementing various security hardening measures.",
   "type": "module-repo",
   "provides": {
+    "compliance-report-imports": {
+      "name": "compliance-report-imports",
+      "description": "Keep compliance report definitions up to date",
+      "tags": ["experimental", "cfengine-enterprise"],
+      "subdirectory": "./compliance-report-imports",
+      "dependencies": ["autorun"],
+      "steps": ["copy ./compliance-report-imports.cf services/autorun/"]
+    },
+    "compliance-report-os-is-vendor-supported": {
+      "name": "compliance-report-os-is-vendor-supported",
+      "description": "Compliance report definition for checking if the current OS version is supported by the vendor",
+      "tags": ["experimental", "compliance-report", "cfengine-enterprise"],
+      "version": "0.0.4",
+      "subdirectory": "./compliance-report-os-is-vendor-supported",
+      "dependencies": ["compliance-report-imports"],
+      "steps": [
+        "copy ./os-is-vendor-supported.json .no-distrib/compliance-report-definitions/os-is-vendor-supported.json"
+      ]
+    },
+    "cve-2021-3156-sudo": {
+      "description": "This module inventories and remediates CVE-2021-3156, a heap overflow in sudo that allows privilege escalation.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "subdirectory": "./cves/cve-2021-3156-sudo/",
+      "steps": [
+        "copy ./cve-2021-3156-sudo.cf services/security-hardening/cves/cve-2021-3156-sudo/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "cve-2021-44228-log4j": {
+      "description": "This module leverages yahoo/check-log4j to scan for files potentially vulnerable to CVE-2021-44228, which allows arbitrary code execution.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.2.0",
+      "subdirectory": "./cves/cve-2021-44228-log4j/",
+      "steps": [
+        "copy ./cve-2021-44228-log4j-inventory-log4shell.cf services/security-hardening/cves/cve-2021-44228-log4j/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "default-encrypt-method-sha512": {
+      "description": "This module makes sure the default password hashing algorithm is SHA512.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./default-encrypt-method-sha512/",
+      "steps": [
+        "copy ./policy/default-encrypt-method-sha512.cf services/security-hardening/default-encrypt-method-sha512/default-encrypt-method-sha512.cf",
+        "json cfbs/def.json def.json"
+      ]
+    },
     "etc-issue": {
       "description": "This module inventories and optionally manages the content of /etc/issue.",
       "tags": ["security", "management"],
-      "subdirectory": "./etc-issue/",
-      "version": "0.0.1",
-      "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "subdirectory": "./etc-issue/",
       "steps": [
         "copy ./policy/main.cf services/security-hardening/etc-issue/etc-issue.cf",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ntp-maxpoll": {
+      "description": "This module ensures that maxpoll is configured to 10 unless default:ntp_maxpoll._config[maxpoll] is defined in which case that value will be used.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.3",
+      "subdirectory": "./ntp-maxpoll/",
+      "steps": [
+        "copy ./ntp-maxpoll.cf services/security-hardening/ntp-maxpoll/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-ciphers-strong": {
+      "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.4",
+      "subdirectory": "./ssh-ciphers-strong/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-max-auth-tries": {
+      "description": "This module ensures that MaxAuthTries is set, defaulting to 3.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./ssh-max-auth-tries/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-max-auth-tries.cf services/security-hardening/ssh-max-auth-tries/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-permit-empty-passwords-no": {
+      "description": "This module ensures that PermitEmptyPasswords is set to no.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./ssh-permit-empty-passwords-no/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-permit-empty-passwords-no.cf services/security-hardening/ssh-permit-empty-passwords-no/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-permit-root-login-no": {
+      "description": "This module ensures that PermitRootLogin is set to no.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./ssh-permit-root-login-no/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-permit-root-login-no.cf services/security-hardening/ssh-permit-root-login-no/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-protocol-2": {
+      "description": "This module ensures that only Protocol 2 is in use.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./ssh-protocol-2/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    "ssh-x11-forwarding-no": {
+      "description": "This module ensures that X11Forwarding is set to no.",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.3",
+      "subdirectory": "./ssh-x11-forwarding-no/",
+      "dependencies": ["library-sshd-config"],
+      "steps": [
+        "copy ./ssh-x11-forwarding-no.cf services/security-hardening/ssh-x11-forwarding-no/",
         "json cfbs/def.json def.json"
       ]
     },
     "stig-canonical-ubuntu-20-lts": {
       "description": "Canonical Ubuntu 20.04 LTS Security Technical Implementation Guide",
       "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
       "subdirectory": "./stig/canonical_ubuntu_20.04_lts/",
       "dependencies": [
         "compliance-report-imports",
         "library-parsed-local-groups"
       ],
-      "version": "0.0.1",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
         "copy ./config.cf services/security-hardening/stig/ubuntu-20/config.cf",
         "copy ./V-238206/V-238206.cf services/security-hardening/stig/ubuntu-20/V-238206.cf",
@@ -43,14 +188,47 @@
         "json cfbs/def.json def.json"
       ]
     },
+    "stig-red-hat-enterprise-linux-7": {
+      "description": "Red Hat Enterprise Linux 7 Security Technical Implementation Guide",
+      "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "subdirectory": "./stig/red_hat_enterprise_linux_7/",
+      "dependencies": ["compliance-report-imports"],
+      "steps": [
+        "copy ./config.cf            services/security-hardening/stig/rhel-7/config.cf",
+        "copy ./V-204392/V-204392.cf services/security-hardening/stig/rhel-7/V-204392.cf",
+        "copy ./V-204424/V-204424.cf services/security-hardening/stig/rhel-7/V-204424.cf",
+        "copy ./V-204425/V-204425.cf services/security-hardening/stig/rhel-7/V-204425.cf",
+        "copy ./V-204502/V-204502.cf services/security-hardening/stig/rhel-7/V-204502.cf",
+        "copy ./V-204594/V-204594.cf services/security-hardening/stig/rhel-7/V-204594.cf",
+        "copy ./V-204620/V-204620.cf services/security-hardening/stig/rhel-7/V-204620.cf",
+        "copy ./V-204621/V-204621.cf services/security-hardening/stig/rhel-7/V-204621.cf",
+        "copy ./V-204627/V-204627.cf services/security-hardening/stig/rhel-7/V-204627.cf",
+        "copy ./V-214799/V-214799.cf services/security-hardening/stig/rhel-7/V-214799.cf",
+        "copy ./compliance-reports/compliance-report.json ./.no-distrib/compliance-report-definitions/red-hat-enterprise-linux-7-security-technical-implementation-guide.json",
+        "policy_files services/security-hardening/stig/rhel-7/config.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204392.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204424.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204425.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204502.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204594.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204620.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204621.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204627.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-214799.cf",
+        "bundles Red_Hat_Enterprise_Linux_7_STIG:run"
+      ]
+    },
     "stig-red-hat-enterprise-linux-8": {
       "description": "Red Hat Enterprise Linux 8 Security Technical Implementation Guide",
       "tags": ["security"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
       "subdirectory": "./stig/red_hat_enterprise_linux_8/",
       "dependencies": ["compliance-report-imports"],
-      "version": "0.0.1",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "steps": [
         "copy ./config.cf services/security-hardening/stig/rhel-8/config.cf",
         "copy ./V-230234/V-230234.cf services/security-hardening/stig/rhel-8/V-230234.cf",
@@ -59,83 +237,13 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "default-encrypt-method-sha512": {
-      "description": "This module makes sure the default password hashing algorithm is SHA512.",
-      "tags": ["security"],
-      "subdirectory": "./default-encrypt-method-sha512/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "steps": [
-        "copy ./policy/default-encrypt-method-sha512.cf services/security-hardening/default-encrypt-method-sha512/default-encrypt-method-sha512.cf",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-permit-root-login-no": {
-      "description": "This module ensures that PermitRootLogin is set to no.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-permit-root-login-no/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-permit-root-login-no.cf services/security-hardening/ssh-permit-root-login-no/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-permit-empty-passwords-no": {
-      "description": "This module ensures that PermitEmptyPasswords is set to no.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-permit-empty-passwords-no/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-permit-empty-passwords-no.cf services/security-hardening/ssh-permit-empty-passwords-no/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-ciphers-strong": {
-      "description": "This module ensures that Ciphers is set to a list of ciphers considered to be strong.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-ciphers-strong/",
-      "version": "1.0.4",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "compliance-report-imports": {
-      "name": "compliance-report-imports",
-      "tags": ["experimental", "cfengine-enterprise"],
-      "dependencies": ["autorun"],
-      "subdirectory": "./compliance-report-imports",
-      "description": "Keep compliance report definitions up to date",
-      "steps": ["copy ./compliance-report-imports.cf services/autorun/"]
-    },
-    "compliance-report-os-is-vendor-supported": {
-      "name": "compliance-report-os-is-vendor-supported",
-      "version": "0.0.4",
-      "tags": ["experimental", "compliance-report", "cfengine-enterprise"],
-      "dependencies": ["compliance-report-imports"],
-      "subdirectory": "./compliance-report-os-is-vendor-supported",
-      "description": "Compliance report definition for checking if the current OS version is supported by the vendor",
-      "steps": [
-        "copy ./os-is-vendor-supported.json .no-distrib/compliance-report-definitions/os-is-vendor-supported.json"
-      ]
-    },
     "sudo-enforce-allowed-users": {
       "description": "This module ensures the following lines 'ALL ALL=(ALL) ALL' and 'ALL ALL=(ALL:ALL) ALL' are not present in /etc/sudoers.conf",
       "tags": ["security", "management"],
-      "subdirectory": "./sudo-enforce-allowed-users/",
-      "version": "0.0.2",
-      "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.2",
+      "subdirectory": "./sudo-enforce-allowed-users/",
       "steps": [
         "copy ./sudo-enforce-allowed-users.cf services/security-hardening/sudo-enforce-allowed-users/",
         "json cfbs/def.json def.json"
@@ -144,87 +252,12 @@
     "tmp-file-age": {
       "description": "This module inventories and manages old files in /tmp.",
       "tags": ["security"],
-      "subdirectory": "./tmp-file-age/",
-      "version": "0.0.1",
-      "by": "https://github.com/nickanderson",
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "subdirectory": "./tmp-file-age/",
       "steps": [
         "copy ./tmp-file-age.cf services/security-hardening/tmp-file-age/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "cve-2021-44228-log4j": {
-      "description": "This module leverages yahoo/check-log4j to scan for files potentially vulnerable to CVE-2021-44228, which allows arbitrary code execution.",
-      "tags": ["security"],
-      "subdirectory": "./cves/cve-2021-44228-log4j/",
-      "version": "0.2.0",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "steps": [
-        "copy ./cve-2021-44228-log4j-inventory-log4shell.cf services/security-hardening/cves/cve-2021-44228-log4j/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "cve-2021-3156-sudo": {
-      "description": "This module inventories and remediates CVE-2021-3156, a heap overflow in sudo that allows privilege escalation.",
-      "tags": ["security"],
-      "subdirectory": "./cves/cve-2021-3156-sudo/",
-      "version": "0.0.1",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "steps": [
-        "copy ./cve-2021-3156-sudo.cf services/security-hardening/cves/cve-2021-3156-sudo/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ntp-maxpoll": {
-      "description": "This module ensures that maxpoll is configured to 10 unless default:ntp_maxpoll._config[maxpoll] is defined in which case that value will be used.",
-      "tags": ["security"],
-      "subdirectory": "./ntp-maxpoll/",
-      "version": "0.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "steps": [
-        "copy ./ntp-maxpoll.cf services/security-hardening/ntp-maxpoll/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-x11-forwarding-no": {
-      "description": "This module ensures that X11Forwarding is set to no.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-x11-forwarding-no/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-x11-forwarding-no.cf services/security-hardening/ssh-x11-forwarding-no/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-max-auth-tries": {
-      "description": "This module ensures that MaxAuthTries is set, defaulting to 3.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-max-auth-tries/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-max-auth-tries.cf services/security-hardening/ssh-max-auth-tries/",
-        "json cfbs/def.json def.json"
-      ]
-    },
-    "ssh-protocol-2": {
-      "description": "This module ensures that only Protocol 2 is in use.",
-      "tags": ["security"],
-      "subdirectory": "./ssh-protocol-2/",
-      "version": "1.0.3",
-      "by": "https://github.com/nickanderson",
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "dependencies": ["library-sshd-config"],
-      "steps": [
-        "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
         "json cfbs/def.json def.json"
       ]
     }

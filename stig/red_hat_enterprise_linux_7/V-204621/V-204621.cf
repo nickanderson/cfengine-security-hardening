@@ -1,0 +1,24 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_204621
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204621
+{
+  meta:
+    redhat_7::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+      # If TFTP is installed and the requirement for TFTP is not documented with the ISSO, this is a finding.
+
+  vars:
+
+    redhat_7::
+
+      "finding"
+        string => "V-204621",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        if => isgreaterthan( length( packagesmatching( "tftp-server", ".*", ".*", ".*" ) ), 0 );
+
+}

@@ -1,0 +1,56 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_230235
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425
+{
+  meta:
+    redhat_7::
+      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
+
+      # # grep -i PermitEmptyPasswords /etc/ssh/sshd_config\\
+      # PermitEmptyPasswords no
+      # If no line, a commented line, or a line indicating the value "no" is returned, the required value is set.
+
+  vars:
+
+    #redhat_7::
+      "config_file" string => "/etc/ssh/sshd_config";
+
+      "lines" slist => grep( "(?i).*PermitEmptyPasswords.*",
+                             readstringlist( $(config_file), "", "\n", inf, inf) );
+      "non_comment_lines"
+        slist => filter( "\s*#.*", lines, true, true, inf);
+
+      "finding"
+        string => "V-230235",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        unless => or(
+                      # If no lines match it's not a finding
+                      strcmp( "0", length( lines ) ),
+                      # Or if the lines are comments it's not a finding
+                      strcmp( length(non_comment_lines), length( lines ) ),
+                      # Or if the non commented liens indicate no, it's not a finding
+                      not( every( "(?i)\s*PermitEmptyPasswords\s+no\s*",
+                             non_comment_lines )));
+
+
+      # regline( "^\s*(?i:PermitEmptyPasswords)\s+(?!no)\s*",
+      #                      "/etc/ssh/sshd_config");
+
+
+}
+body file control
+{
+        namespace => "default";
+}
+bundle agent __main__
+{
+  methods:
+      "Red_Hat_Enterprise_Linux_7_STIG:V_230235";
+
+  reports:
+      "$(with)" with => storejson( variablesmatching_as_data( "Red_Hat_Enterprise_Linux_7_STIG:V_230235\..*" ) );
+}

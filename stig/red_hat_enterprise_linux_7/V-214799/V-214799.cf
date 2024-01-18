@@ -1,0 +1,46 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_214799
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-214799
+{
+  classes:
+      "_cache_needs_refreshed"
+        or => {
+                not( fileexists( "$(sys.statedir)/$(this.bundle).cache" ) ),
+                isgreaterthan( "$(one_day_ago)", filestat("$(sys.statedir)/$(this.bundle).cache", mtime ) )
+        };
+
+      "_cache_not_need_refreshed"
+        and => {
+                 fileexists( "$(sys.statedir)/$(this.bundle).cache" ),
+                 islessthan( "$(one_day_ago)", filestat("$(sys.statedir)/$(this.bundle).cache", mtime ) )
+        };
+
+  vars:
+
+      "one_day_ago" string => format( "%d", eval( "$(sys.systime)-86400", math, infix ) );
+
+    _cache_not_need_refreshed::
+
+      "raw_findings"
+        slist => readstringlist("$(sys.statedir)/$(this.bundle).cache", "", "\n", inf, inf);
+
+      "finding"
+        string => "V-214799",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        if => isgreaterthan( length( raw_findings ), 0 );
+
+  commands:
+
+    _cache_needs_refreshed.!cached_data_repaired::
+
+      # If there is any output from the command for system files or binaries, this is a finding.                                                                                                  |
+
+      "/bin/rpm -Va --noconfig | grep '^..5' 2>&1 >  $(sys.statedir)/$(this.bundle).cache"
+        contain => in_shell,
+        classes => results( "bundle", "cached_data" );
+
+}

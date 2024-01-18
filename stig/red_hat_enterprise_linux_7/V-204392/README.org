@@ -1,0 +1,68 @@
+* [[https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2021-03-01/finding/V-204392][The Red Hat Enterprise Linux operating system must be configured so that the file permissions, ownership, and group membership of system files and commands match the vendor values.]] :website:
+
+[2022-09-19 Mon 13:53]
+
+** Article
+
+*** The Red Hat Enterprise Linux operating system must be configured so that the file permissions, ownership, and group membership of system files and commands match the vendor values.
+
+
+\\
+
+**** Overview
+
+
+| Finding ID | Version        | Rule ID               | IA Controls | Severity |
+|------------+----------------+-----------------------+-------------+----------|
+| V-204392   | RHEL-07-010010 | SV-204392r646841_rule |             | High     |
+
+| Description                                                                                                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default. Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000278-GPOS-00108 |
+
+| STIG                                                                                                                    | Date       |
+|-------------------------------------------------------------------------------------------------------------------------+------------|
+| [[/stig/red_hat_enterprise_linux_7/2021-03-01/%20][Red Hat Enterprise Linux 7 Security Technical Implementation Guide]] | 2021-03-01 |
+
+\\
+
+**** Details
+
+
+| Check Text ( C-36339r646839_chk )                                                                                                                                   |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Verify the file permissions, ownership, and group membership of system files and commands match the vendor values.\\                                                |
+| \\                                                                                                                                                                  |
+| Check the default file permissions, ownership, and group membership of system files and commands with the following command:\\                                      |
+| \\                                                                                                                                                                  |
+| # for i in `rpm -Va | egrep '^.{1}M|^.{5}U|^.{6}G' | cut -d " " -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d " " -f 1,5,6,7 | grep $i;done;done\\ |
+| \\                                                                                                                                                                  |
+| /var/log/gdm 040755 root root\\                                                                                                                                     |
+| /etc/audisp/audisp-remote.conf 0100640 root root\\                                                                                                                  |
+| /usr/bin/passwd 0104755 root root\\                                                                                                                                 |
+| \\                                                                                                                                                                  |
+| For each file returned, verify the current permissions, ownership, and group membership:\\                                                                          |
+| # ls -la\\                                                                                                                                                          |
+| \\                                                                                                                                                                  |
+| -rw-------. 1 root root 133 Jan 11 13:25 /etc/audisp/audisp-remote.conf\\                                                                                           |
+| \\                                                                                                                                                                  |
+| If the file is more permissive than the default permissions, this is a finding.\\                                                                                   |
+| \\                                                                                                                                                                  |
+| If the file is not owned by the default owner and is not documented with the Information System Security Officer (ISSO), this is a finding.\\                       |
+| \\                                                                                                                                                                  |
+| If the file is not a member of the default group and is not documented with the Information System Security Officer (ISSO), this is a finding.                      |
+
+| Fix Text (F-36302r646840_fix)                                                              |
+|--------------------------------------------------------------------------------------------|
+| Run the following command to determine which package owns the file:\\                      |
+| \\                                                                                         |
+| # rpm -qf\\                                                                                |
+| \\                                                                                         |
+| Reset the user and group ownership of files within a package with the following command:\\ |
+| \\                                                                                         |
+| # rpm --setugids\\                                                                         |
+| \\                                                                                         |
+| \\                                                                                         |
+| Reset the permissions of files within a package with the following command:\\              |
+| \\                                                                                         |
+| # rpm --setperms                                                                           |

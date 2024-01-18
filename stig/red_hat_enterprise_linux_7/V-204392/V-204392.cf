@@ -1,0 +1,109 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_204392
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204392
+# Verify the file permissions, ownership, and group membership of system files and commands match the vendor values.
+#
+# Check the default file permissions, ownership, and group membership of system files and commands with the following command:
+#
+# # for i in `rpm -Va | egrep '^.{1}M|^.{5}U|^.{6}G' | cut -d " " -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d " " -f 1,5,6,7 | grep $i;done;done
+#
+# /var/log/gdm 040755 root root
+# /etc/audisp/audisp-remote.conf 0100640 root root
+# /usr/bin/passwd 0104755 root root
+#
+# For each file returned, verify the current permissions, ownership, and group membership:
+# # ls -la
+#
+# -rw-------. 1 root root 133 Jan 11 13:25 /etc/audisp/audisp-remote.conf
+#
+# If the file is more permissive than the default permissions, this is a finding.
+#
+# If the file is not owned by the default owner and is not documented with the Information System Security Officer (ISSO), this is a finding.
+#
+# If the file is not a member of the default group and is not documented with the Information System Security Officer (ISSO), this is a finding.
+{
+  classes:
+      "_cache_needs_refreshed"
+        or => {
+                not( fileexists( "$(sys.statedir)/$(this.bundle).cache" ) ),
+                isgreaterthan( "$(one_day_ago)", filestat("$(sys.statedir)/$(this.bundle).cache", mtime ) )
+        };
+
+      "_cache_not_need_refreshed"
+        and => {
+                 fileexists( "$(sys.statedir)/$(this.bundle).cache" ),
+                 islessthan( "$(one_day_ago)", filestat("$(sys.statedir)/$(this.bundle).cache", mtime ) )
+        };
+
+  vars:
+
+      "one_day_ago" string => format( "%d", eval( "$(sys.systime)-86400", math, infix ) );
+
+    _cache_not_need_refreshed::
+
+      "raw_findings"
+        slist => readstringlist("$(sys.statedir)/$(this.bundle).cache", "", "\n", inf, inf);
+
+      "finding"
+        string => "V-204392",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        if => isgreaterthan( length( raw_findings ), 0 );
+
+
+  commands:
+
+    _cache_needs_refreshed.!cached_data_repaired::
+
+      # This can take a /very/ long time (hours) to complete. Probably, this is
+      # better suited to be done outside CFEngine, periodically using cron or at
+      # and cfengine can then process the result.
+
+      "for i in `rpm -Va | egrep '^.{1}M|^.{5}U|^.{6}G' | cut -d \" \" -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d \" \" -f 1,5,6,7 | grep $i;done;done 2>&1 >  $(sys.statedir)/$(this.bundle).cache"
+        contain => in_shell,
+        classes => results( "bundle", "cached_data" );
+
+}
+
+# bundle agent main
+# {
+#   vars:
+#     "d"
+#       data => data_readstringarray("/root/files.txt", "", "\s+", inf, inf),
+#       unless => isvariable( d );
+#     "di" slist => getindices( d );
+
+# #    "c[/var/lib/rpm/__db.003][modeoct]" string => concat( "0", filestat("/var/lib/rpm/__db.003", "modeoct" ));
+# #    "c[/var/lib/rpm/__db.003][owner]" string => execresult( "id -un $(with)", useshell ), with => filestat("/var/lib/rpm/__db.003", "uid" );
+# #    "c[/var/lib/rpm/__db.003][group]" string => execresult( "id -gn $(with)", useshell ), with => filestat("/var/lib/rpm/__db.003", "gid" );
+
+#     "c[$(di)][modeoct]"
+#       string => "$(with)",
+#       unless => strcmp( $(with), "$(d[$(di)][0])" ),
+#       with => concat( "0", filestat("$(di)", "modeoct" ));
+
+#     "c[$(di)][owner]"
+#       string => "$(with)",
+#       unless => strcmp( $(with), "$(d[$(di)][1])" ),
+#       with => execresult( "id -un $(with)", useshell ), with => filestat("$(di)", "uid" );
+
+#     "c[$(di)][group]"
+#       string => "$(with)",
+#       unless => strcmp( $(with), "$(d[$(di)][2])" ),
+#       with => execresult( "id -gn $(with)", useshell ), with => filestat("$(di)", "gid" );
+
+#     "ci" slist => getindices( c );
+#     "csum" int => length( ci );
+
+
+#   reports:
+#     #"$(with)" with => storejson( d );
+#     #"Expected: $(d[$(di)][0]) $(d[/var/lib/rpm/__db.003][1]) $(d[/var/lib/rpm/__db.003][2])";
+#     #"Actual:   $(c[$(di)][modeoct]) $(c[/var/lib/rpm/__db.003][owner]) $(c[/var/lib/rpm/__db.003][group])";
+#     "mismatch:  $(di) $(c[$(di)][modeoct]):$(c[$(di)][owner]):$(c[$(di)][group]) != $(d[$(di)][0]):$(d[$(di)][1]):$(d[$(di)][2])";
+#     "$(csum) mismatches";
+
+# }
