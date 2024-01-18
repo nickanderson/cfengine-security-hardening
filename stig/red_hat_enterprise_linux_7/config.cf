@@ -17,15 +17,13 @@ bundle agent run
       "supported_os" expression => "centos_7|redhat_7";
 
   vars:
-
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
-
+    supported_os::
       # Find the inventory bundles
       "bundles"
         slist => bundlesmatching( "$(this.namespace):V_*" );
 
   methods:
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    supported_os::
       "$(bundles)"
         inherit => "true";
 
