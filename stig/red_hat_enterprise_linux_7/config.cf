@@ -22,8 +22,7 @@ bundle agent run
 
       # Find the inventory bundles
       "inventory_bundles"
-        slist => bundlesmatching( "$(this.namespace).*",
-                                  "inventory_$(this.namespace)_.*" );
+        slist => bundlesmatching( "$(this.namespace).V_*" );
 
   methods:
     supported_os::
