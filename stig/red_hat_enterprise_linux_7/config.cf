@@ -18,14 +18,18 @@ bundle agent run
 
   vars:
 
-    supported_os::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
       # Find the inventory bundles
       "bundles"
         slist => bundlesmatching( "$(this.namespace):.V_*" );
 
   methods:
-    supported_os::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
       "$(bundles)"
         inherit => "true";
+
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os.DEBUG::
+      "Found bundle: $(bundles)";
 }
