@@ -40,7 +40,7 @@ bundle agent V_214799
       # If there is any output from the command for system files or binaries, this is a finding.                                                                                                  |
 
       "/bin/rpm -Va --noconfig | grep '^..5' 2>&1 >  $(sys.statedir)/$(this.bundle).cache"
-        contain => in_shell,
-        classes => results( "bundle", "cached_data" );
+        contain => default:in_shell,
+        classes => default:results( "bundle", "cached_data" );
 
 }
