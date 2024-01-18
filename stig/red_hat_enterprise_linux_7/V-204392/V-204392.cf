@@ -63,8 +63,8 @@ bundle agent V_204392
       # and cfengine can then process the result.
 
       "for i in `rpm -Va | egrep '^.{1}M|^.{5}U|^.{6}G' | cut -d \" \" -f 4,5`;do for j in `rpm -qf $i`;do rpm -ql $j --dump | cut -d \" \" -f 1,5,6,7 | grep $i;done;done 2>&1 >  $(sys.statedir)/$(this.bundle).cache"
-        contain => in_shell,
-        classes => results( "bundle", "cached_data" );
+        contain => default:in_shell,
+        classes => default:results( "bundle", "cached_data" );
 
 }
 
