@@ -26,6 +26,6 @@ bundle agent V_204424
 
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
-      "DEBUG $(this.namespace):$(this.bundle): Found $(finding)" if => isvariable( finding );
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }
