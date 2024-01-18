@@ -24,8 +24,10 @@ bundle agent DISABLED_V_214799
 
     _cache_not_need_refreshed::
 
-      "raw_findings"
-        slist => readstringlist("$(sys.statedir)/$(this.bundle).cache", "", "\n", inf, inf);
+      # TODO Needs work
+      # Processing a large list takes a bunch of time.
+      # "raw_findings"
+      #   slist => readstringlist("$(sys.statedir)/$(this.bundle).cache", "", "\n", inf, inf);
 
       "finding"
         string => "V-214799",
