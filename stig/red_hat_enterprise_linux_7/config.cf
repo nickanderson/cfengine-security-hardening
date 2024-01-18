@@ -32,9 +32,6 @@ bundle agent run
         inherit => "true";
 
   reports:
-      "DEBUG $(this.namespace) $(this.bundle)";
-    supported_os::
-      "DEBUG this is a supported os ($(sys.os))";
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os.DEBUG_Red_Hat_Enterprise_Linux_7_STIG::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "Found bundle: $(bundles)";
 }
