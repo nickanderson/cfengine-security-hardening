@@ -5,6 +5,7 @@ body file control
 bundle agent chaos
 {
  reports:
+    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
       "DEBUG $(this.namespace):$(this.bundle)";
 
   vars:
