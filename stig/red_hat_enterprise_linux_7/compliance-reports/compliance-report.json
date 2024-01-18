@@ -1,0 +1,32 @@
+{
+  "reports": {
+    "red-hat-enterprise-linux-7-security-technical-implementation-guide-(stig)": {
+      "id": "red-hat-enterprise-linux-7-security-technical-implementation-guide-(stig)",
+      "type": "compliance",
+      "title": "Red Hat Enterprise Linux 7 Security Technical Implementation Guide (STIG)",
+      "conditions": [
+          "v-204392",
+          "v-204424"
+      ]
+    }
+  },
+    "conditions": {
+        "v-204392": {
+            "id": "v-204392",
+            "name": "v-204392 - The Red Hat Enterprise Linux operating system must be configured so that the file permissions, ownership, and group membership of system files and commands match the vendor values.",
+            "description": "Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default. Satisfies: SRG-OS-000257-GPOS-00098, SRG-OS-000278-GPOS-00108.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "operator": "not_match",
+            "value": "v-204392"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+            "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+    }
+  }
+}

@@ -12,8 +12,13 @@ bundle agent config
 }
 bundle agent run
 {
+  classes:
+
+      "supported_os" expression => "centos_7|redhat_7";
+
   vars:
-    redhat_7|centos_7::
+
+    supported_os::
 
       # Find the inventory bundles
       "inventory_bundles"
@@ -21,6 +26,7 @@ bundle agent run
                                   "inventory_$(this.namespace)_.*" );
 
   methods:
-    redhat_7|centos_7::
-      "$(inventory_bundles)";
+    supported_os::
+      "$(inventory_bundles)"
+        inherit => "true";
 }

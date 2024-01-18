@@ -197,7 +197,7 @@
       "subdirectory": "./stig/red_hat_enterprise_linux_7/",
       "dependencies": ["compliance-report-imports"],
       "steps": [
-        "copy ./config.cf            services/security-hardening/stig/rhel-7/config.cf",
+        "copy ./config.cf services/security-hardening/stig/rhel-7/config.cf",
         "copy ./V-204392/V-204392.cf services/security-hardening/stig/rhel-7/V-204392.cf",
         "copy ./V-204424/V-204424.cf services/security-hardening/stig/rhel-7/V-204424.cf",
         "copy ./V-204425/V-204425.cf services/security-hardening/stig/rhel-7/V-204425.cf",
