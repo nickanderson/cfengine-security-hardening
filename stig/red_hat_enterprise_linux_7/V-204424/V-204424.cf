@@ -5,13 +5,9 @@ body file control
 bundle agent V_204424
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204424
 {
-  meta:
-    redhat_7::
-      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
-
   vars:
 
-    redhat_7::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
 
       "files"
