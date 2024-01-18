@@ -25,8 +25,7 @@ bundle agent run
   methods:
     supported_os::
       "$(bundles)"
-        inherit => "true",
-        if => isgreaterthan( length( bundles ), 0);
+        inherit => "true";
 
   reports:
       "DEBUG $(this.namespace) $(this.bundle)";
