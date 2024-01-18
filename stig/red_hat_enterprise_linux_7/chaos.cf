@@ -4,6 +4,10 @@ body file control
 }
 bundle agent chaos
 {
+
+  vars:
+      "V_204425_conf[PermitEmptyPasswords]" string => "yes";
+
   packages:
 
     (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_monkey_enabled)::
@@ -42,5 +46,10 @@ session     required      pam_limits.so
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session     required      pam_unix.so";
 
-
+      "/etc/ssh/sshd_config" -> { "V-204425" }
+        edit_line => set_line_based( "$(this.bundle).V_204425_conf",
+                                     " ",
+                                     "\s+",
+                                     ".*",
+                                     "\s*#\s*" );
 }

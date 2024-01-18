@@ -5,9 +5,6 @@ body file control
 bundle agent V_230235
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425
 {
-  meta:
-    redhat_7::
-      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
 
       # # grep -i PermitEmptyPasswords /etc/ssh/sshd_config\\
       # PermitEmptyPasswords no
@@ -15,7 +12,7 @@ bundle agent V_230235
 
   vars:
 
-    #redhat_7::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
       "config_file" string => "/etc/ssh/sshd_config";
 
       "lines" slist => grep( "(?i).*PermitEmptyPasswords.*",
@@ -34,23 +31,9 @@ bundle agent V_230235
                       strcmp( length(non_comment_lines), length( lines ) ),
                       # Or if the non commented liens indicate no, it's not a finding
                       not( every( "(?i)\s*PermitEmptyPasswords\s+no\s*",
-                             non_comment_lines )));
-
-
-      # regline( "^\s*(?i:PermitEmptyPasswords)\s+(?!no)\s*",
-      #                      "/etc/ssh/sshd_config");
-
-
-}
-body file control
-{
-        namespace => "default";
-}
-bundle agent __main__
-{
-  methods:
-      "Red_Hat_Enterprise_Linux_7_STIG:V_230235";
-
+                                  non_comment_lines )));
   reports:
-      "$(with)" with => storejson( variablesmatching_as_data( "Red_Hat_Enterprise_Linux_7_STIG:V_230235\..*" ) );
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
+
 }
