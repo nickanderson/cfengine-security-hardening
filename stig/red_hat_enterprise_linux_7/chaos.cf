@@ -4,6 +4,8 @@ body file control
 }
 bundle agent chaos
 {
+ reports:
+      "DEBUG $(this.namespace):$(this.bundle)";
 
   vars:
       "V_204425_conf[PermitEmptyPasswords]" string => "yes";
