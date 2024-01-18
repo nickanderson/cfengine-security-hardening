@@ -23,6 +23,10 @@ bundle agent run
         slist => bundlesmatching( "$(this.namespace):V_.*" );
 
   methods:
+
+    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
+      "Red_Hat_Enterprise_Linux_7_STIG:chaos";
+
     supported_os::
       "$(bundles)"
         inherit => "true";
