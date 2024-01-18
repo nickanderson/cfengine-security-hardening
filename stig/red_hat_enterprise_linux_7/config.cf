@@ -21,11 +21,11 @@ bundle agent run
     supported_os::
 
       # Find the inventory bundles
-      "inventory_bundles"
-        slist => bundlesmatching( "$(this.namespace).V_*" );
+      "bundles"
+        slist => bundlesmatching( "$(this.namespace):.V_*" );
 
   methods:
     supported_os::
-      "$(inventory_bundles)"
+      "$(bundles)"
         inherit => "true";
 }
