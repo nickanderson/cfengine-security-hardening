@@ -39,4 +39,8 @@ bundle agent V_204594
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
         if => isgreaterthan( length( raw_findings ), 0 );
 
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
+
 }
