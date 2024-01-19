@@ -40,6 +40,9 @@ bundle agent V_204594
         if => isgreaterthan( length( raw_findings ), 0 );
 
   reports:
+
+      !_not_applicable::
+      "DEBUG $(this.namespace):$(this.bundle): This is applicable";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
