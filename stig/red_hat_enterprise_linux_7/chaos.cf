@@ -51,7 +51,7 @@ session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet 
 session     required      pam_unix.so";
 
       "/etc/ssh/sshd_config" -> { "V-204425" }
-        edit_line => set_line_based( "$(this.bundle).V_204425_conf",
+        edit_line => default:set_line_based( "$(this.bundle).V_204425_conf",
                                      " ",
                                      "\s+",
                                      ".*",
