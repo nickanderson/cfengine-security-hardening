@@ -22,12 +22,12 @@ bundle agent V_204594
 
   classes:
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
-      "_not_applicable"
-        expression => regline( '.*\s7\.[4-9].*', "/etc/redhat-release" );
+      "applicable"
+        not => regline( '.*\s7\.[4-9].*', "/etc/redhat-release" );
 
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os.!_not_applicable::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os.applicable::
 
       "raw_findings"
         slist => grep("^(?!#)[^\S\n]*Protocol\s+[^2].*$",
@@ -41,7 +41,7 @@ bundle agent V_204594
 
   reports:
 
-      !_not_applicable::
+      applicable::
       "DEBUG $(this.namespace):$(this.bundle): This is applicable";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
