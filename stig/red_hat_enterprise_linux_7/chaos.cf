@@ -11,6 +11,7 @@ bundle agent chaos
 
   vars:
       "V_204425_conf[PermitEmptyPasswords]" string => "yes";
+      "V_204594_conf[Protocol]" string => "1";
 
   packages:
 
@@ -33,6 +34,15 @@ bundle agent chaos
                                              "\s+",
                                              ".*",
                                              "\s*#\s*" );
+
+      "/etc/ssh/sshd_config" -> { "V-204594" }
+        handle => "cause_V-204594",
+        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_20459_conf",
+                                             " ",
+                                             "\s+",
+                                             ".*",
+                                             "\s*#\s*" );
+
 
 
       "/etc/pam.d/system-auth" -> { " V-204424" }
