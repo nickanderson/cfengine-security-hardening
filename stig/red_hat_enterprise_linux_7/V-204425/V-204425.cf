@@ -21,7 +21,7 @@ bundle agent V_204425
         slist => filter( "\s*#.*", lines, true, true, inf);
 
       "finding"
-        string => "V-230235",
+        string => "V-204425",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
         unless => or(
