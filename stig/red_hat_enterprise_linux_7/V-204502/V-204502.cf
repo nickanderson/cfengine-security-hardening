@@ -20,7 +20,7 @@ bundle agent V_204502
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
-      "DEBUG $(this.namespace):$(this.bundle): Found $(with)"
+      "DEBUG $(this.namespace):$(this.bundle): packages matching telnet-server: $(with)"
         with => storejson( packagesmatching( "telnet-server", ".*", ".*", ".*" ) );
 
 
