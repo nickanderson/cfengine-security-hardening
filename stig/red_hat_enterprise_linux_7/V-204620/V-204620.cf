@@ -21,4 +21,11 @@ bundle agent V_204620
         if => and( isgreaterthan( length( packagesmatching( "vsftpd", ".*", ".*", ".*" ) ), 0 ),
                    not( isvariable( documented_exception )));
 
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
+      "DEBUG $(this.namespace):$(this.bundle): packages matching telnet-server: $(with)"
+        with => storejson( packagesmatching( "vsftpd", ".*", ".*", ".*" ) );
+
+
 }
