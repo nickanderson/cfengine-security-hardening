@@ -41,7 +41,7 @@ bundle agent chaos
 
       "/etc/ssh/sshd_config" -> { "V-204594" }
         handle => "cause_V-204594-2",
-        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_20459_conf",
+        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_20454_conf",
                                              " ",
                                              "\s+",
                                              ".*",
