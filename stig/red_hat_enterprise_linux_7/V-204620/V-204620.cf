@@ -24,7 +24,7 @@ bundle agent V_204620
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
-      "DEBUG $(this.namespace):$(this.bundle): packages matching telnet-server: $(with)"
+      "DEBUG $(this.namespace):$(this.bundle): packages matching vsftpd: $(with)"
         with => storejson( packagesmatching( "vsftpd", ".*", ".*", ".*" ) );
 
 
