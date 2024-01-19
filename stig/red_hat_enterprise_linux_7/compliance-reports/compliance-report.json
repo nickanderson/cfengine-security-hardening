@@ -10,7 +10,8 @@
         "v-204594",
         "v-204502",
         "v-204620",
-        "v-204621"
+        "v-204621",
+        "v-204627"
       ]
     }
   },
@@ -111,6 +112,23 @@
           "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
           "operator": "not_match",
           "value": "v-204621"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+    },
+    "v-204627": {
+      "id": "v-204627",
+      "name": "v-204627 - SNMP community strings on the Red Hat Enterprise Linux operating system must be changed from the default.",
+      "description": "Whether active or not, default Simple Network Management Protocol (SNMP) community strings must be changed to maintain security. If the service is running with the default authenticators, anyone can gather data about the system and the network and use the information to potentially compromise the integrity of the system or network(s). It is highly recommended that SNMP version 3 user authentication and message encryption be used in place of the version 2 community strings.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "operator": "not_match",
+          "value": "v-204627"
         }
       ],
       "category": "Security",
