@@ -24,6 +24,10 @@ bundle agent chaos
         handle => "cause_V-204502",
         policy => "present";
 
+      "vsftpd" -> { "V-204620" }
+        handle => "cause_V-204620",
+        policy => "present";
+
   files:
 
 

@@ -5,22 +5,20 @@ body file control
 bundle agent V_204620
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204620
 {
-  meta:
-    redhat_7::
-      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
-
       # If "vsftpd" is installed and is not documented with the Information
       # System Security Officer (ISSO) as an operational requirement, this is a
       # finding.
 
+      # In order to document an exception with ISSO we look for the documented_exception variable.
   vars:
 
-    redhat_7::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
       "finding"
         string => "V-204620",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        if => isgreaterthan( length( packagesmatching( "vsftpd", ".*", ".*", ".*" ) ), 0 );
+        if => and( isgreaterthan( length( packagesmatching( "vsftpd", ".*", ".*", ".*" ) ), 0 ),
+                   not( isvariable( documented_exception )));
 
 }
