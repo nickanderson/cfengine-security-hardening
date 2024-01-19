@@ -9,7 +9,7 @@ bundle agent V_204502
 
   vars:
 
-    redhat_7::
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
       "finding"
         string => "V-204502",
