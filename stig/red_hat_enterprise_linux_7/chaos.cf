@@ -23,6 +23,15 @@ bundle agent chaos
 
     (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
 
+      "/etc/ssh/sshd_config" -> { "V-204425" }
+        handle => "cause_V-204425",
+        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_204425_conf",
+                                             " ",
+                                             "\s+",
+                                             ".*",
+                                             "\s*#\s*" );
+
+
       "/etc/pam.d/system-auth" -> { " V-204424" }
         content => "#%PAM-1.0
 # This file is auto-generated.
@@ -50,10 +59,4 @@ session     required      pam_limits.so
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session     required      pam_unix.so";
 
-      "/etc/ssh/sshd_config" -> { "V-204425" }
-        edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_204425_conf",
-                                     " ",
-                                     "\s+",
-                                     ".*",
-                                     "\s*#\s*" );
 }
