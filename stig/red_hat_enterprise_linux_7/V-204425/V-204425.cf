@@ -16,7 +16,7 @@ bundle agent V_204425
       "config_file" string => "/etc/ssh/sshd_config";
 
       # Non comment lines containing PermitEmptyPasswords with a setting other than no.
-      "lines" slist => grep( "^(?!#)\s+(?i).*PermitEmptyPasswords\s*[^nN\s].*",
+      "lines" slist => grep( "^(?!#)(?i).*PermitEmptyPasswords\s*[^n\s].*$",
                              readstringlist( $(config_file), "", "\n", inf, inf) );
 
       "non_comment_lines"
