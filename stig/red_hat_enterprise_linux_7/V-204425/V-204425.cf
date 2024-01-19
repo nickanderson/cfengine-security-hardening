@@ -24,14 +24,9 @@ bundle agent V_204425
         string => "V-204425",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        unless => or(
-                      # If no lines match it's not a finding
-                      strcmp( "0", length( lines ) ),
-                      # Or if the lines are comments it's not a finding
-                      strcmp( length(non_comment_lines), length( lines ) ),
-                      # Or if all the non commented lines indicate no, it's not a finding
-                      not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
-                                  non_comment_lines )));
+        # If any of the non commented lines indicate no, it's a finding
+        if => not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
+                          non_comment_lines ));
 
   reports:
       "DEBUG In $(this.namespace):$(this.bundle)";
@@ -43,8 +38,8 @@ bundle agent V_204425
         if => strcmp( "0", length(non_comment_lines) );
 
       "DEBUG $(this.namespace):$(this.bundle): every noncomment lines matches regex"
-        unless => not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
-                     non_comment_lines ));
+        if => not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
+                   non_comment_lines ));
 
 
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
