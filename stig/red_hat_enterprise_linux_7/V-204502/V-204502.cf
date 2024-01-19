@@ -5,10 +5,6 @@ body file control
 bundle agent V_204502
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204502
 {
-  meta:
-    redhat_7::
-      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
-
       # If the telnet-server package is installed, this is a finding.
 
   vars:

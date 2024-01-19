@@ -14,14 +14,17 @@ bundle agent chaos
 
   packages:
 
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
-
       "rsh-server" -> { "V-238327" }
+        handle => "cause_V-238327",
+        policy => "present";
+
+
+      "telnet-server" -> { "V-204502" }
+        handle => "cause_V-204502",
         policy => "present";
 
   files:
 
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
 
       "/etc/ssh/sshd_config" -> { "V-204425" }
         handle => "cause_V-204425",
