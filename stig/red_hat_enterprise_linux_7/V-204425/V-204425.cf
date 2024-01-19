@@ -35,9 +35,16 @@ bundle agent V_230235
   reports:
       "DEBUG In $(this.namespace):$(this.bundle)";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): 0 lines matched PermitEmptyPasswords"
+        if => strcmp( "0", length( lines ) );
+
+      "DEBUG $(this.namespace):$(this.bundle): 0 matching lines were not comments"
+        if => strcmp( length(non_comment_lines), length( lines ) );
+
       "DEBUG $(this.namespace):$(this.bundle): every noncomment lines matches regex"
         unless => not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
                      non_comment_lines ));
+
 
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
