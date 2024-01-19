@@ -137,8 +137,8 @@
     },
     "v-204497": {
       "id": "v-204497",
-        "name": "v-204497 - The Red Hat Enterprise Linux operating system must implement NIST FIPS-validated cryptography for the following: to provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.",
-        "description": "Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223",
+      "name": "v-204497 - The Red Hat Enterprise Linux operating system must implement NIST FIPS-validated cryptography for the following: to provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.",
+      "description": "Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223",
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
@@ -151,7 +151,23 @@
       "category": "Security",
       "severity": "high",
       "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+    },
+    "v-204443": {
+      "id": "v-204443",
+      "name": "v-204443 - The Red Hat Enterprise Linux operating system must not have the ypserv package installed.",
+      "description": "Removing the \"ypserv\" package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "operator": "not_match",
+          "value": "v-204443"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
     }
-
   }
 }
