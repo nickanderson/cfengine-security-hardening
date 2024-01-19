@@ -27,9 +27,7 @@ bundle agent V_204425
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
         # If there are non-commented lines AND any don't indicate no, it's a finding
-        if => and( isvariable( non_comment_lines),
-                   not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
-                          non_comment_lines )));
+        if => isgreaterthan( length( lines ), 0);
 
   reports:
       "DEBUG In $(this.namespace):$(this.bundle)";
