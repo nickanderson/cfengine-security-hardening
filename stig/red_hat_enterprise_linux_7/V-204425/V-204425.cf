@@ -30,13 +30,13 @@ bundle agent V_230235
                       # Or if the lines are comments it's not a finding
                       strcmp( length(non_comment_lines), length( lines ) ),
                       # Or if the non commented liens indicate no, it's not a finding
-                      not( every( "(?i)\s*PermitEmptyPasswords\s+no\s*",
-                                  non_comment_lines )));
+                      every( "(?i)\s*PermitEmptyPasswords\s+no\s*",
+                                  non_comment_lines ));
   reports:
       "DEBUG In $(this.namespace):$(this.bundle)";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): every noncomment lines matches regex"
-        if => every( "^(?i)\s*PermitEmptyPasswords\s+no\s*",
+        unless => every( "^(?i)\s*PermitEmptyPasswords\s+no\s*",
                      non_comment_lines );
 
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
