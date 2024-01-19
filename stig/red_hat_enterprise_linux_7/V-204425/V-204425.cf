@@ -2,7 +2,7 @@ body file control
 {
         namespace => "Red_Hat_Enterprise_Linux_7_STIG";
 }
-bundle agent V_230235
+bundle agent V_204425
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425
 {
 
@@ -32,6 +32,7 @@ bundle agent V_230235
                       # Or if all the non commented lines indicate no, it's not a finding
                       not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
                                   non_comment_lines )));
+
   reports:
       "DEBUG In $(this.namespace):$(this.bundle)";
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
