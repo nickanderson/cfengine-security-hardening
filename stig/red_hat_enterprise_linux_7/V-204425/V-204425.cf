@@ -15,8 +15,10 @@ bundle agent V_204425
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
       "config_file" string => "/etc/ssh/sshd_config";
 
-      "lines" slist => grep( "(?i).*PermitEmptyPasswords.*",
+      # Non comment lines containing PermitEmptyPasswords with a setting other than no.
+      "lines" slist => grep( "#(?#)(?i).*PermitEmptyPasswords\s*[^nN\s].*",
                              readstringlist( $(config_file), "", "\n", inf, inf) );
+
       "non_comment_lines"
         slist => filter( "\s*#.*", lines, true, true, inf);
 
