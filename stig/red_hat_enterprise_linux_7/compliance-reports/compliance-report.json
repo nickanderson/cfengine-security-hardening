@@ -5,7 +5,10 @@
       "type": "compliance",
       "title": "Red Hat Enterprise Linux 7 Security Technical Implementation Guide (STIG)",
       "conditions": [
-          "v-204424"
+          "v-204424",
+          "v-204425",
+          "v-204594",
+          "v-204502"
       ]
     }
   },
@@ -13,7 +16,7 @@
         "v-204424": {
             "id": "v-204424",
             "name": "v-204424 - The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords.",
-            "description": " If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
+            "description": "If an account has an empty password, anyone could log on and run commands with the privileges of that account. Accounts with empty passwords should never be used in operational environments.",
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
@@ -26,6 +29,60 @@
       "category": "Security",
       "severity": "high",
             "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
-    }
+        },
+        "v-204425": {
+            "id": "v-204425",
+            "name": "v-204425 - The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon does not allow authentication using an empty password.",
+            "description": "Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.",
+            "type": "inventory",
+            "condition_for": "passing",
+            "rules": [
+                {
+                    "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+                    "operator": "not_match",
+                    "value": "v-204425"
+                }
+            ],
+            "category": "Security",
+            "severity": "high",
+            "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+        },
+        "v-204594": {
+            "id": "v-204594",
+            "name": "v-204594 - The Red Hat Enterprise Linux operating system must be configured so that the SSH daemon is configured to only use the SSHv2 protocol.",
+            "description": "SSHv1 is an insecure implementation of the SSH protocol and has many well-known vulnerability exploits. Exploits of the SSH daemon could provide immediate root access to the system. Satisfies: SRG-OS-000074-GPOS-00042, SRG-OS-000480-GPOS-00227",
+            "type": "inventory",
+            "condition_for": "passing",
+            "rules": [
+                {
+                    "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+                    "operator": "not_match",
+                    "value": "v-204594"
+                }
+            ],
+            "category": "Security",
+            "severity": "high",
+            "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+        },
+        "v-204502": {
+            "id": "v-204502",
+            "name": "v-204502 - The Red Hat Enterprise Linux operating system must not have the telnet-server package installed.",
+            "description": "It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors. Operating systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions). Examples of non-essential capabilities include, but are not limited to, games, software packages, tools, and demonstration software not related to requirements or providing a wide array of functionality not required for every mission, but which cannot be disabled.",
+            "type": "inventory",
+            "condition_for": "passing",
+            "rules": [
+                {
+                    "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+                    "operator": "not_match",
+                    "value": "v-204502"
+                }
+            ],
+            "category": "Security",
+            "severity": "high",
+            "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+        }
+
+
+
   }
 }
