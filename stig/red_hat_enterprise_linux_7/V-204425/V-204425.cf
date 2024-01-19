@@ -34,6 +34,10 @@ bundle agent V_230235
                                   non_comment_lines )));
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): every noncomment lines matches regex"
+        if => every( "(?i)\s*PermitEmptyPasswords\s+no\s*",
+                     non_comment_lines );
+
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }
