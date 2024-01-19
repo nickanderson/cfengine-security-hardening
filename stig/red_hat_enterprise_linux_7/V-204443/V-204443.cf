@@ -1,0 +1,27 @@
+body file control
+{
+        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+}
+bundle agent V_204443
+# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204443
+{
+      # If ypserv is installed, it's a finding
+
+  vars:
+
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+      "pkg" string => "ypserv";
+
+      "finding"
+        string => "V-204443",
+        meta => { "inventory",
+                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+        if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
+
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
+      "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
+        with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );
+
+}

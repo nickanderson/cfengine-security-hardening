@@ -32,6 +32,10 @@ bundle agent chaos
         handle => "cause_V-204621",
         policy => "present";
 
+      "ypserv" -> { "V-204443" }
+        handle => "cause_V-204443",
+        policy => "present";
+
 
   files:
 
