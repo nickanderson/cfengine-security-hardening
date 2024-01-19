@@ -139,7 +139,7 @@
     },
     "v-204497": {
       "id": "v-204497",
-      "name": "v-204497 - The Red Hat Enterprise Linux operating system must implement NIST FIPS-validated cryptography for the following: to provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.",
+      "name": "v-204497 - The Red Hat Enterprise Linux operating system must implement NIST FIPS-validated cryptography",
       "description": "Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPOS-00176, SRG-OS-000405-GPOS-00184, SRG-OS-000478-GPOS-00223",
       "type": "inventory",
       "condition_for": "passing",
