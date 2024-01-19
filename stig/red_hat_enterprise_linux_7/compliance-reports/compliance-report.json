@@ -155,7 +155,7 @@
     "v-204443": {
       "id": "v-204443",
       "name": "v-204443 - The Red Hat Enterprise Linux operating system must not have the ypserv package installed.",
-      "description": "Removing the \"ypserv\" package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.",
+      "description": "Removing the ypserv package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.",
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
