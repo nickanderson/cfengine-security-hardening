@@ -17,4 +17,9 @@ bundle agent V_204502
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
         if => isgreaterthan( length( packagesmatching( "telnet-server", ".*", ".*", ".*" ) ), 0 );
 
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
+
+
 }
