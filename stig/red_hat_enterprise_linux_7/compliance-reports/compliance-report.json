@@ -98,6 +98,23 @@
       "category": "Security",
       "severity": "high",
       "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
+    },
+    "v-204621": {
+      "id": "v-204621",
+      "name": "v-204621 - The Red Hat Enterprise Linux operating system must not have the Trivial File Transfer Protocol (TFTP) server package installed if not required for operational support.",
+      "description": "If TFTP is required for operational support (such as the transmission of router configurations) its use must be documented with the Information System Security Officer (ISSO), restricted to only authorized personnel, and have access control rules established.",
+      "type": "inventory",
+      "condition_for": "passing",
+      "rules": [
+        {
+          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "operator": "not_match",
+          "value": "v-204621"
+        }
+      ],
+      "category": "Security",
+      "severity": "high",
+      "host_filter": "Red_Hat_Enterprise_Linux_7_STIG:supported_os"
     }
   }
 }
