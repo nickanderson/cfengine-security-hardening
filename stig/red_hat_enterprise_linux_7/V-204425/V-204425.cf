@@ -39,7 +39,7 @@ bundle agent V_230235
         if => strcmp( "0", length( lines ) );
 
       "DEBUG $(this.namespace):$(this.bundle): 0 matching lines were not comments"
-        if => strcmp( length(non_comment_lines), length( lines ) );
+        if => strcmp( "0", length(non_comment_lines) );
 
       "DEBUG $(this.namespace):$(this.bundle): every noncomment lines matches regex"
         unless => not( every( "^(?i) ?.*PermitEmptyPasswords\s+no\s*",
