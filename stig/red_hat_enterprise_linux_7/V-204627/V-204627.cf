@@ -5,10 +5,6 @@ body file control
 bundle agent V_204627
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204627
 {
-  meta:
-    redhat_7::
-      "tags" slist => { "inventory_$(this.namespace)_$(this.bundle)" };
-
       # Verify that a system using SNMP is not using default community strings.
       # Check to see if the "/etc/snmp/snmpd.conf" file exists with the following command:
       # # ls -al /etc/snmp/snmpd.conf
@@ -23,32 +19,33 @@ bundle agent V_204627
       #
       # If either of these commands returns any output, this is a finding.
 
+      # The specification does not say to ignore comment lines, but we do in order to reduce false positives.
+
   classes:
 
-    redhat_7::
-
-      "snmpd_config_file_absent"
-        expression => not( fileexists ("/etc/snmp/snmpd.conf") );
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
       "snmpd_config_present"
         expression => fileexists ("/etc/snmp/snmpd.conf");
 
   vars:
 
-    redhat_7.snmpd_config_present::
+    Red_Hat_Enterprise_Linux_7_STIG:snmpd_config_present::
 
       "finding"
         string => "V-204627",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        if => regline( ".*(public|private).*", "/etc/snmp/snmpd.conf" );
+        if => regline( "^(?!#).*(public|private).*", "/etc/snmp/snmpd.conf" );
 
       "raw_findings"
-        slist => grep( ".*(public|private).*", readstringlist( "/etc/snmp/snmpd.conf", "", "\n", inf, inf ) ),
+        slist => grep( "^(?!#).*(public|private).*", readstringlist( "/etc/snmp/snmpd.conf", "", "\n", inf, inf ) ),
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings detail V-204627" },
-        if => regline( ".*(public|private).*", "/etc/snmp/snmpd.conf" );
+        if => regline( "^(?!#).*(public|private).*", "/etc/snmp/snmpd.conf" );
 
-
+  reports:
+    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }

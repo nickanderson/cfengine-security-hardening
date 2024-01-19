@@ -36,6 +36,11 @@ bundle agent chaos
   files:
 
 
+      "/etc/snmp/snmpd.conf" -> { "V-204627" }
+        content => "# Junk config
+rocommunity public default system
+rwcommunity private 10.10.10.0/24";
+
       "/etc/ssh/sshd_config" -> { "V-204425" }
         handle => "cause_V-204425",
         edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_204425_conf",
