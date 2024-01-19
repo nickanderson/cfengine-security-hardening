@@ -35,8 +35,12 @@ bundle agent chaos
                                              ".*",
                                              "\s*#\s*" );
 
+      "/etc/redhat-release" -> { "V-204594" }
+        handle => "cause_V-204594-1",
+        content => "CentOS Linux release 7.3.FAKED (Core)";
+
       "/etc/ssh/sshd_config" -> { "V-204594" }
-        handle => "cause_V-204594",
+        handle => "cause_V-204594-2",
         edit_line => default:set_line_based( "$(this.namespace):$(this.bundle).V_20459_conf",
                                              " ",
                                              "\s+",
