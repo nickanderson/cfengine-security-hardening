@@ -30,7 +30,7 @@ bundle agent V_204594
     Red_Hat_Enterprise_Linux_7_STIG:supported_os.applicable::
 
       "lines"
-        slist => grep("^(?!#)[^\S\n]*Protocol\s+[^2].*$",
+        slist => grep("^(?!#)[^\S\n]*(?i)Protocol\s+[^2].*$",
                       readstringlist( "/etc/ssh/sshd_config", "", "\n", inf, inf) );
 
       "finding"
