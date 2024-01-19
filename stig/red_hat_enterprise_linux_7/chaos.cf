@@ -15,10 +15,9 @@ bundle agent chaos
 
   packages:
 
-      "rsh-server" -> { "V-238327" }
-        handle => "cause_V-238327",
+      "rsh-server" -> { "V-204442" }
+        handle => "cause_V-204442",
         policy => "present";
-
 
       "telnet-server" -> { "V-204502" }
         handle => "cause_V-204502",
