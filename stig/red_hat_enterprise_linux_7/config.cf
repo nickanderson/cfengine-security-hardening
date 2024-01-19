@@ -14,7 +14,11 @@ bundle agent run
 {
   classes:
 
-      "supported_os" expression => "centos_7|redhat_7";
+      # TODO reconsider this naming/use for where it's enabled?
+      "supported_os"
+        expression => "centos_7|redhat_7",
+        scope => "namespace",
+        meta => { "report" }; # So that compliance conditions can be targeted.
 
   vars:
     supported_os::
