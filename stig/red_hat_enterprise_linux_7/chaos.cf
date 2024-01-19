@@ -28,6 +28,11 @@ bundle agent chaos
         handle => "cause_V-204620",
         policy => "present";
 
+      "tftp-server" -> { "V-204621" }
+        handle => "cause_V-204621",
+        policy => "present";
+
+
   files:
 
 
