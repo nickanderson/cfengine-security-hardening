@@ -29,7 +29,7 @@ bundle agent V_204594
 
     Red_Hat_Enterprise_Linux_7_STIG:supported_os.applicable::
 
-      "raw_findings"
+      "lines"
         slist => grep("^(?!#)[^\S\n]*Protocol\s+[^2].*$",
                       readstringlist( "/etc/ssh/sshd_config", "", "\n", inf, inf) );
 
@@ -37,7 +37,7 @@ bundle agent V_204594
         string => "V-204594",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        if => isgreaterthan( length( raw_findings ), 0 );
+        if => isgreaterthan( length( lines ), 0 );
 
   reports:
 
