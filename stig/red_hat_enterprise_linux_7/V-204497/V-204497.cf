@@ -3,7 +3,6 @@ body file control
         namespace => "Red_Hat_Enterprise_Linux_7_STIG";
 }
 bundle agent V_204497
-# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425
 {
   classes:
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
@@ -25,7 +24,7 @@ bundle agent V_204497
 
     Red_Hat_Enterprise_Linux_7_STIG:finding::
       "finding"
-        string => "V-204621",
+        string => "V-204497",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" };
 
