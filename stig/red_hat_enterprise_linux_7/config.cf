@@ -25,7 +25,8 @@ bundle agent run
   methods:
 
     (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
-      "Red_Hat_Enterprise_Linux_7_STIG:chaos";
+      "Red_Hat_Enterprise_Linux_7_STIG:chaos"
+        inherit => "true";
 
     supported_os::
       "$(bundles)"
