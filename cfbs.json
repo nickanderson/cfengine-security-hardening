@@ -209,6 +209,7 @@
         "copy ./V-214799/V-214799.cf services/security-hardening/stig/rhel-7/V-214799.cf",
         "copy ./V-204497/V-204497.cf services/security-hardening/stig/rhel-7/V-204497.cf",
         "copy ./V-204443/V-204443.cf services/security-hardening/stig/rhel-7/V-204443.cf",
+        "copy ./V-204442/V-204442.cf services/security-hardening/stig/rhel-7/V-204442.cf",
         "copy ./chaos.cf services/security-hardening/stig/rhel-7/chaos.cf",
         "copy ./compliance-reports/compliance-report.json ./.no-distrib/compliance-report-definitions/red-hat-enterprise-linux-7-security-technical-implementation-guide.json",
         "policy_files services/security-hardening/stig/rhel-7/V-204392.cf",
@@ -222,6 +223,7 @@
         "policy_files services/security-hardening/stig/rhel-7/V-214799.cf",
         "policy_files services/security-hardening/stig/rhel-7/V-204497.cf",
         "policy_files services/security-hardening/stig/rhel-7/V-204443.cf",
+        "policy_files services/security-hardening/stig/rhel-7/V-204442.cf",
         "policy_files services/security-hardening/stig/rhel-7/chaos.cf",
         "policy_files services/security-hardening/stig/rhel-7/config.cf",
         "bundles Red_Hat_Enterprise_Linux_7_STIG:run"
