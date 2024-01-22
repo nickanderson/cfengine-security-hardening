@@ -7,7 +7,8 @@ bundle agent V_204621
 {
       # If TFTP is installed and the requirement for TFTP is not documented with the ISSO, this is a finding.
 
-      # In order to document an exception with ISSO we look for the documented_exception variable.
+      # In order to document an exception with ISSO we look for the Red_Hat_Enterprise_Linux_7_STIG.V_204621.documented_exception variable.
+
   vars:
 
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
