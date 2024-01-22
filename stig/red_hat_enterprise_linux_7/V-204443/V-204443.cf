@@ -7,6 +7,10 @@ bundle agent V_204443
 {
       # If ypserv is installed, it's a finding
 
+  classes:
+      "$(this.bundle)_remediation_enabled)"
+        expression => some( string_replace( "$(this.bundle)", "_", "-"),
+                            "$(this.namespace):config.remediation_enabled" );
   vars:
 
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
@@ -17,6 +21,11 @@ bundle agent V_204443
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
+
+  packages:
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:remediation_enabled::
+      "$(pkg)"
+        policy => "absent";
 
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
