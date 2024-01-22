@@ -8,9 +8,14 @@ bundle agent V_204443
       # If ypserv is installed, it's a finding
 
   classes:
+    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+
       "$(this.bundle)_remediation_enabled)"
-        expression => some( string_replace( "$(this.bundle)", "_", "-"),
-                            "$(this.namespace):config.remediation_enabled" );
+        or => {
+                "Red_Hat_Enterprise_Linux_7_STIG:remediation_enabled",
+                some( string_replace( "$(this.bundle)", "_", "-"),
+                      "$(this.namespace):config.remediation_enabled" )
+        };
   vars:
 
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
@@ -23,7 +28,7 @@ bundle agent V_204443
         if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   packages:
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:remediation_enabled::
+    Red_Hat_Enterprise_Linux_7_STIG:V_204443_remediation_enabled::
       "$(pkg)"
         policy => "absent";
 
