@@ -10,7 +10,7 @@ bundle agent V_204443
   classes:
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
 
-      "$(this.bundle)_remediation_enabled)"
+      "$(this.bundle)_remediation_enabled"
         or => {
                 "Red_Hat_Enterprise_Linux_7_STIG:remediation_enabled",
                 some( string_replace( "$(this.bundle)", "_", "-"),
