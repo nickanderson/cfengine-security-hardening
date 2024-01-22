@@ -9,6 +9,8 @@ bundle agent config
         slist => {}, # e.g. V-238206
         unless => isvariable( "$(this.promiser)");
 
+      "inventory_attribute"
+        string => "Red Hat Enterprise Linux 7 STIG V1 findings";
 }
 bundle agent run
 {

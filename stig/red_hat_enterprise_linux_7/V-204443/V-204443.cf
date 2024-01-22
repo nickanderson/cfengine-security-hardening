@@ -15,7 +15,7 @@ bundle agent V_204443
       "finding"
         string => "V-204443",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   reports:
