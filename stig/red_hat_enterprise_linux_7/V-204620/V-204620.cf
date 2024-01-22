@@ -9,23 +9,25 @@ bundle agent V_204620
       # System Security Officer (ISSO) as an operational requirement, this is a
       # finding.
 
-      # In order to document an exception with ISSO we look for the documented_exception variable.
+      # In order to document an exception with ISSO we look for the Red_Hat_Enterprise_Linux_7_STIG:V_204620.documented_exception variable.
   vars:
 
     Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+
+      "pkg" string => "vsftpd";
 
       "finding"
         string => "V-204620",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
-        if => and( isgreaterthan( length( packagesmatching( "vsftpd", ".*", ".*", ".*" ) ), 0 ),
+        if => and( isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 ),
                    not( isvariable( documented_exception )));
 
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
-      "DEBUG $(this.namespace):$(this.bundle): packages matching vsftpd: $(with)"
-        with => storejson( packagesmatching( "vsftpd", ".*", ".*", ".*" ) );
+      "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
+        with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );
 
 
 }
