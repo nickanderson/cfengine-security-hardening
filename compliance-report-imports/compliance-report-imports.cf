@@ -16,7 +16,7 @@ bundle agent compliance_report_imports
         if => not( isvariable( "$(this.promiser)" ) );
 
       "_import_files[$(_import_dirs)]"
-        slist => lsdir( "$(_import_dirs)", "^(?!(\.$|\.\.$)).*", true ),
+        slist => lsdir( "$(_import_dirs)", "^(?!(\.$|\.\.$)).*.json", true ),
         if => isdir( $(_import_dirs) );
 
       "_all_import_files" slist => getvalues( _import_files );
