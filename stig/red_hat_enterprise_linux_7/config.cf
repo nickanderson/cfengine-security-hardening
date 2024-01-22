@@ -10,7 +10,7 @@ bundle agent config
         unless => isvariable( "$(this.promiser)");
 
       "inventory_attribute"
-        string => "Red Hat Enterprise Linux 7 STIG V1 findings";
+        string => "Red Hat Enterprise Linux 7 STIG findings";
 }
 bundle agent run
 {
