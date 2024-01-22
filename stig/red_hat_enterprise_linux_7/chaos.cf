@@ -33,8 +33,8 @@ bundle agent chaos
 
       "ypserv" -> { "V-204443" }
         handle => "cause_V-204443",
-        policy => "present",
-        if => "Red_Hat_Enterprise_Linux_7_STIG:chaos_V_204443";
+        policy => "present";
+        # if => "Red_Hat_Enterprise_Linux_7_STIG:chaos_V_204443";
 
   files:
 
