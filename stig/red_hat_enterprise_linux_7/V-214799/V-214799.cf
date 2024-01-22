@@ -33,6 +33,7 @@ bundle agent DISABLED_V_214799
         string => "V-214799",
         meta => { "inventory",
                   "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+      "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => isgreaterthan( length( raw_findings ), 0 );
 
   commands:

@@ -17,7 +17,7 @@ bundle agent V_204621
       "finding"
         string => "V-204621",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => and( isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 ),
                    not( isvariable( documented_exception )));
 

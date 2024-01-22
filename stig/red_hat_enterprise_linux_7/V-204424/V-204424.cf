@@ -20,7 +20,7 @@ bundle agent V_204424
       "finding"
         string => "V-204424",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => regline( "^(?!#).* nullok ?.*",
                        $(files));
 

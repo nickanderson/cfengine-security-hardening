@@ -35,7 +35,7 @@ bundle agent V_204627
       "finding"
         string => "V-204627",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" },
         if => regline( "^(?!#).*(public|private).*", "/etc/snmp/snmpd.conf" );
 
       "raw_findings"

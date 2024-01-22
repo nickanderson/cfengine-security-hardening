@@ -28,7 +28,7 @@ bundle agent V_204497
       "finding"
         string => "V-204497",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" };
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" };
 
   reports:
     Red_Hat_Enterprise_Linux_7_STIG:DEBUG::

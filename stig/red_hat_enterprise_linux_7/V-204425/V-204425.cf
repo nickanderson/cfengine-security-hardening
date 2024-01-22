@@ -17,15 +17,15 @@ bundle agent V_204425
 
       # Non comment lines containing PermitEmptyPasswords with a setting other than no.
       "lines_without_no" slist => grep( "^(?i)(?!#)[^\S\n]*PermitEmptyPasswords\s+(?!no\b).*$",
-                             readstringlist( $(config_file), "", "\n", inf, inf) );
+                                        readstringlist( $(config_file), "", "\n", inf, inf) );
 
       "lines_with_no" slist => grep( "^(?i)(?!#)[^\S\n]*PermitEmptyPasswords\s+(no\b).*$",
-                               readstringlist( $(config_file), "", "\n", inf, inf) );
+                                     readstringlist( $(config_file), "", "\n", inf, inf) );
 
       "finding"
         string => "V-204425",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=$($(this.namespace):config.inventory_attribute)" },
       # If there are non-commented lines that don't indicate no, OR if there is not any config that says no, it's a finding
         if => or( isgreaterthan( length( lines_without_no ), 0), # permitemptypasswords non-no
                   islessthan( length( lines_without_no ), 1) );  # permitemptypasswords no
