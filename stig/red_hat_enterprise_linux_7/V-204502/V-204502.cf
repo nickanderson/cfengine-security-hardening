@@ -18,7 +18,6 @@ bundle agent V_204502
       "$(this.bundle)_finding"
         expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
-
   vars:
 
     RHEL_7_STIG:enabled::

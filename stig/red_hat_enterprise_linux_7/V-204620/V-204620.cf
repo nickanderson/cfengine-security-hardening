@@ -8,7 +8,18 @@ bundle agent V_204620
       # System Security Officer (ISSO) as an operational requirement, this is a
       # finding.
 
-      # In order to document an exception with ISSO we look for the RHEL_7_STIG:V_204620.documented_exception variable.
+  classes:
+    RHEL_7_STIG:enabled::
+
+      "$(this.bundle)_enforced"
+        expression => "$(this.namespace):enforced";
+
+      "$(this.bundle)_exception"
+        expression => isvariable( "$(this.namespace):exceptions.$(this.bundle)" );
+
+      "$(this.bundle)_finding"
+        expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
+
   vars:
 
     RHEL_7_STIG:enabled::
@@ -19,8 +30,26 @@ bundle agent V_204620
         string => "V-204620",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => and( isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 ),
-                   not( isvariable( documented_exception )));
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
+
+      "finding_with_exception"
+        string => "V-204620",
+        meta => { "inventory",
+                  "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   "$(this.namespace):$(this.bundle)_exception" );
+
+  packages:
+    RHEL_7_STIG:enabled::
+      "$(pkg)"
+        policy => "absent",
+        if => "$(this.namespace):$(this.bundle)_enforced.!$(this.namespace):$(this.bundle)_exception";
+
+      "$(pkg)"
+        policy => "absent",
+        action => default:warn_only,
+        if => "$(this.namespace):$(this.bundle)_enforced.$(this.namespace):$(this.bundle)_exception";
 
   reports:
     RHEL_7_STIG:DEBUG::

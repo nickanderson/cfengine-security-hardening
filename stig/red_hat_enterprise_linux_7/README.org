@@ -21,5 +21,6 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 | V-204497   | FIPS must be configured               | no                             | =RHEL_7_STIG:exceptions.V_204497= |
 | V-204502   | telnet-server must not be installed   | yes                            | =RHEL_7_STIG:exceptions.V_204502= |
 | V-204594   | ssh must be configured for protocol 2 | no                             | =RHEL_7_STIG:exceptions.V_204594= |
+| V-204620   | vsftpd must not be installed          | yes                            | =RHEL_7_STIG:exceptions.V_204620= |
 | V-204621   | tftp-server must not be installed     | yes                            | =RHEL_7_STIG:exceptions.V_204621= |
 |            |                                       |                                |                                 |
