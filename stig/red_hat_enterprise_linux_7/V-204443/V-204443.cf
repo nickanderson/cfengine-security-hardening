@@ -10,12 +10,12 @@ bundle agent V_204443
   classes:
     RHEL_7_STIG:enabled::
 
-      "$(this.bundle)_remediation_enabled"
-        or => {
-                "RHEL_7_STIG:remediation_enabled",
-                some( string_replace( "$(this.bundle)", "_", "-"),
-                      "$(this.namespace):config.remediation_enabled" )
-        };
+      "$(this.bundle)_enforced"
+        expression => "$(this.namespace):enforced";
+
+      "$(this.bundle)_exception"
+        expression => isvariable( "$(this.namespace).exception.$(this.bundle)" );
+
   vars:
 
     RHEL_7_STIG:enabled::
@@ -28,9 +28,15 @@ bundle agent V_204443
         if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   packages:
-    RHEL_7_STIG:V_204443_remediation_enabled::
+    RHEL_7_STIG:V_204443_enforced.!RHEL_7_STIG:V_204443_exception::
       "$(pkg)"
         policy => "absent";
+
+    RHEL_7_STIG:V_204443_enforced.RHEL_7_STIG:V_204443_exception::
+      "$(pkg)"
+        policy => "absent",
+        action => default:warn_only;
+
 
   reports:
     RHEL_7_STIG:DEBUG::
