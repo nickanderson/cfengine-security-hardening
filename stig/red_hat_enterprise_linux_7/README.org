@@ -19,4 +19,6 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 | V-204442   | rsh-server must not be installed     | yes                            | =RHEL_7_STIG:exceptions.V_204442= |
 | V-204443   | ypserv must not be installed         | yes                            | =RHEL_7_STIG:exceptions.V_204443= |
 | V-204497   | FIPS must be configured              | no                             | =RHEL_7_STIG:exceptions.V_204497= |
+| V-204502   | telnet-server must not be installed  | yes                            | =RHEL_7_STIG:exceptions.V_204502= |
 | V-204621   | tftp-server must not be installed    | yes                            | =RHEL_7_STIG:exceptions.V_204621= |
+|            |                                      |                                |                                 |
