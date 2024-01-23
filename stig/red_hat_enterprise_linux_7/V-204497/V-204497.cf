@@ -45,6 +45,7 @@ bundle agent V_204497
                    "$(this.namespace):$(this.bundle)_exception" );
 
   reports:
+    RHEL_7_STIG:enabled::
       "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
         if => and( "$(this.namespace):$(this.bundle)_enforced",
                    not( "$(this.namespace):$(this.bundle)_exception" ) );

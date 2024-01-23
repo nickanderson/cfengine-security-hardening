@@ -4,6 +4,18 @@ body file control
 }
 bundle agent V_204424
 {
+  classes:
+    RHEL_7_STIG:enabled::
+
+      "$(this.bundle)_enforced"
+        expression => "$(this.namespace):enforced";
+
+      "$(this.bundle)_exception"
+        expression => isvariable( "$(this.namespace):exceptions.$(this.bundle)" );
+
+      "$(this.bundle)_finding"
+        expression => regline( "^(?!#).* nullok ?.*",
+                       $(files));
   vars:
 
     RHEL_7_STIG:enabled::
@@ -20,10 +32,22 @@ bundle agent V_204424
         string => "V-204424",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => regline( "^(?!#).* nullok ?.*",
-                       $(files));
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
+
+      "finding_with_exception"
+        string => "V-204424",
+        meta => { "inventory",
+                  "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   "$(this.namespace):$(this.bundle)_exception" );
 
   reports:
+    RHEL_7_STIG:enabled::
+      "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
+        if => and( "$(this.namespace):$(this.bundle)_enforced",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
+
     RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
