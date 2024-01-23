@@ -5,10 +5,6 @@ body file control
 bundle agent config
 {
   vars:
-      "excluded_ids"
-        slist => {}, # e.g. V-238206
-        unless => isvariable( "$(this.promiser)");
-
       "inventory_attribute"
         string => "RHEL 7 STIG findings";
 }
@@ -22,7 +18,7 @@ bundle agent run
         meta => { "report" }; # So that compliance conditions can be targeted.
 
   vars:
-    enabled::
+    RHEL_7_STIG:enabled::
       # Find the inventory bundles
       "bundles"
         slist => bundlesmatching( "$(this.namespace):V_.*" );
@@ -33,7 +29,7 @@ bundle agent run
       "RHEL_7_STIG:chaos"
         inherit => "true";
 
-    enabled::
+    RHEL_7_STIG:enabled::
       "$(bundles)"
         inherit => "true";
 
