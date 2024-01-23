@@ -16,7 +16,7 @@ bundle agent V_204443
         expression => "$(this.namespace):enforced";
 
       "$(this.bundle)_exception"
-        expression => isvariable( "$(this.namespace).exceptions.$(this.bundle)" );
+        expression => isvariable( "$(this.namespace):exceptions.$(this.bundle)" );
 
       "$(this.bundle)_finding"
         expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
