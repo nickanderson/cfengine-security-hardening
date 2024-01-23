@@ -6,9 +6,23 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 - =RHEL_7_STIG:enforced= enables automatic remediation.
 - =RHEL_7_STIG:DEBUG= causes the policy to emit more details.
 ** Variables
-- =RHEL_7_STIG:exceptions.<canonified finding id>= - Documents exception for =<finding id>= causing =RHEL_7_STIG:<canonfied finding id>_exception= to be defined which disables remediation in case =RHEL_7_STIG:enforced= is defined.
+- =RHEL_7_STIG:exceptions.<canonified finding id>= - Documents exception for =<finding id>= causing the class =RHEL_7_STIG:<canonfied finding id>_exception= to be defined which disables remediation in case =RHEL_7_STIG:enforced= is defined.
+
+    For example, the following Augments documents the reason why there is an exception for ~tftp-server~
+
+     #+begin_src json
+       {
+           "variables": {
+               "RHEL_7_STIG.exceptions.V_204621": {
+                   "value": "We host a firmware update service for legacy Modems that use TFTP for firmware updates"
+               }
+           }
+       }
+     #+end_src
+
 * Inventory
-- =RHEL 7 STIG findings= - IDs of findings detected.
+- =RHEL 7 STIG findings= - IDs of findings detected without documented exceptions
+- =RHEL 7 STIG findings with exception= - IDs of findings detected that have documented exceptions.
 - =RHEL 7 STIG findings detail <finding id>= - Useful details about findings. Not available for all findings.
 * Features
 | Finding ID | Description                                 | Automatic Remediation Provided | Exception Variable              |
