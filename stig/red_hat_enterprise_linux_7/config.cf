@@ -16,7 +16,6 @@ bundle agent run
 {
   classes:
 
-      # TODO reconsider this naming/use for where it's enabled?
       "enabled"
         expression => "centos_7|redhat_7",
         scope => "namespace",
