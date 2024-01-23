@@ -28,6 +28,11 @@
       "rules": [
         {
           "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
+        {
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204424"
         }
@@ -43,6 +48,11 @@
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
+        {
+          "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
         {
           "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
@@ -62,6 +72,11 @@
       "rules": [
         {
           "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
+        {
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204594"
         }
@@ -77,6 +92,11 @@
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
+        {
+          "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
         {
           "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
@@ -96,6 +116,11 @@
       "rules": [
         {
           "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
+        {
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204620"
         }
@@ -111,6 +136,11 @@
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
+        {
+          "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
         {
           "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
@@ -130,6 +160,11 @@
       "rules": [
         {
           "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
+        {
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204627"
         }
@@ -145,6 +180,11 @@
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
+        {
+          "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
         {
           "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
@@ -164,6 +204,11 @@
       "rules": [
         {
           "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
+        {
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204442"
         }
@@ -179,6 +224,11 @@
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
+        {
+          "attribute": "RHEL 7 STIG findings",
+          "operator": "is_reported",
+          "value": ""
+        },
         {
           "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
