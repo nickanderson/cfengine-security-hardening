@@ -34,6 +34,6 @@ bundle agent run
         inherit => "true";
 
   reports:
-    RHEL_7_STIG:enabled.RHEL_7_STIG:DEBUG::
+    RHEL_7_STIG:enabled.(RHEL_7_STIG:DEBUG|RHEL_7_STIG:DEBUG_run)::
       "Found bundle: $(bundles)";
 }

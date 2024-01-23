@@ -3,12 +3,10 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 * Configuration
 ** Classes
 - =RHEL_7_STIG:enabled= controls which hosts the policy and compliance report target. =(centos_7|redhat_7)= by default.
+- =RHEL_7_STIG:enforced= enables automatic remediation.
 - =RHEL_7_STIG:DEBUG= causes the policy to emit more details.
-- =RHEL_7_STIG:<canonified finding id>_enforced= enables automatic remediation (if available) for the specific finding. Defined if =V-1234= found in  =RHEL_7_STIG:config.enforced=
-- =RHEL_7_STIG:enabled.RHEL_7_STIG:chaos_enabled= - Causes policy that will modify the system to trigger findings (to be removed).
 ** Variables
-- =RHEL_7_STIG:config.enforced= - A list of finding IDs for which remediation is enabled if available.
-
+- =RHEL_7_STIG:exceptions.<canonified finding id>= - Documents exception for =<finding id>= causing =RHEL_7_STIG:<canonfied finding id>_exception= to be defined which disables remediation in case =RHEL_7_STIG:enforced= is defined.
 * Inventory
 - =RHEL 7 STIG findings= - IDs of findings detected.
 - =RHEL 7 STIG findings detail <finding id>= - Useful details about findings. Not available for all findings.
