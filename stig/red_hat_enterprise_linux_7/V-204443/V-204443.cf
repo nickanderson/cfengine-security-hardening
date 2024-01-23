@@ -29,15 +29,15 @@ bundle agent V_204443
         string => "V-204443",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => and( "$(this.bundle)_finding",
-                   not( "$(this.bundle)_exception" ) );
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
 
       "finding_with_exception"
         string => "V-204443",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
-        if => and( "$(this.bundle)_finding",
-                   "$(this.bundle)_exception" );
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   "$(this.namespace):$(this.bundle)_exception" );
 
   packages:
     RHEL_7_STIG:V_204443_enforced.!RHEL_7_STIG:V_204443_exception::
