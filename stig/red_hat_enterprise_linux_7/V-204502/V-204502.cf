@@ -38,6 +38,17 @@ bundle agent V_204502
         if => and( "$(this.namespace):$(this.bundle)_finding",
                    "$(this.namespace):$(this.bundle)_exception" );
 
+  packages:
+    RHEL_7_STIG:enabled::
+      "$(pkg)"
+        policy => "absent",
+        if => "$(this.namespace):$(this.bundle)_enforced.!$(this.namespace):$(this.bundle)_exception";
+
+      "$(pkg)"
+        policy => "absent",
+        action => default:warn_only,
+        if => "$(this.namespace):$(this.bundle)_enforced.$(this.namespace):$(this.bundle)_exception";
+
   reports:
     RHEL_7_STIG:enabled::
       "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
