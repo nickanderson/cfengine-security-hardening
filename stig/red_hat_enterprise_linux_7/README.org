@@ -11,14 +11,15 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 - =RHEL 7 STIG findings= - IDs of findings detected.
 - =RHEL 7 STIG findings detail <finding id>= - Useful details about findings. Not available for all findings.
 * Features
-| Finding ID | Description                          | Automatic Remediation Provided | Exception Variable              |
-|------------+--------------------------------------+--------------------------------+---------------------------------|
-|            |                                      |                                |                                 |
-| V-204424   | nullok must not be allowed for pam   | no                             | =RHEL_7_STIG:exceptions.V_204424= |
-| V-204425   | sshd must not allow emmpty passwords | no                             | =RHEL_7_STIG:exceptions.V_204425= |
-| V-204442   | rsh-server must not be installed     | yes                            | =RHEL_7_STIG:exceptions.V_204442= |
-| V-204443   | ypserv must not be installed         | yes                            | =RHEL_7_STIG:exceptions.V_204443= |
-| V-204497   | FIPS must be configured              | no                             | =RHEL_7_STIG:exceptions.V_204497= |
-| V-204502   | telnet-server must not be installed  | yes                            | =RHEL_7_STIG:exceptions.V_204502= |
-| V-204621   | tftp-server must not be installed    | yes                            | =RHEL_7_STIG:exceptions.V_204621= |
-|            |                                      |                                |                                 |
+| Finding ID | Description                           | Automatic Remediation Provided | Exception Variable              |
+|------------+---------------------------------------+--------------------------------+---------------------------------|
+|            |                                       |                                |                                 |
+| V-204424   | nullok must not be allowed for pam    | no                             | =RHEL_7_STIG:exceptions.V_204424= |
+| V-204425   | sshd must not allow emmpty passwords  | no                             | =RHEL_7_STIG:exceptions.V_204425= |
+| V-204442   | rsh-server must not be installed      | yes                            | =RHEL_7_STIG:exceptions.V_204442= |
+| V-204443   | ypserv must not be installed          | yes                            | =RHEL_7_STIG:exceptions.V_204443= |
+| V-204497   | FIPS must be configured               | no                             | =RHEL_7_STIG:exceptions.V_204497= |
+| V-204502   | telnet-server must not be installed   | yes                            | =RHEL_7_STIG:exceptions.V_204502= |
+| V-204594   | ssh must be configured for protocol 2 | no                             | =RHEL_7_STIG:exceptions.V_204594= |
+| V-204621   | tftp-server must not be installed     | yes                            | =RHEL_7_STIG:exceptions.V_204621= |
+|            |                                       |                                |                                 |

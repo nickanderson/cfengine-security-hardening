@@ -21,12 +21,23 @@ bundle agent V_204594
 
   classes:
     RHEL_7_STIG:enabled::
-      "applicable"
+
+      "$(this.bundle)_enforced"
+        expression => "$(this.namespace):enforced";
+
+      "$(this.bundle)_exception"
+        expression => isvariable( "$(this.namespace):exceptions.$(this.bundle)" );
+
+      "$(this.bundle)_applicable"
         not => regline( '.*\s7\.[4-9].*', "/etc/redhat-release" );
+
+      "$(this.bundle)_finding"
+        expression => and( "$(this.namespace):$(this.bundle)_applicable",
+                           isgreaterthan( length( lines ), 0 ) );
 
   vars:
 
-    RHEL_7_STIG:enabled.applicable::
+    V_204594_applicable::
 
       "lines"
         slist => grep("^(?!#)[^\S\n]*(?i)Protocol\s+[^2].*$",
@@ -36,9 +47,21 @@ bundle agent V_204594
         string => "V-204594",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => isgreaterthan( length( lines ), 0 );
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
+
+      "finding_with_exception"
+        string => "V-204594",
+        meta => { "inventory",
+                  "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   "$(this.namespace):$(this.bundle)_exception" );
 
   reports:
+    RHEL_7_STIG:enabled::
+      "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
+        if => and( "$(this.namespace):$(this.bundle)_enforced",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
 
     RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
