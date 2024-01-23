@@ -51,6 +51,10 @@ bundle agent V_204443
 
   reports:
     RHEL_7_STIG:DEBUG::
+      "DEBUG $(this.namespace):$(this.bundle): finding class"
+        if => "$(this.namespace):$(this.bundle)_finding";
+      "DEBUG $(this.namespace):$(this.bundle): not finding class"
+        if => not( "$(this.namespace):$(this.bundle)_finding" );
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );
