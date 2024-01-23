@@ -3,9 +3,9 @@ body file control
         namespace => "RHEL_7_STIG";
 }
 bundle agent V_204443
-# @class `RHEL_7_STIG:V_204443_enforced` - Enables remediation.
-# @class `RHEL_7_STIG:V_204443_exception` - Disables remediation (defined if the variable `RHEL_7_STIG:exceptions.V_204443` is defined ).
-# @variable `RHEL_7_STIG:exceptions.V_204443` - Documents and disables remediation for this finding.
+# @class `RHEL_7_STIG:V_204443_enforced` - Enables remediation (defined if `RHEL_7_STIG:enforced` is defined)
+# @class `RHEL_7_STIG:V_204443_exception` - Disables remediation (defined if the variable `RHEL_7_STIG:exceptions.V_204443` is defined)
+# @variable `RHEL_7_STIG:exceptions.V_204443` - Documents and disables remediation for this finding
 {
       # If ypserv is installed, it's a finding
 
