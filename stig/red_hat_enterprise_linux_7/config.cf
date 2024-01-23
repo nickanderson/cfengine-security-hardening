@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent config
 {
@@ -30,8 +30,8 @@ bundle agent run
 
   methods:
 
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
-      "Red_Hat_Enterprise_Linux_7_STIG:chaos"
+    (RHEL_7_STIG:supported_os.RHEL_7_STIG:chaos_enabled)::
+      "RHEL_7_STIG:chaos"
         inherit => "true";
 
     supported_os::
@@ -39,6 +39,6 @@ bundle agent run
         inherit => "true";
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:supported_os.RHEL_7_STIG:DEBUG::
       "Found bundle: $(bundles)";
 }

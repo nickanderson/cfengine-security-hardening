@@ -1,12 +1,12 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent chaos
 {
  reports:
       "DEBUG: In $(this.namespace):$(this.bundle)";
-    (Red_Hat_Enterprise_Linux_7_STIG:supported_os.Red_Hat_Enterprise_Linux_7_STIG:chaos_enabled)::
+    (RHEL_7_STIG:supported_os.RHEL_7_STIG:chaos_enabled)::
       "DEBUG $(this.namespace):$(this.bundle): Chaos enabled, supported os";
 
   vars:
@@ -34,7 +34,7 @@ bundle agent chaos
       "ypserv" -> { "V-204443" }
         handle => "cause_V-204443",
         policy => "present";
-        # if => "Red_Hat_Enterprise_Linux_7_STIG:chaos_V_204443";
+        # if => "RHEL_7_STIG:chaos_V_204443";
 
   files:
 

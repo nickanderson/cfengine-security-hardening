@@ -226,7 +226,7 @@
         "policy_files services/security-hardening/stig/rhel-7/V-204442.cf",
         "policy_files services/security-hardening/stig/rhel-7/chaos.cf",
         "policy_files services/security-hardening/stig/rhel-7/config.cf",
-        "bundles Red_Hat_Enterprise_Linux_7_STIG:run"
+        "bundles RHEL_7_STIG:run"
       ]
     },
     "stig-red-hat-enterprise-linux-8": {

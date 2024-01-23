@@ -1,12 +1,12 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204442
 {
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
       "pkg" string => "rsh-server";
 
       "finding"
@@ -17,7 +17,7 @@ bundle agent V_204442
                    not( isvariable( documented_exception )));
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );

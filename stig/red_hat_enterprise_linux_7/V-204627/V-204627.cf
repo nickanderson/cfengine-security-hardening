@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204627
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204627
@@ -23,14 +23,14 @@ bundle agent V_204627
 
   classes:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
 
       "snmpd_config_present"
         expression => fileexists ("/etc/snmp/snmpd.conf");
 
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:snmpd_config_present::
+    RHEL_7_STIG:snmpd_config_present::
 
       "finding"
         string => "V-204627",
@@ -45,7 +45,7 @@ bundle agent V_204627
         if => regline( "^(?!#).*(public|private).*", "/etc/snmp/snmpd.conf" );
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }

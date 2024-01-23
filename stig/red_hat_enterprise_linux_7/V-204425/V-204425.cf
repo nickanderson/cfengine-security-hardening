@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204425
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204425
@@ -12,7 +12,7 @@ bundle agent V_204425
 
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
       "config_file" string => "/etc/ssh/sshd_config";
 
       # Non comment lines containing PermitEmptyPasswords with a setting other than no.
@@ -31,7 +31,7 @@ bundle agent V_204425
                   islessthan( length( lines_without_no ), 1) );  # permitemptypasswords no
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }

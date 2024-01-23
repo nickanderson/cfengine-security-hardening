@@ -1,17 +1,17 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204621
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204621
 {
       # If TFTP is installed and the requirement for TFTP is not documented with the ISSO, this is a finding.
 
-      # In order to document an exception with ISSO we look for the Red_Hat_Enterprise_Linux_7_STIG.V_204621.documented_exception variable.
+      # In order to document an exception with ISSO we look for the RHEL_7_STIG.V_204621.documented_exception variable.
 
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
       "pkg" string => "tftp-server";
 
       "finding"
@@ -22,7 +22,7 @@ bundle agent V_204621
                    not( isvariable( documented_exception )));
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );

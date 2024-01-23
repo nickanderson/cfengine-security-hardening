@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204443
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204443
@@ -8,17 +8,17 @@ bundle agent V_204443
       # If ypserv is installed, it's a finding
 
   classes:
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
 
       "$(this.bundle)_remediation_enabled"
         or => {
-                "Red_Hat_Enterprise_Linux_7_STIG:remediation_enabled",
+                "RHEL_7_STIG:remediation_enabled",
                 some( string_replace( "$(this.bundle)", "_", "-"),
                       "$(this.namespace):config.remediation_enabled" )
         };
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
       "pkg" string => "ypserv";
 
       "finding"
@@ -28,12 +28,12 @@ bundle agent V_204443
         if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   packages:
-    Red_Hat_Enterprise_Linux_7_STIG:V_204443_remediation_enabled::
+    RHEL_7_STIG:V_204443_remediation_enabled::
       "$(pkg)"
         policy => "absent";
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );

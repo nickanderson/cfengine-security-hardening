@@ -1,13 +1,13 @@
 body file control
 {
-        namespace => "Red_Hat_Enterprise_Linux_7_STIG";
+        namespace => "RHEL_7_STIG";
 }
 bundle agent V_204424
 # https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204424
 {
   vars:
 
-    Red_Hat_Enterprise_Linux_7_STIG:supported_os::
+    RHEL_7_STIG:supported_os::
 
 
       "files"
@@ -25,7 +25,7 @@ bundle agent V_204424
                        $(files));
 
   reports:
-    Red_Hat_Enterprise_Linux_7_STIG:DEBUG::
+    RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }
