@@ -3,7 +3,6 @@ body file control
         namespace => "RHEL_7_STIG";
 }
 bundle agent V_204443
-# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-204443
 # @class `RHEL_7_STIG:V_204443_enforced` - Enables remediation.
 # @class `RHEL_7_STIG:V_204443_exception` - Disables remediation (defined if the variable `RHEL_7_STIG:exceptions.V_204443` is defined ).
 # @variable `RHEL_7_STIG:exceptions.V_204443` - Documents and disables remediation for this finding.

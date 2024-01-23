@@ -3,7 +3,6 @@ body file control
         namespace => "RHEL_7_STIG";
 }
 bundle agent DISABLED_V_214799
-# https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2022-06-06/finding/V-214799
 {
   classes:
       "_cache_needs_refreshed"
