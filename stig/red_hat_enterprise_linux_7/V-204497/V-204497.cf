@@ -5,7 +5,7 @@ body file control
 bundle agent V_204497
 {
   classes:
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "pkg_absent" expression => islessthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 1 );
       "fips_not_enabled" expression => strcmp( 0, readfile( "/proc/sys/crypto/fips_enabled" ) );
       "fips_not_found_in_grub_cfg" not => regline("^(?<!#).*\bfips=1(?:\s+[^\s].*)?$", "/proc/sys/crypto/fips_enabled" );
@@ -20,7 +20,7 @@ bundle agent V_204497
 
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "pkg" string => "dracut-fips";
 
 

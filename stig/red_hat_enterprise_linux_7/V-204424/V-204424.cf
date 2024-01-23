@@ -7,7 +7,7 @@ bundle agent V_204424
 {
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
 
 
       "files"

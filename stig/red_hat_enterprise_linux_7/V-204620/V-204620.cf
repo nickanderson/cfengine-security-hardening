@@ -12,7 +12,7 @@ bundle agent V_204620
       # In order to document an exception with ISSO we look for the RHEL_7_STIG:V_204620.documented_exception variable.
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
 
       "pkg" string => "vsftpd";
 

@@ -12,7 +12,7 @@ bundle agent V_204425
 
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "config_file" string => "/etc/ssh/sshd_config";
 
       # Non comment lines containing PermitEmptyPasswords with a setting other than no.

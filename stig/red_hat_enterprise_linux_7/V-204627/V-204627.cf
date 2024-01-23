@@ -23,7 +23,7 @@ bundle agent V_204627
 
   classes:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
 
       "snmpd_config_present"
         expression => fileexists ("/etc/snmp/snmpd.conf");

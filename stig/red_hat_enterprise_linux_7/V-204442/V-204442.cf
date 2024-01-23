@@ -6,7 +6,7 @@ bundle agent V_204442
 {
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "pkg" string => "rsh-server";
 
       "finding"

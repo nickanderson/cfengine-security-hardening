@@ -8,7 +8,7 @@ bundle agent V_204443
       # If ypserv is installed, it's a finding
 
   classes:
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
 
       "$(this.bundle)_remediation_enabled"
         or => {
@@ -18,7 +18,7 @@ bundle agent V_204443
         };
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "pkg" string => "ypserv";
 
       "finding"

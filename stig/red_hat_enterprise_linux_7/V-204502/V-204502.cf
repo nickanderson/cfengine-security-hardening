@@ -9,7 +9,7 @@ bundle agent V_204502
 
   vars:
 
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
 
       "pkg" string => "telnet-server";
 

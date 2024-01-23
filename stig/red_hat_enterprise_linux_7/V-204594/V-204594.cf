@@ -21,13 +21,13 @@ bundle agent V_204594
 
 
   classes:
-    RHEL_7_STIG:supported_os::
+    RHEL_7_STIG:enabled::
       "applicable"
         not => regline( '.*\s7\.[4-9].*', "/etc/redhat-release" );
 
   vars:
 
-    RHEL_7_STIG:supported_os.applicable::
+    RHEL_7_STIG:enabled.applicable::
 
       "lines"
         slist => grep("^(?!#)[^\S\n]*(?i)Protocol\s+[^2].*$",

@@ -17,28 +17,28 @@ bundle agent run
   classes:
 
       # TODO reconsider this naming/use for where it's enabled?
-      "supported_os"
+      "enabled"
         expression => "centos_7|redhat_7",
         scope => "namespace",
         meta => { "report" }; # So that compliance conditions can be targeted.
 
   vars:
-    supported_os::
+    enabled::
       # Find the inventory bundles
       "bundles"
         slist => bundlesmatching( "$(this.namespace):V_.*" );
 
   methods:
 
-    (RHEL_7_STIG:supported_os.RHEL_7_STIG:chaos_enabled)::
+    (RHEL_7_STIG:enabled.RHEL_7_STIG:chaos_enabled)::
       "RHEL_7_STIG:chaos"
         inherit => "true";
 
-    supported_os::
+    enabled::
       "$(bundles)"
         inherit => "true";
 
   reports:
-    RHEL_7_STIG:supported_os.RHEL_7_STIG:DEBUG::
+    RHEL_7_STIG:enabled.RHEL_7_STIG:DEBUG::
       "Found bundle: $(bundles)";
 }

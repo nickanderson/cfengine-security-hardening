@@ -6,7 +6,7 @@ bundle agent chaos
 {
  reports:
       "DEBUG: In $(this.namespace):$(this.bundle)";
-    (RHEL_7_STIG:supported_os.RHEL_7_STIG:chaos_enabled)::
+    (RHEL_7_STIG:enabled.RHEL_7_STIG:chaos_enabled)::
       "DEBUG $(this.namespace):$(this.bundle): Chaos enabled, supported os";
 
   vars:
