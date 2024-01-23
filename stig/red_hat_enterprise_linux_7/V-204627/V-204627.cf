@@ -41,7 +41,7 @@ bundle agent V_204627
       "raw_findings"
         slist => grep( "^(?!#).*(public|private).*", readstringlist( "/etc/snmp/snmpd.conf", "", "\n", inf, inf ) ),
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings detail V-204627" },
+                  "attribute_name=RHEL 7 STIG findings detail V-204627" },
         if => regline( "^(?!#).*(public|private).*", "/etc/snmp/snmpd.conf" );
 
   reports:

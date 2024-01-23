@@ -10,5 +10,5 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 - =RHEL_7_STIG:config.remediation_enabled= - A list of finding IDs for which remediation is enabled if available.
 
 * Inventory
-- =Red Hat Enterprise Linux 7 STIG V1 findings= - IDs of findings detected.
-- =Red Hat Enterprise Linux 7 STIG V1 findings detail <finding id>= - Useful details about findings. Not available for all findings.
+- =RHEL 7 STIG findings= - IDs of findings detected.
+- =RHEL 7 STIG findings detail <finding id>= - Useful details about findings. Not available for all findings.

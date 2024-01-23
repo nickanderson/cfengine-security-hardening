@@ -52,7 +52,7 @@ bundle agent DISABLED_V_204392
       "finding"
         string => "V-204392",
         meta => { "inventory",
-                  "attribute_name=Red Hat Enterprise Linux 7 STIG V1 findings" },
+                  "attribute_name=RHEL 7 STIG findings" },
         if => isgreaterthan( length( raw_findings ), 0 );
 
 

@@ -27,7 +27,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204424"
         }
@@ -44,7 +44,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204425"
         }
@@ -61,7 +61,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204594"
         }
@@ -78,7 +78,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204502"
         }
@@ -95,7 +95,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204620"
         }
@@ -112,7 +112,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204621"
         }
@@ -129,7 +129,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204627"
         }
@@ -146,7 +146,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204497"
         }
@@ -163,7 +163,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204442"
         }
@@ -180,7 +180,7 @@
       "condition_for": "passing",
       "rules": [
         {
-          "attribute": "Red Hat Enterprise Linux 7 STIG V1 findings",
+          "attribute": "RHEL 7 STIG findings",
           "operator": "not_match",
           "value": "v-204443"
         }
