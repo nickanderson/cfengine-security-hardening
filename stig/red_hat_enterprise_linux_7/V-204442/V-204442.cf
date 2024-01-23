@@ -11,10 +11,12 @@ bundle agent V_204442
         expression => "$(this.namespace):enforced";
 
       "$(this.bundle)_exception"
-        expression => isvariable( "$(this.namespace).exception.$(this.bundle)" );
+        expression => isvariable( "$(this.namespace):exceptions.$(this.bundle)" );
+
+      "$(this.bundle)_finding"
+        expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   vars:
-
     RHEL_7_STIG:enabled::
       "pkg" string => "rsh-server";
 
@@ -22,13 +24,30 @@ bundle agent V_204442
         string => "V-204442",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => and( isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 ),
-                   not( isvariable( documented_exception )));
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   not( "$(this.namespace):$(this.bundle)_exception" ) );
+
+      "finding_with_exception"
+        string => "V-204442",
+        meta => { "inventory",
+                  "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
+        if => and( "$(this.namespace):$(this.bundle)_finding",
+                   "$(this.namespace):$(this.bundle)_exception" );
+
+  packages:
+    RHEL_7_STIG:enabled::
+      "$(pkg)"
+        policy => "absent",
+        if => "$(this.namespace):$(this.bundle)_enforced.!$(this.namespace):$(this.bundle)_exception";
+
+      "$(pkg)"
+        policy => "absent",
+        action => default:warn_only,
+        if => "$(this.namespace):$(this.bundle)_enforced.$(this.namespace):$(this.bundle)_exception";
 
   reports:
     RHEL_7_STIG:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );
-
 }

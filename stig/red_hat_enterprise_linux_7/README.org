@@ -10,3 +10,9 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 * Inventory
 - =RHEL 7 STIG findings= - IDs of findings detected.
 - =RHEL 7 STIG findings detail <finding id>= - Useful details about findings. Not available for all findings.
+* Features
+| Finding ID | Description                       | Automatic Remediation Provided |
+|------------+-----------------------------------+--------------------------------|
+| V-204443   | ypserv must not be installed      | yes                            |
+| V-204442   | rsh-server must not be installed  | yes                            |
+| V-204621   | tftp-server must not be installed | yes                            |
