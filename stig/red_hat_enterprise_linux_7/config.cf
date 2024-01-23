@@ -7,6 +7,9 @@ bundle agent config
   vars:
       "inventory_attribute"
         string => "RHEL 7 STIG findings";
+
+      "inventory_attribute_exception"
+        string => "RHEL 7 STIG findings with exception";
 }
 bundle agent run
 {

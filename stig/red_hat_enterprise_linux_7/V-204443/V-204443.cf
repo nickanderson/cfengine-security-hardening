@@ -18,8 +18,10 @@ bundle agent V_204443
       "$(this.bundle)_exception"
         expression => isvariable( "$(this.namespace).exception.$(this.bundle)" );
 
-  vars:
+      "$(this.bundle)_finding"
+        expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
+  vars:
     RHEL_7_STIG:enabled::
       "pkg" string => "ypserv";
 
@@ -27,7 +29,15 @@ bundle agent V_204443
         string => "V-204443",
         meta => { "inventory",
                   "attribute_name=$($(this.namespace):config.inventory_attribute)" },
-        if => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
+        if => and( "$(this.bundle)_finding",
+                   not( "$(this.bundle)_exception" ) );
+
+      "finding_with_exception"
+        string => "V-204443",
+        meta => { "inventory",
+                  "attribute_name=$($(this.namespace):config.inventory_attribute_exception)" },
+        if => and( "$(this.bundle)_finding",
+                   "$(this.bundle)_exception" );
 
   packages:
     RHEL_7_STIG:V_204443_enforced.!RHEL_7_STIG:V_204443_exception::
@@ -38,7 +48,6 @@ bundle agent V_204443
       "$(pkg)"
         policy => "absent",
         action => default:warn_only;
-
 
   reports:
     RHEL_7_STIG:DEBUG::
