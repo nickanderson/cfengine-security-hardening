@@ -39,7 +39,7 @@ bundle agent exceptions
       "i" slist => getindices( "RHEL_7_STIG:config.exceptions" );
 
       "$(with)"
-        string => canonify( "$(RHEL_7_STIG:config.exceptions[$(i)][why])" ),
+        string => "$(RHEL_7_STIG:config.exceptions[$(i)][why])",
         with => canonify( "$(RHEL_7_STIG:config.exceptions[$(i)][id])" ),
         if => "$(RHEL_7_STIG:config.exceptions[$(i)][context])";
 
