@@ -29,7 +29,7 @@ bundle agent run
 
       # If RHEL_7_STIG.config.mode is set to enforce we define the class to enable enforcement for all findings
       "enforced"
-        expression => regcmp( "(?i)enforce", "$()$(this.namespace):config.mode)");
+        expression => regcmp( "(?i)enforce", "$($(this.namespace):config.mode)");
 
   vars:
     RHEL_7_STIG:enabled::
