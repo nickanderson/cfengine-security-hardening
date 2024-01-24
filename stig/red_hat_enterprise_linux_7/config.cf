@@ -20,6 +20,29 @@ bundle agent config
       "context"
         string => "centos_7|redhat_7",
         if => not( isvariable( "$(this.namespace):$(this.bundle).context") );
+
+
+      # Module input may define exceptions in this bundle scope:
+      # RHEL_7_STIG:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
+}
+bundle agent exceptions
+{
+  vars:
+      # We expect variables to be defined in this bundle scope to document exceptions
+      # RHEL_7_STIG.exceptions.V_204443 string => "Exception because reason";
+
+      # Module input can define an array of objects allowing the user to interactively specify exceptions.
+      # RHEL_7_STIG:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
+
+      # We need to define the expected variables if they are not already defined.
+
+      "i" slist => getindices( "RHEL_7_STIG:config.exceptions" );
+
+      "$(with)"
+        string => canonify( "$(RHEL_7_STIG:config.exceptions[$(i)][why])" ),
+        with => canonify( "$(RHEL_7_STIG:config.exceptions[$(i)][id])" ),
+        if => "$(RHEL_7_STIG:config.exceptions[$(i)][context])";
+
 }
 bundle agent run
 {
