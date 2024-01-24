@@ -273,7 +273,7 @@
                       "key": "context",
                       "type": "string",
                       "label": "Context",
-                      "question": "Under what context should this be an exception? (default: \"any\")",
+                      "question": "Under what context should this be an exception?",
                       "default": "any"
                   }
               ],
