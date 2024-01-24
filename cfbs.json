@@ -252,12 +252,30 @@
               "bundle": "config",
               "variable": "exceptions",
               "label": "Exceptions",
-              "subtype": {
+              "subtype": [
+
+              {
+                  "key": "id",
                   "type": "string",
                   "label": "Finding ID",
                   "question": "Which finding would you like to add an exception for (e.g.: V-204443)"
               },
-              "while": "Do you want to allow another package?"
+                  {
+                      "key": "why",
+                      "type": "string",
+                      "label": "Why",
+                      "question": "Why is there an exception?",
+                      "default": "Unknown"
+                  },
+                  {
+                      "key": "context",
+                      "type": "string",
+                      "label": "Context",
+                      "question": "Under what context should this be an exception? (default: \"any\")",
+                      "default": "any"
+                  }
+              ],
+              "while": "Do you want to add another exception?"
           }
       ]
     },
