@@ -274,7 +274,7 @@
                       "type": "string",
                       "label": "Context",
                       "question": "Under what context should this be an exception?",
-                      "default": "any"
+                      "default": "centos_7|redhat_7"
                   }
               ],
               "while": "Do you want to add another exception?"
