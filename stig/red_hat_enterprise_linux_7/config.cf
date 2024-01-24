@@ -17,13 +17,16 @@ bundle agent config
         string => "warn", # (warn|enforce)
         if => not( isvariable( "$(this.namespace):$(this.bundle).mode") );
 
+      "context"
+        string => "centos_7|redhat_7",
+        if => not( isvariable( "$(this.namespace):$(this.bundle).context") );
 }
 bundle agent run
 {
   classes:
 
       "enabled"
-        expression => "centos_7|redhat_7",
+        expression => "$($(this.namespace):config.context)",
         scope => "namespace",
         meta => { "report" }; # So that compliance conditions can be targeted.
 
