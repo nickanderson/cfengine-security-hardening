@@ -10,6 +10,13 @@ bundle agent config
 
       "inventory_attribute_exception"
         string => "RHEL 7 STIG findings with exception";
+
+      # This variable expects to be overridden by module input (Augments)
+      # When warn, enforcement
+      "mode"
+        string => "warn", # (warn|enforce)
+        if => not( isvariable( "$(this.namespace):$(this.bundle).mode") );
+
 }
 bundle agent run
 {
@@ -19,6 +26,10 @@ bundle agent run
         expression => "centos_7|redhat_7",
         scope => "namespace",
         meta => { "report" }; # So that compliance conditions can be targeted.
+
+      # If RHEL_7_STIG.config.mode is set to enforce we define the class to enable enforcement for all findings
+      "enforced"
+        expression => regcmp( "(?i)enforce", "$()$(this.namespace):config.mode)");
 
   vars:
     RHEL_7_STIG:enabled::
