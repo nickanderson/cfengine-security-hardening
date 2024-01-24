@@ -194,7 +194,7 @@
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
       "by": "https://github.com/nickanderson",
       "version": "0.0.1",
-      "subdirectory": "stig/red_hat_enterprise_linux_7/",
+      "subdirectory": "stig/red_hat_enterprise_linux_7",
       "dependencies": ["compliance-report-imports"],
       "steps": [
         "copy ./compliance-reports/compliance-report.json ./.no-distrib/compliance-report-definitions/red-hat-enterprise-linux-7-security-technical-implementation-guide.json",
