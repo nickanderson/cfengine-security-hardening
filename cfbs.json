@@ -245,6 +245,19 @@
               "variable": "context",
               "label": "Enabled",
               "question": "Under which context should this module be enabled? (default: \"centos_7|redhat_7\")"
+          },
+          {
+              "type": "list",
+              "namespace": "RHEL_7_STIG",
+              "bundle": "config",
+              "variable": "exceptions",
+              "label": "Exceptions",
+              "subtype": {
+                  "type": "string",
+                  "label": "Finding ID",
+                  "question": "Which finding would you like to add an exception for (e.g.: V-204443)"
+              },
+              "while": "Do you want to allow another package?"
           }
       ]
     },
