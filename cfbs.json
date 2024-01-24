@@ -236,7 +236,8 @@
           "bundle": "config",
           "variable": "mode",
           "label": "Mode",
-          "question": "What mode should the module be in? (warn|enforce)"
+            "question": "What mode should the module be in? (warn|enforce) (default: warn)",
+            "default": "warn"
         },
           {
               "type": "string",
@@ -244,7 +245,8 @@
               "bundle": "config",
               "variable": "context",
               "label": "Enabled",
-              "question": "Under which context should this module be enabled? (default: \"centos_7|redhat_7\")"
+              "question": "Under which context should this module be enabled? (default: \"centos_7|redhat_7\")",
+              "default": "centos_7|redhat_7"
           },
           {
               "type": "list",
