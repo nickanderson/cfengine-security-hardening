@@ -188,7 +188,7 @@
         "json cfbs/def.json def.json"
       ]
     },
-    "stig-red-hat-enterprise-linux-7": {
+    "stig-rhel-7": {
       "description": "Red Hat Enterprise Linux 7 Security Technical Implementation Guide",
       "tags": ["security", "experimental"],
       "repo": "https://github.com/nickanderson/cfengine-security-hardening",
