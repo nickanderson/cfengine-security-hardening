@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent DISABLED_V_204392
 # Verify the file permissions, ownership, and group membership of system files and commands match the vendor values.

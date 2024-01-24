@@ -1,16 +1,16 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent V_204443
-# @class `RHEL_7_STIG:V_204443_enforced` - Enables remediation (defined if `RHEL_7_STIG:enforced` is defined)
-# @class `RHEL_7_STIG:V_204443_exception` - Disables remediation (defined if the variable `RHEL_7_STIG:exceptions.V_204443` is defined)
-# @variable `RHEL_7_STIG:exceptions.V_204443` - Documents and disables remediation for this finding
+# @class `rhel_7_stig:V_204443_enforced` - Enables remediation (defined if `rhel_7_stig:enforced` is defined)
+# @class `rhel_7_stig:V_204443_exception` - Disables remediation (defined if the variable `rhel_7_stig:exceptions.V_204443` is defined)
+# @variable `rhel_7_stig:exceptions.V_204443` - Documents and disables remediation for this finding
 {
       # If ypserv is installed, it's a finding
 
   classes:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
 
       "$(this.bundle)_enforced"
         expression => "$(this.namespace):enforced";
@@ -22,7 +22,7 @@ bundle agent V_204443
         expression => isgreaterthan( length( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) ), 0 );
 
   vars:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "pkg" string => "ypserv";
 
       "finding"
@@ -40,7 +40,7 @@ bundle agent V_204443
                    "$(this.namespace):$(this.bundle)_exception" );
 
   packages:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "$(pkg)"
         policy => "absent",
         if => "$(this.namespace):$(this.bundle)_enforced.!$(this.namespace):$(this.bundle)_exception";
@@ -51,7 +51,7 @@ bundle agent V_204443
         if => "$(this.namespace):$(this.bundle)_enforced.$(this.namespace):$(this.bundle)_exception";
 
   reports:
-    RHEL_7_STIG:DEBUG::
+    rhel_7_stig:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): finding class"
         if => "$(this.namespace):$(this.bundle)_finding";
       "DEBUG $(this.namespace):$(this.bundle): not finding class"

@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent V_204425
 {
@@ -9,7 +9,7 @@ bundle agent V_204425
       # PermitEmptyPasswords no
       # If no line, a commented line, or a line indicating the value "no" is returned, the required value is set.
   classes:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
 
       "$(this.bundle)_enforced"
         expression => "$(this.namespace):enforced";
@@ -24,7 +24,7 @@ bundle agent V_204425
 
   vars:
 
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "config_file" string => "/etc/ssh/sshd_config";
 
       # Non comment lines containing PermitEmptyPasswords with a setting other than no.
@@ -49,12 +49,12 @@ bundle agent V_204425
                    "$(this.namespace):$(this.bundle)_exception" );
 
   reports:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
         if => and( "$(this.namespace):$(this.bundle)_enforced",
                    not( "$(this.namespace):$(this.bundle)_exception" ) );
 
-    RHEL_7_STIG:DEBUG::
+    rhel_7_stig:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
 }

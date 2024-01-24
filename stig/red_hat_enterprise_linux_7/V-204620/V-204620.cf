@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent V_204620
 {
@@ -9,7 +9,7 @@ bundle agent V_204620
       # finding.
 
   classes:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
 
       "$(this.bundle)_enforced"
         expression => "$(this.namespace):enforced";
@@ -22,7 +22,7 @@ bundle agent V_204620
 
   vars:
 
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
 
       "pkg" string => "vsftpd";
 
@@ -41,7 +41,7 @@ bundle agent V_204620
                    "$(this.namespace):$(this.bundle)_exception" );
 
   packages:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "$(pkg)"
         policy => "absent",
         if => "$(this.namespace):$(this.bundle)_enforced.!$(this.namespace):$(this.bundle)_exception";
@@ -52,7 +52,7 @@ bundle agent V_204620
         if => "$(this.namespace):$(this.bundle)_enforced.$(this.namespace):$(this.bundle)_exception";
 
   reports:
-    RHEL_7_STIG:DEBUG::
+    rhel_7_stig:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
       "DEBUG $(this.namespace):$(this.bundle): packages matching $(pkg): $(with)"
         with => storejson( packagesmatching( "$(pkg)", ".*", ".*", ".*" ) );

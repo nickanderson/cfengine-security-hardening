@@ -39,7 +39,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204425": {
       "id": "v-204425",
@@ -61,7 +61,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204594": {
       "id": "v-204594",
@@ -83,7 +83,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204502": {
       "id": "v-204502",
@@ -105,7 +105,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204620": {
       "id": "v-204620",
@@ -127,7 +127,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204621": {
       "id": "v-204621",
@@ -149,7 +149,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204627": {
       "id": "v-204627",
@@ -171,7 +171,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204497": {
       "id": "v-204497",
@@ -193,7 +193,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204442": {
       "id": "v-204442",
@@ -215,7 +215,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     },
     "v-204443": {
       "id": "v-204443",
@@ -237,7 +237,7 @@
       ],
       "category": "Security",
       "severity": "high",
-      "host_filter": "RHEL_7_STIG:enabled"
+      "host_filter": "rhel_7_stig:enabled"
     }
   }
 }

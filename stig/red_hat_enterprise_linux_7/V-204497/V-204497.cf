@@ -1,11 +1,11 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent V_204497
 {
   classes:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
 
       "$(this.bundle)_enforced"
         expression => "$(this.namespace):enforced";
@@ -19,15 +19,15 @@ bundle agent V_204497
       "etc_system_fips_not_present" expression => not( fileexists( "/etc/system-fips" ) );
 
       "$(this.bundle)_finding" or => {
-                        "RHEL_7_STIG:pkg_absent",
-                        "RHEL_7_STIG:fips_not_enabled",
-                        "RHEL_7_STIG:fips_not_found_in_grub_cfg",
-                        "RHEL_7_STIG:etc_system_fips_not_present"
+                        "rhel_7_stig:pkg_absent",
+                        "rhel_7_stig:fips_not_enabled",
+                        "rhel_7_stig:fips_not_found_in_grub_cfg",
+                        "rhel_7_stig:etc_system_fips_not_present"
       };
 
   vars:
 
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "pkg" string => "dracut-fips";
 
       "finding"
@@ -45,21 +45,21 @@ bundle agent V_204497
                    "$(this.namespace):$(this.bundle)_exception" );
 
   reports:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "$(this.namespace):$(this.bundle) is Enforcing without exception but automatic remediation is not available"
         if => and( "$(this.namespace):$(this.bundle)_enforced",
                    not( "$(this.namespace):$(this.bundle)_exception" ) );
 
-    RHEL_7_STIG:DEBUG::
+    rhel_7_stig:DEBUG::
       "DEBUG $(this.namespace):$(this.bundle): Found" if => isvariable( finding );
 
       "DEBUG $(this.namespace):$(this.bundle): $(pkg) not installed"
-        if => "RHEL_7_STIG:pkg_absent";
+        if => "rhel_7_stig:pkg_absent";
       "DEBUG $(this.namespace):$(this.bundle): FIPS not enabled"
-        if => "RHEL_7_STIG:fips_not_enabled";
+        if => "rhel_7_stig:fips_not_enabled";
       "DEBUG $(this.namespace):$(this.bundle): fips=1 not found in grub.cfg"
-        if => "RHEL_7_STIG:fips_not_found_in_grub_cfg";
+        if => "rhel_7_stig:fips_not_found_in_grub_cfg";
 
       "DEBUG $(this.namespace):$(this.bundle): /etc/system-fips does not exist"
-        if => "RHEL_7_STIG:etc_system_fips_not_present";
+        if => "rhel_7_stig:etc_system_fips_not_present";
 }

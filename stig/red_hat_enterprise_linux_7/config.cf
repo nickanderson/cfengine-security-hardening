@@ -1,6 +1,6 @@
 body file control
 {
-        namespace => "RHEL_7_STIG";
+        namespace => "rhel_7_stig";
 }
 bundle agent config
 {
@@ -23,25 +23,25 @@ bundle agent config
 
 
       # Module input may define exceptions in this bundle scope:
-      # RHEL_7_STIG:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
+      # rhel_7_stig:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
 }
 bundle agent exceptions
 {
   vars:
       # We expect variables to be defined in this bundle scope to document exceptions
-      # RHEL_7_STIG.exceptions.V_204443 string => "Exception because reason";
+      # rhel_7_stig.exceptions.V_204443 string => "Exception because reason";
 
       # Module input can define an array of objects allowing the user to interactively specify exceptions.
-      # RHEL_7_STIG:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
+      # rhel_7_stig:config.exceptions            [{"context":"any","id":"V-204443","why":"Old skool cool."}]  source=augments_file                     Added by 'cfbs input'
 
       # We need to define the expected variables if they are not already defined.
 
-      "i" slist => getindices( "RHEL_7_STIG:config.exceptions" );
+      "i" slist => getindices( "rhel_7_stig:config.exceptions" );
 
       "$(with)"
-        string => "$(RHEL_7_STIG:config.exceptions[$(i)][why])",
-        with => canonify( "$(RHEL_7_STIG:config.exceptions[$(i)][id])" ),
-        if => "$(RHEL_7_STIG:config.exceptions[$(i)][context])";
+        string => "$(rhel_7_stig:config.exceptions[$(i)][why])",
+        with => canonify( "$(rhel_7_stig:config.exceptions[$(i)][id])" ),
+        if => "$(rhel_7_stig:config.exceptions[$(i)][context])";
 
 }
 bundle agent run
@@ -53,27 +53,27 @@ bundle agent run
         scope => "namespace",
         meta => { "report" }; # So that compliance conditions can be targeted.
 
-      # If RHEL_7_STIG.config.mode is set to enforce we define the class to enable enforcement for all findings
+      # If rhel_7_stig.config.mode is set to enforce we define the class to enable enforcement for all findings
       "enforced"
         expression => regcmp( "(?i)enforce", "$($(this.namespace):config.mode)");
 
   vars:
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       # Find the inventory bundles
       "bundles"
         slist => bundlesmatching( "$(this.namespace):V_.*" );
 
   methods:
 
-    (RHEL_7_STIG:enabled.RHEL_7_STIG:chaos_enabled)::
-      "RHEL_7_STIG:chaos"
+    (rhel_7_stig:enabled.rhel_7_stig:chaos_enabled)::
+      "rhel_7_stig:chaos"
         inherit => "true";
 
-    RHEL_7_STIG:enabled::
+    rhel_7_stig:enabled::
       "$(bundles)"
         inherit => "true";
 
   reports:
-    RHEL_7_STIG:enabled.(RHEL_7_STIG:DEBUG|RHEL_7_STIG:DEBUG_run)::
+    rhel_7_stig:enabled.(rhel_7_stig:DEBUG|rhel_7_stig:DEBUG_run)::
       "Found bundle: $(bundles)";
 }

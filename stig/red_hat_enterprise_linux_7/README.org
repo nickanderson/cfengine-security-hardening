@@ -2,18 +2,18 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 
 * Configuration
 ** Classes
-- =RHEL_7_STIG:enabled= controls which hosts the policy and compliance report target. =(centos_7|redhat_7)= by default.
-- =RHEL_7_STIG:enforced= enables automatic remediation.
-- =RHEL_7_STIG:DEBUG= causes the policy to emit more details.
+- =rhel_7_stig:enabled= controls which hosts the policy and compliance report target. =(centos_7|redhat_7)= by default.
+- =rhel_7_stig:enforced= enables automatic remediation.
+- =rhel_7_stig:DEBUG= causes the policy to emit more details.
 ** Variables
-- =RHEL_7_STIG:exceptions.<canonified finding id>= - Documents exception for =<finding id>= causing the class =RHEL_7_STIG:<canonfied finding id>_exception= to be defined which disables remediation in case =RHEL_7_STIG:enforced= is defined.
+- =rhel_7_stig:exceptions.<canonified finding id>= - Documents exception for =<finding id>= causing the class =rhel_7_stig:<canonfied finding id>_exception= to be defined which disables remediation in case =rhel_7_stig:enforced= is defined.
 
     For example, the following Augments documents the reason why there is an exception for ~tftp-server~
 
      #+begin_src json
        {
            "variables": {
-               "RHEL_7_STIG.exceptions.V_204621": {
+               "rhel_7_stig.exceptions.V_204621": {
                    "value": "We host a firmware update service for legacy Modems that use TFTP for firmware updates"
                }
            }
@@ -27,13 +27,13 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
 * Features
 | Finding ID | Description                                 | Automatic Remediation Provided | Exception Variable              |
 |------------+---------------------------------------------+--------------------------------+---------------------------------|
-| V-204424   | nullok must not be allowed for pam          | no                             | =RHEL_7_STIG:exceptions.V_204424= |
-| V-204425   | sshd must not allow emmpty passwords        | no                             | =RHEL_7_STIG:exceptions.V_204425= |
-| V-204442   | rsh-server must not be installed            | yes                            | =RHEL_7_STIG:exceptions.V_204442= |
-| V-204443   | ypserv must not be installed                | yes                            | =RHEL_7_STIG:exceptions.V_204443= |
-| V-204497   | FIPS must be configured                     | no                             | =RHEL_7_STIG:exceptions.V_204497= |
-| V-204502   | telnet-server must not be installed         | yes                            | =RHEL_7_STIG:exceptions.V_204502= |
-| V-204594   | ssh must be configured for protocol 2       | no                             | =RHEL_7_STIG:exceptions.V_204594= |
-| V-204620   | vsftpd must not be installed                | yes                            | =RHEL_7_STIG:exceptions.V_204620= |
-| V-204621   | tftp-server must not be installed           | yes                            | =RHEL_7_STIG:exceptions.V_204621= |
-| V-204627   | SNMP must not use default community strings | no                             | =RHEL_7_STIG:exceptions.V_204627= |
+| V-204424   | nullok must not be allowed for pam          | no                             | =rhel_7_stig:exceptions.V_204424= |
+| V-204425   | sshd must not allow emmpty passwords        | no                             | =rhel_7_stig:exceptions.V_204425= |
+| V-204442   | rsh-server must not be installed            | yes                            | =rhel_7_stig:exceptions.V_204442= |
+| V-204443   | ypserv must not be installed                | yes                            | =rhel_7_stig:exceptions.V_204443= |
+| V-204497   | FIPS must be configured                     | no                             | =rhel_7_stig:exceptions.V_204497= |
+| V-204502   | telnet-server must not be installed         | yes                            | =rhel_7_stig:exceptions.V_204502= |
+| V-204594   | ssh must be configured for protocol 2       | no                             | =rhel_7_stig:exceptions.V_204594= |
+| V-204620   | vsftpd must not be installed                | yes                            | =rhel_7_stig:exceptions.V_204620= |
+| V-204621   | tftp-server must not be installed           | yes                            | =rhel_7_stig:exceptions.V_204621= |
+| V-204627   | SNMP must not use default community strings | no                             | =rhel_7_stig:exceptions.V_204627= |

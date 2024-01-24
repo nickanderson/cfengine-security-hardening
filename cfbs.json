@@ -226,13 +226,13 @@
         "policy_files services/cfbs/modules/stig-red-hat-enterprise-linux-7/V-204442.cf",
         "policy_files services/cfbs/modules/stig-red-hat-enterprise-linux-7/chaos.cf",
         "policy_files services/cfbs/modules/stig-red-hat-enterprise-linux-7/config.cf",
-        "bundles RHEL_7_STIG:run",
+        "bundles rhel_7_stig:run",
         "input ./input.json def.json"
       ],
       "input": [
         {
           "type": "string",
-          "namespace": "RHEL_7_STIG",
+          "namespace": "rhel_7_stig",
           "bundle": "config",
           "variable": "mode",
           "label": "Mode",
@@ -241,7 +241,7 @@
         },
           {
               "type": "string",
-              "namespace": "RHEL_7_STIG",
+              "namespace": "rhel_7_stig",
               "bundle": "config",
               "variable": "context",
               "label": "Enabled",
@@ -250,7 +250,7 @@
           },
           {
               "type": "list",
-              "namespace": "RHEL_7_STIG",
+              "namespace": "rhel_7_stig",
               "bundle": "config",
               "variable": "exceptions",
               "label": "Exceptions",
