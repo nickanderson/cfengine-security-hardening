@@ -13,7 +13,7 @@ This module provides inventory and remediation for the Red Hat Enterprise Linux 
      #+begin_src json
        {
            "variables": {
-               "rhel_7_stig.exceptions.V_204621": {
+               "rhel_7_stig:exceptions.V_204621": {
                    "value": "We host a firmware update service for legacy Modems that use TFTP for firmware updates"
                }
            }
