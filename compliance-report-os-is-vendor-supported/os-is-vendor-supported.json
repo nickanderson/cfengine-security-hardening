@@ -44,7 +44,7 @@
         {
           "attribute": "OS",
           "operator": "regex_matches",
-          "value": "Debian (10|11)"
+          "value": "Debian (11|12)"
         }
       ],
       "category": "Operating System",
@@ -78,7 +78,7 @@
         {
           "attribute": "OS",
           "operator": "regex_matches",
-          "value": "Ubuntu (18|20|22)"
+          "value": "Ubuntu (20|22)"
         }
       ],
       "category": "Operating System",
@@ -112,7 +112,7 @@
         {
           "attribute": "OS",
           "operator": "regex_matches",
-          "value": "CentOS (8)"
+          "value": "CentOS (8|9)"
         }
       ],
       "category": "Operating System",
@@ -129,7 +129,7 @@
         {
           "attribute": "OS",
           "operator": "regex_matches",
-          "value": "Windows (10|11|2019|2022)"
+          "value": "Windows (10|11|2022)"
         }
       ],
       "category": "Operating System",
