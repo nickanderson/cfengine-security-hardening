@@ -227,7 +227,7 @@
         "policy_files services/cfbs/modules/stig-red-hat-enterprise-linux-7/chaos.cf",
         "policy_files services/cfbs/modules/stig-red-hat-enterprise-linux-7/config.cf",
         "bundles rhel_7_stig:run",
-        "input ./input.json def.json"
+        "input ./stig-rhel-7/input.json def.json"
       ],
       "input": [
         {
