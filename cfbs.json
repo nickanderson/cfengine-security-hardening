@@ -8,8 +8,11 @@
       "description": "Keep compliance report definitions up to date",
       "tags": ["experimental", "cfengine-enterprise"],
       "subdirectory": "compliance-report-imports",
-      "dependencies": ["autorun"],
-      "steps": ["copy ./compliance-report-imports.cf services/autorun/"]
+      "steps": [
+        "copy ./compliance-report-imports.cf services/cfbs/modules/compliance-report-imports/compliance-report-imports.cf",
+        "policy_files services/cfbs/modules/compliance-report-imports/compliance-report-imports.cf",
+        "bundles default:compliance_report_imports"
+      ]
     },
     "compliance-report-os-is-vendor-supported": {
       "name": "compliance-report-os-is-vendor-supported",

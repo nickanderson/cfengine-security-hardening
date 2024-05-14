@@ -1,9 +1,5 @@
 bundle agent compliance_report_imports
 {
-  meta:
-    am_policy_hub.enterprise_edition::
-      "tags" slist => { "autorun" };
-
   vars:
 
     am_policy_hub.enterprise_edition::
@@ -25,6 +21,7 @@ bundle agent compliance_report_imports
 
 
   files:
+    am_policy_hub.enterprise_edition::
       "$(sys.workdir)/imports/compliance-reports/."
         create => "true",
         copy_from => default:local_dcp( "$(sys.masterdir)/.no-distrib/compliance-report-definitions/"),
@@ -50,10 +47,12 @@ WHERE export_id IS null AND name IN ('OS is reported', 'Supported CentOS', 'Supp
          template_method => "inline_mustache";
 
   commands:
-   "$(sys.bindir)/compliance-report-definition-importer.sh"
-     contain => default:silent,
-     inform => "false",
-     classes => default:results( "bundle", "compliance_reports_import" );
+    am_policy_hub.enterprise_edition::
+
+      "$(sys.bindir)/compliance-report-definition-importer.sh"
+        contain => default:silent,
+        inform => "false",
+        classes => default:results( "bundle", "compliance_reports_import" );
 
   reports:
    compliance_reports_import_repaired.(inform_mode|verbose_mode|debug_mode)::
