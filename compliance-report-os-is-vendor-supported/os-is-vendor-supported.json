@@ -27,7 +27,7 @@
         {
           "attribute": "OS",
           "operator": "regex_not_match",
-          "value": ".*(?i)unknown.*"
+          "value": "(?i).*unknown.*"
         }
       ],
       "category": "Operating System",
