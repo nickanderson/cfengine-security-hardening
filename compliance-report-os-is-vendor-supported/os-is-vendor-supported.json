@@ -71,14 +71,14 @@
     "supported-ubuntu": {
       "id": "supported-ubuntu",
       "name": "Supported Ubuntu",
-      "description": "Ubuntu hosts are running Ubuntu 18, 20 or 22",
+      "description": "Ubuntu hosts are running Ubuntu 20, 22 or 24",
       "type": "inventory",
       "condition_for": "passing",
       "rules": [
         {
           "attribute": "OS",
           "operator": "regex_matches",
-          "value": "Ubuntu (20|22)"
+          "value": "Ubuntu (20|22|24)"
         }
       ],
       "category": "Operating System",
